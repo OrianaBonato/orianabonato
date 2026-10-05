@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oriana Bonato</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&amp;family=Manrope:wght@400..700&amp;family=Inter:ital,wght@0,400;0,500;1,400&amp;family=Rock+Salt&amp;display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #E9E9E9; color: #131E21; }
+    a { color: #131E21; text-decoration: none; }
+    a:hover { color: #756CE5; }
+    ::selection { background: #756CE5; color: #E9E9E9; }
+    .ob-repo { transition: color .3s ease; }
+    .ob-repo:hover { color: #D8FD80 !important; }
+    .ob-repo svg { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-repo:hover svg { transform: rotate(45deg); }
+    .ob-next-circ { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-next:hover .ob-next-circ { transform: rotate(45deg); }
+    .ob-soc { transition: opacity .3s ease; }
+    .ob-soc:hover { opacity: .6; }
+    .ob-plus { transition: border-color .35s ease, background .35s ease; }
+    .ob-plus:hover { border-color: #D8FD80 !important; }
+    .ob-plus svg { transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .ob-mi { transition: color .35s ease; }
+    .ob-mi:hover { color: #D8FD80 !important; }
+    .ob-mi .ob-mi-arr { display: inline-flex; color: #756CE5; transition: color .35s ease; }
+    .ob-mi:hover .ob-mi-arr { color: #D8FD80; }
+    .ob-mi .ob-ico, .ob-mm .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); transform: rotate(0deg); }
+    .ob-mi:hover .ob-ico, .ob-mm:hover .ob-ico { transform: rotate(45deg); }
+    .ob-btn { transition: background .35s ease; }
+    .ob-btn .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); transform: rotate(0deg); }
+    .ob-btn .ob-circ { transition: background .35s ease, color .35s ease; }
+    .ob-btn:hover { background: #131E21; }
+    .ob-btn:hover .ob-ico { transform: rotate(45deg); }
+    .ob-btn:hover .ob-circ { background: #131E21; color: #756CE5; }
+    .ob-btn span:first-child { transition: color .35s ease; }
+    .ob-btn:hover span:first-child { color: #756CE5; }
+    .ob-mm { transition: border-color .35s ease; }
+    .ob-mm:hover { border-color: #D8FD80 !important; }
+    .cr-shot img { transition: object-position 6s cubic-bezier(.45,0,.55,1); }
+    .cr-shot:hover img { object-position: bottom !important; }
+  </style>
+</helmet>
+
+<div style="position:relative;font-family:'Bricolage Grotesque',sans-serif;background:#E9E9E9;color:#131E21;overflow-x:clip;">
+
+  <header data-ob-dark="1" style="position:fixed;top:0;left:0;right:0;z-index:100;background:#131E21;box-shadow:0 16px 40px rgba(0,0,0,.3);">
+    <div style="height:80px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
+      <div style="display:flex;align-items:center;gap:clamp(20px,2.4vw,36px);">
+        <a href="index.html" style="display:flex;align-items:center;flex-shrink:0;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:34px;width:auto;display:block;"></a>
+        <span style="width:1px;height:26px;flex-shrink:0;background:rgba(233,233,233,.2);"></span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <a class="ob-soc" href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/linkedin.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
+          <a class="ob-soc" href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" aria-label="Behance" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/behance.svg" alt="" style="width:24px;height:24px;display:block;filter:brightness(0) invert(1);"></a>
+          <a class="ob-soc" href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/github.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button type="button" class="ob-plus" onClick="{{ navToggle }}" aria-label="Menu" aria-expanded="{{ navOpenStr }}" style="width:44px;height:44px;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);background:{{ navPlusBg }};color:#E9E9E9;display:flex;align-items:center;justify-content:center;cursor:pointer;font:inherit;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="transform:rotate({{ navPlusRot }});"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg>
+        </button>
+        <span onClick="{{ toggleLang }}" role="button" style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:30px;padding:0 14px;box-sizing:border-box;border-radius:999px;background:#756CE5;border:1px solid #756CE5;font-size:12px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;cursor:pointer;">{{ langLabel }}</span>
+      </div>
+    </div>
+    <div data-ob-dark="1" style="position:absolute;top:100%;left:0;right:0;background:#131E21;border-top:1px solid rgba(233,233,233,.14);box-shadow:0 40px 80px rgba(0,0,0,.35);padding:clamp(28px,4vh,48px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(32px,5vh,56px);opacity:{{ navMenuOp }};visibility:{{ navMenuVis }};transform:translateY({{ navMenuY }});transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),visibility .45s;">
+      <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(32px,6vw,110px);align-items:end;">
+        <nav style="display:flex;flex-direction:column;">
+          <sc-for list="{{ navItems }}" as="it" hint-placeholder-count="4">
+            <a href="{{ it.href }}" onClick="{{ navClose }}" class="ob-mi" style="display:flex;align-items:baseline;gap:22px;border-top:1px solid rgba(233,233,233,.14);padding:clamp(10px,1.6vh,16px) 0;color:#E9E9E9;opacity:{{ it.op }};transform:translateY({{ it.y }});transition:color .35s ease,opacity .5s ease {{ it.d }},transform .7s cubic-bezier(.16,1,.3,1) {{ it.d }};">
+              <span style="font-family:'Courier New',monospace;font-size:13px;color:#D8FD80;min-width:36px;">[{{ it.n }}]</span>
+              <span style="font-size:clamp(34px,4.4vw,64px);line-height:.95;letter-spacing:-.035em;font-weight:800;text-transform:uppercase;">{{ it.label }}</span>
+              <span class="ob-mi-arr" style="margin-left:auto;align-self:center;"><svg class="ob-ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+            </a>
+          </sc-for>
+        </nav>
+        <div style="display:flex;flex-direction:column;gap:22px;padding-bottom:6px;">
+          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(17px,1.4vw,21px);font-weight:500;line-height:1.35;color:#E9E9E9;max-width:24ch;">{{ navCta }}</p>
+          <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
+            <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section data-ob-dark="1" style="background:#131E21;color:#E9E9E9;padding:clamp(130px,17vh,190px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(50px,6vw,90px);">
+    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid rgba(233,233,233,.22);padding-bottom:15px;margin-bottom:clamp(36px,5vw,70px);">
+      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(02) — {{ cr.t.caseStudy }}</span>
+      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ cr.tag }} · 2025</span>
+    </div>
+    <h1 style="margin:0;font-size:clamp(58px,13vw,210px);line-height:.84;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">Churrería<br>Romero<span style="color:#756CE5;">.</span></h1>
+    <p style="margin:clamp(28px,3.5vw,52px) 0 0;max-width:40ch;font-family:'Manrope',sans-serif;font-size:clamp(18px,1.6vw,24px);font-weight:500;line-height:1.35;text-wrap:pretty;">{{ cr.lorem1 }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:28px;border-top:1px solid rgba(233,233,233,.22);margin-top:clamp(50px,6vw,90px);padding-top:26px;">
+      <div>
+        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ cr.t.role }}</p>
+        <p style="margin:0;font-size:16px;line-height:1.5;max-width:30ch;">{{ cr.role }}</p>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ cr.t.tools }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <sc-for list="{{ cr.tools }}" as="s" hint-placeholder-count="4">
+            <span style="padding:7px 14px;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-family:'Courier New',monospace;font-size:13px;">{{ s }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ cr.t.year }}</p>
+        <p style="margin:0;font-size:16px;line-height:1.5;">{{ cr.year }}</p>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ cr.t.links }}</p>
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;"><a href="https://churreriaromero.es/" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;color:#756CE5;">churreriaromero.es<svg class="ob-inl-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a><a href="https://www.instagram.com/churreria.romero/" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;color:#756CE5;">Instagram @churreria.romero<svg class="ob-inl-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVER -->
+  <div style="position:relative;">
+    <div data-ob-dark="1" style="position:sticky;top:0;height:100vh;min-height:520px;overflow:hidden;background:#BC3631;">
+            <div style="position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,2.4vh,28px);filter:drop-shadow(0 6px 24px rgba(0,0,0,.1));">
+        <img src="img/CHURRERIA/logo-blanco.png" alt="Churrería Romero" style="width:min(30vw,280px);height:auto;display:block;">
+        <span style="font-family:'Manrope',sans-serif;font-size:clamp(13px,1.3vw,18px);font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#FFFFFF;">{{ cr.tag }}</span>
+      </div>
+    </div>
+
+  <!-- (01) CONTEXT -->
+  <section data-ob-dark="1" style="background:#131E21;color:#E9E9E9;position:relative;z-index:1;padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(70px,9vw,130px);">
+    <div style="display:flex;justify-content:center;">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 1041px; max-width: min(1000px,100%); height: 478px">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01)</span>
+        <h2 style="margin:14px 0 clamp(20px,2.4vw,32px);font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ cr.t.context }}</h2>
+        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.5; font-weight: 300; text-wrap: pretty; width: 100%; font-family: manrope">{{ cr.lorem2 }}</p>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- (02) MY ROLE -->
+  <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,5vw,90px);">
+      <div><span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(02)</span><h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ cr.t.myRole }}</h2></div>
+      <div style="grid-column:span 2;display:flex;flex-direction:column;gap:clamp(24px,3vw,40px);">
+        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.35; letter-spacing: -.01em; font-weight: 500; max-width: 100ch; text-wrap: pretty; width: 838px; height: 157px; flex-grow: 0; font-family: Manrope">{{ cr.lorem3 }}</p>
+        <div style="display:flex;flex-direction:column;">
+          <sc-for list="{{ cr.pages }}" as="d" hint-placeholder-count="7">
+            <div style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:baseline;border-bottom:1px solid rgba(19,30,33,.18);padding:16px 0;">
+              <span style="font-family:'Courier New',monospace;font-size:15px;color:#756CE5;">[{{ d.n }}]</span>
+              <p style="margin: 0; font-size: 18px; font-weight: 500; font-family: Manrope">{{ d.label }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (03) PAGES -->
+  <section ref="{{ pagesRef }}" data-ob-dark="1" style="position:relative;margin-top:clamp(80px,10vw,150px);background:#131E21;color:#E9E9E9;height:{{ pagesH }};">
+    <div style="position:sticky;top:0;height:100vh;min-height:560px;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:clamp(70px,9vh,110px) 0 clamp(40px,6vh,70px);">
+      <div style="padding: 0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)); width: 1345px; height: 248px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(36px,4vw,60px);">
+      <div><span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(03)</span><h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ cr.t.pages }}</h2></div>
+      <p style="margin: 0; font-family: 'Manrope',sans-serif; font-size: 14px; color: D8FD80">{{ cr.t.hoverNote }}</p>
+    </div>
+      </div>
+      <div ref="{{ pagesTrackRef }}" style="display:flex;gap:16px;padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));will-change:transform;">
+        <sc-for list="{{ cr.shots }}" as="g" hint-placeholder-count="5">
+          <figure class="cr-shot" style="margin:0;flex:0 0 calc((min(100vw,1320px + 2 * clamp(20px,3.5vw,56px)) - 2 * clamp(20px,3.5vw,56px) - 16px) / 2);min-width:0;">
+            <figcaption style="margin-bottom:12px;display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;color:#D8FD80;">[{{ g.n }}]</span><span>{{ g.cap }}</span></figcaption>
+            <div style="aspect-ratio:16/10;max-height:58vh;overflow:hidden;background:#1B282B;border-radius:8px;">
+              <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+            </div>
+          </figure>
+        </sc-for>
+      </div>
+      <div style="margin:clamp(20px,3vh,32px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;height:1px;background:rgba(233,233,233,.2);position:relative;"><span ref="{{ pagesBarRef }}" style="position:absolute;left:0;top:0;height:1px;width:0;background:#756CE5;"></span></div>
+    </div>
+  </section>
+
+  <!-- (04) MOTION -->
+  <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,90px);align-items:center;">
+      
+      
+    <div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: row; gap: 143px; width: 1332px; height: 507px; flex-wrap: nowrap">
+        <div style="width: 512px; height: 82px">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(04)</span>
+          <h2 style="margin: 14px 0 0; font-size: clamp(28px,3.4vw,52px); line-height: .95; letter-spacing: -.03em; font-weight: 800; text-transform: uppercase; width: 461px; height: 69px">{{ cr.t.motion }}</h2>
+        </div><p style="margin: 0; font-family: Manrope; font-size: clamp(17px,1.45vw,21px); font-weight: 400; line-height: 1.4; max-width: 99.77ch; text-wrap: pretty; width: 905px; height: 247px">{{ cr.lorem4 }}</p>
+        
+      </div></div>
+    <figure style="margin:0;flex:1.4 1 420px;min-width:0;">
+        <div style="aspect-ratio: 16/10; overflow: hidden; background: #FFFFFF; border-radius: 8px; width: 1311px; height: 628px">
+          
+        <video src="{{ cr.heroVideo.src }}" autoplay="" muted="" loop="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; display: block"></video></div>
+        <figcaption style="margin-top:12px;display:flex;gap:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6568;"><span style="font-family:'Courier New',monospace;color:#756CE5;">[01]</span>{{ cr.heroVideo.cap }}</figcaption>
+      </figure><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin-top:clamp(40px,5vw,72px);">
+      <sc-for list="{{ cr.videos }}" as="v" hint-placeholder-count="2">
+        <figure style="margin:0;min-width:0;">
+          <div style="aspect-ratio: 16/10; overflow: hidden; background: #FFFFFF; border-radius: 8px; width: 646px; height: 311px">
+            
+          <video src="{{ v.src }}" autoplay="" muted="" loop="" playsinline="" style="display: block; width: 643px; height: 309px; position: static"></video></div>
+          <figcaption style="margin-top:12px;display:flex;gap:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6568;"><span style="font-family:'Courier New',monospace;color:#756CE5;">[{{ v.n }}]</span>{{ v.cap }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- (05) RESULT -->
+  <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,6vw,110px);align-items:center;">
+      <div style="width: 683px; height: 466px">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(05)</span>
+        <h2 style="margin:14px 0 clamp(20px,2.4vw,32px);font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ cr.t.result }}</h2>
+        <p style="margin: 0 0 28px; font-family: Bricolage Grotesque; font-size: clamp(19px,1.6vw,24px); font-weight: 600; line-height: 1.5; max-width: 42ch; text-wrap: pretty; letter-spacing: -1px; width: 661px; height: 247px">{{ cr.lorem5 }}</p>
+        <a href="https://churreriaromero.es/" target="_blank" rel="noopener noreferrer" class="ob-btn" style="width:fit-content;display:inline-flex;align-items:center;gap:20px;padding:6px 6px 6px 24px;border:1px solid #131E21;border-radius:999px;color:#131E21;">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ cr.t.visit }}</span>
+          <span class="ob-circ" style="width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+        </a>
+      </div>
+      <figure style="margin:0;">
+        <div style="aspect-ratio:7/5;overflow:hidden;background:#BC3631;border-radius:8px;">
+          <img src="img/CHURRERIA/distribucion.webp" alt="{{ cr.t.capHome }}" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        </div>
+        <figcaption style="margin-top:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6568;">{{ cr.t.capHome }}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- (06) REVIEW -->
+  <section style="background: #131E21; color: #E9E9E9; padding: clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2))">
+    <div style="display:flex;justify-content:center;">
+      <figure style="margin:0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(24px,3vw,40px);width:100%;max-width:min(980px,100%);">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(06) — {{ cr.t.review }}</span>
+        <div style="display:flex;gap:6px;" role="img" aria-label="5/5"><svg width="18" height="18" viewBox="0 0 24 24" fill="#D8FD80" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#D8FD80" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#D8FD80" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#D8FD80" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#D8FD80" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg></div>
+        <blockquote style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(19px,1.7vw,24px);font-weight:500;line-height:1.45;letter-spacing:-.005em;text-wrap:pretty;">«Oriana fue muy amable y atenta con nosotros, nos escuchó y atendió con mucha paciencia y amabilidad y supo esperar a que nosotros pudiéramos atenderla con muchísima comprensión y seguimiento. Nos diseñó la página web y tanto el texto como el diseño y las imágenes nos encantaron. Los recomendamos totalmente, su atención, amabilidad y profesionalidad es algo que cuesta mucho de encontrar hoy en día y con ellos acertamos totalmente.»</blockquote>
+        <figcaption style="display:flex;align-items:center;gap:14px;">
+          <span style="width:44px;height:44px;border-radius:50%;background:#BC3631;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;">C</span>
+          <span style="display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;">
+            <span style="font-size:16px;font-weight:700;">Cristina Martínez Moya</span>
+            <a href="https://maps.app.goo.gl/aWLsNTMsWQRtryeG7" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#756CE5;">{{ cr.t.reviewSrc }}<svg class="ob-inl-ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <a href="estudio-96.html" data-ob-dark="1" class="ob-next" style="display:block;background:#131E21;color:#E9E9E9;padding:clamp(60px,8vw,120px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(40px,5vw,70px);">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top-width: 1px; border-top-color: rgba(233,233,233,.22); padding-top: 20px; margin-bottom: clamp(20px,3vw,40px)">
+      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;">{{ t.next }}</span>
+      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Brand identity · 2023</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;">
+      <span style="font-size:clamp(48px,11vw,180px);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;color:#E9E9E9;">Estudio 96<span style="color:#756CE5;">.</span></span>
+      <span class="ob-next-circ" style="flex-shrink:0;width:clamp(56px,6vw,96px);height:clamp(56px,6vw,96px);border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;">
+        <svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
+      </span>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:clamp(50px,6vw,80px);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
+      <span>© 2026 Oriana Bonato</span>
+      <span>{{ t.credit }}</span>
+    </div>
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  pagesRef = React.createRef(); pagesTrackRef = React.createRef(); pagesBarRef = React.createRef();
+  _pagesTick() {
+    const sec = this.pagesRef.current, tr = this.pagesTrackRef.current; if (!sec || !tr) return;
+    const dist = Math.max(0, tr.scrollWidth - window.innerWidth);
+    const want = (window.innerHeight + dist) + 'px';
+    if (this._ph !== want) { this._ph = want; this.setState({ pagesH: want }); }
+    const r = sec.getBoundingClientRect(); const p = dist ? Math.min(1, Math.max(0, -r.top / dist)) : 0;
+    tr.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
+    if (this.pagesBarRef.current) this.pagesBarRef.current.style.width = (p * 100).toFixed(2) + '%';
+  }
+
+  state = { nav: false, lang: (() => { try { return localStorage.getItem('ob-lang') || 'en'; } catch (e) { return 'en'; } })() };
+
+  _vids() {
+    document.querySelectorAll('video').forEach((v) => {
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.setAttribute('muted', ''); v.setAttribute('loop', ''); v.setAttribute('playsinline', '');
+      if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    });
+  }
+  componentDidMount() {
+    this._vt = [0, 300, 1000, 2500].map((ms) => setTimeout(() => this._vids(), ms));
+    this._vi = setInterval(() => this._vids(), 3000);
+    this._pt = () => { if (this._raf) return; this._raf = requestAnimationFrame(() => { this._raf = 0; this._pagesTick(); this._vids(); }); };
+    window.addEventListener('scroll', this._pt, { passive: true }); window.addEventListener('resize', this._pt);
+    setTimeout(this._pt, 60); setTimeout(this._pt, 800);
+    this._onKeyNav = (e) => { if (e.key === 'Escape' && this.state.nav) this.setState({ nav: false }); };
+    window.addEventListener('keydown', this._onKeyNav);
+  }
+  componentWillUnmount() {
+    clearInterval(this._vi); (this._vt || []).forEach(clearTimeout);
+    window.removeEventListener('scroll', this._pt); window.removeEventListener('resize', this._pt); window.removeEventListener('keydown', this._onKeyNav); }
+
+  renderVals() {
+    const es = this.state.lang === 'es';
+    const C = (en, s) => (es ? s : en);
+    const img = (n) => 'img/ESTUDIO96/img-' + n + '_E96.webp';
+    const t = {
+      back: C('← All work', '← Todos los proyectos'),
+      caseStudy: C('Case study', 'Caso de estudio'),
+      role: C('Role', 'Rol'), tools: C('Tools', 'Herramientas'), yearL: C('Year', 'Año'), links: C('Links', 'Enlaces'),
+      context: C('Context', 'Contexto'), myRole: C('My role', 'Mi rol'), decision: C('Key decision', 'Decisión clave'),
+      apps: C('Applications', 'Aplicaciones'), result: C('Result', 'Resultado'),
+      next: C('Next project', 'Siguiente proyecto'),
+      credit: C('Designed & coded by Oriana Bonato', 'Diseñado y programado por Oriana Bonato'),
+      cap1: C('Wordmark over salon photography', 'Logotipo sobre fotografía del salón'),
+      cap2: C('Wordmark · clear space module', 'Logotipo · módulo de área de respeto'),
+      cap3: C('Colour palette', 'Paleta de color'),
+      csRef: C('Reference unit for calculating the clearance area', 'Unidad de referencia para calcular el área de respeto'),
+      coverTag: C('Brand identity', 'Identidad de marca'),
+      palNote: C('Base tone + tints at 80 · 60 · 40 · 20%', 'Tono base + tintes al 80 · 60 · 40 · 20%'),
+      cap4: C('Logo system', 'Sistema de logotipos'),
+      cap6: C('Salon window signage', 'Rótulo en el escaparate del salón'),
+    };
+    const p = {
+      index: '02',
+      name: 'Estudio 96',
+      year: '2023',
+      tag: C('Brand identity', 'Identidad de marca'),
+      summary: C('Brand identity for a hair salon in Vigo, built from the ground up.', 'Identidad de marca para una peluquería de Vigo, creada desde cero.'),
+      role: C('Graphic Designer', 'Diseñadora gráfica'),
+      tools: ['Illustrator', 'Photoshop'],
+      context: C(
+        "Nerea was clear about what she didn't want: the cool, minimalist black-and-white look so many salons default to. Estudio 96 had to feel like her, warm and personal, a place where clients feel good not just walking out but the whole time they're in the chair. To build it from scratch, she brought in two specialists: me for the brand and an interior designer for the space. We both worked from the same moodboard so the two sides matched her vision. The palette was clear from the start, but narrowing it down wasn't: several colour combinations had to be dropped from the application set before the system held together.",
+        'Nerea tenía claro lo que no quería: el minimalismo frío en blanco y negro al que recurren tantas peluquerías. Estudio 96 tenía que parecerse a ella, cálido y cercano, un lugar donde las clientas se sientan bien no solo al salir, sino durante todo el rato que están en el sillón. Para construirlo desde cero contó con dos especialistas: yo para la marca y una interiorista para el espacio. Las dos trabajamos a partir del mismo moodboard, para que ambas partes respondieran a su visión. La paleta estuvo clara desde el principio, pero acotarla no fue tan sencillo: tuvimos que descartar varias combinaciones de color antes de que el sistema funcionara en conjunto.'
+      ),
+      myRole: C(
+        'I worked closely with Nerea and the interior designer to lock the palette, then built the identity on top of it: logo, business cards, a social media icon and a gift card.',
+        'Trabajé de cerca con Nerea y la interiorista para cerrar la paleta, y sobre ella construí la identidad: logo, tarjetas de visita, icono para redes sociales y tarjeta regalo.'
+      ),
+      deliverables: (es ? ['Logo', 'Tarjetas de visita', 'Icono para redes sociales', 'Tarjeta regalo'] : ['Logo', 'Business cards', 'Social media icon', 'Gift card']).map((label, i) => ({ n: String(i + 1).padStart(2, '0'), label })),
+      decision: C(
+        'I set the wordmark in a serif with a connecting stroke between the main letters, to suggest the continuity and flow of healthy hair. I used uppercase for the formality and strength that go with it.',
+        'Compuse el logotipo en una serif con un trazo que une las letras principales, para evocar la continuidad y el movimiento de un pelo sano. Lo puse en mayúsculas por la formalidad y la fuerza que transmiten.'
+      ),
+      result: C(
+        "Estudio 96 opened with this identity applied across the salon and its materials (logo, business cards, social icon, gift card), and it's still the brand in use today.",
+        'Estudio 96 abrió con esta identidad aplicada en el salón y en todos sus materiales (logo, tarjetas de visita, icono de redes y tarjeta regalo), y sigue siendo su marca a día de hoy.'
+      ),
+    };
+    const hexRgb = (hex) => { const n = parseInt(hex.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; };
+    const toHex = (c) => '#' + c.map((v) => v.toString(16).padStart(2, '0')).join('').toUpperCase();
+    const cmyk = ([r, g, b]) => { const R = r / 255, G = g / 255, B = b / 255, k = 1 - Math.max(R, G, B);
+      if (k >= 1) return '0 0 0 100';
+      return [(1 - R - k) / (1 - k), (1 - G - k) / (1 - k), (1 - B - k) / (1 - k), k].map((v) => Math.round(v * 100)).join(' '); };
+    const relL = (c) => { const [r, g, b] = c.map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+    const inkFor = (c) => { const L = relL(c), cw = 1.05 / (L + 0.05), cd = (L + 0.05) / (relL([19, 30, 33]) + 0.05); return cw >= 4.5 && cw >= cd ? '#FFFFFF' : '#131E21'; };
+    const bases = [
+      { base: '#CD572D', name: C('Terracotta', 'Terracota') },
+      { base: '#FFC3AE', name: C('Blush', 'Rubor') },
+      { base: '#FAD7B3', name: C('Sand', 'Arena') },
+      { base: '#DEB359', name: C('Ochre', 'Ocre') },
+    ].map((c, i) => { const rgb = hexRgb(c.base);
+      return { ...c, n: String(i + 1).padStart(2, '0'), rgb: rgb.join(' '), cmyk: cmyk(rgb), ink: '#FFFFFF',
+        tints: [80, 60, 40, 20].map((pct) => { const t = rgb.map((v) => Math.round(v * pct / 100 + 255 * (1 - pct / 100)));
+          return { pct: pct + '%', hex: toHex(t), ink: inkFor(t) }; }) }; });
+
+    const cr = {
+      tag: C('Web design', 'Diseño web'),
+      role: C("Web Designer at SIWEB", "Diseñadora web en SIWEB"),
+      tools: ['CMS', 'Illustrator', 'Photoshop', C("On-page SEO", "SEO on-page")],
+      year: C("2025 · 1 month", "2025 · 1 mes"),
+      lorem1: C("Corporate website for a family-run churrería with three shops near Barcelona.", "Web corporativa para una churrería familiar con tres locales cerca de Barcelona."),
+      lorem2: C("Churrería Romero has been a family business since 1980, with shops in Cerdanyola del Vallès and Sabadell. They knew they had to go digital but weren't sure what to focus on. They wanted to grow their catering and professional distribution services, but also bring more people into their shops and make all three locations known. After several meetings we agreed on a corporate website that covered the whole business. As a family company, they didn't want to sideline their shops, but they knew online orders were how they would grow. The project was funded through Kit Digital, the Spanish government's digitalisation programme for small businesses, which set a fixed scope and a one-month timeline. The logo and the brand's red were already in use in every shop, so the website had to work within them.", "Churrería Romero es un negocio familiar desde 1980, con locales en Cerdanyola del Vallès y Sabadell. Tenían claro que debían digitalizarse, pero no sabían en qué poner el foco. Querían impulsar el catering y la distribución profesional, pero también atraer a más gente a sus locales y dar a conocer sus tres ubicaciones. Tras varias reuniones decidimos crear una web corporativa que reuniera todo el negocio. Como empresa familiar, no querían renunciar a sus locales, pero sabían que su crecimiento pasaba por los pedidos online. El proyecto se financió con el Kit Digital, el programa de digitalización del Gobierno para pymes y autónomos, lo que marcaba un alcance cerrado y un plazo de un mes. El logo y el rojo de la marca ya estaban presentes en todos los locales, así que la web tenía que trabajar con ellos."),
+      lorem3: C("As a web designer, I designed the website across its seven sections (home, about us, why choose us, locations, menu, services and contact) and wrote all the copy. I built it on semantic HTML with on-page SEO, working directly with the family from the first meeting to launch.", "Como diseñadora web, diseñé la web en sus siete apartados (inicio, quiénes somos, por qué elegirnos, ven a visitarnos, carta, servicios y contacto) y redacté todos los textos. La construí sobre HTML semántico con SEO on-page, trabajando directamente con la familia desde la primera reunión hasta la publicación."),
+      lorem4: C("Churros are one of Spain's most traditional foods, and the obvious route would have been a heavy, rustic look. I wanted the site to feel current without losing that heritage. So I kept the tradition in the typography, with Playfair Display, a serif, for every heading, and let everything else breathe. Large, full-width photography shows the quality of the product, generous white space keeps each section calm, and soft animations make the interaction feel gentle rather than overwhelming.", "Los churros son una de las comidas más tradicionales de España, asi que quería que la web se sintiera actual sin perder esa herencia. Por eso mantuve lo tradicional en la tipografía, con una serif, Playfair Display, en todos los titulares, y dejé respirar todo lo demás para un especto moderno jugando con los espacios en blanco. La fotografía grande y a todo el ancho muestra la calidad del producto, el espacio en blanco da calma a cada sección y las animaciones suaves hacen que la interacción sea delicada, sin agobiar."),
+      lorem5: C("The website is live and brings the whole business into one place. The family’s story is told through archive photos from their early years, each shop has its own card with photo, address and opening hours, and catering and professional distribution have their own service pages. The family left a five-star Google review saying they loved the copy, the design and the images.", "<< La web está publicada y reúne todo el negocio en un solo lugar. La historia familiar se cuenta con fotos de archivo de sus primeros años, cada local tiene su propia tarjeta con foto, dirección y horario, y el catering y la distribución profesional tienen sus propias páginas de servicio. La familia dejó una reseña de cinco estrellas en Google en la que contaban que les encantaron los textos, el diseño y las imágenes. >>"),
+      pages: (es ? ['Inicio', 'Quiénes somos', '¿Por qué elegirnos?', 'Ven a visitarnos', 'Nuestra carta', 'Servicios', 'Contacto'] : ['Home', 'About us', 'Why choose us', 'Locations', 'Menu', 'Services', 'Contact']).map((label, i) => ({ n: String(i + 1).padStart(2, '0'), label })),
+      shots: [['quienes-somos', C('About us', 'Quiénes somos')], ['nuestra-carta', C('Menu', 'Nuestra carta')], ['catering', C('Event catering', 'Catering')], ['distribucion', C('Wholesale', 'Distribución')], ['contacto', C('Contact', 'Contacto')]].map(([f, cap], i) => ({ n: String(i + 1).padStart(2, '0'), src: 'img/CHURRERIA/' + f + '.webp', cap })),
+      heroVideo: { src: 'img/CHURRERIA/animacion-hero.mp4', cap: C('Home hero', 'Hero de inicio') },
+      videos: [{ n: '02', src: 'img/CHURRERIA/animacion-servicios.mp4', cap: C('Services animation', 'Animación de servicios') }, { n: '03', src: 'img/CHURRERIA/hover-location-cards.mp4', cap: C('Location cards · hover', 'Tarjetas de ubicación · hover') }],
+      t: {
+        caseStudy: C('Case study', 'Caso de estudio'), role: C('Role', 'Rol'), tools: C('Tools', 'Herramientas'), year: C('Year', 'Año'), links: C('Links', 'Enlaces'),
+        context: C('Context', 'Contexto'), myRole: C('My role', 'Mi rol'), pages: C('Pages', 'Páginas'), motion: C('Key decision', 'Decisión clave'), result: C('Result', 'Resultado'),
+        review: C('Client review', 'Reseña del cliente'), reviewSrc: C('Google review', 'Reseña en Google'),
+        hoverNote: C('Hover a page to scroll through it', 'Pasa el cursor por una página para recorrerla'), visit: C('Visit website', 'Ver la web'), capHome: C('Wholesale page', 'Página de distribución profesional'),
+      },
+    };
+    return {
+      pagesRef: this.pagesRef, pagesTrackRef: this.pagesTrackRef, pagesBarRef: this.pagesBarRef, pagesH: this.state.pagesH || 'auto',
+      cr, t, p,
+      palette: bases,
+      palPairs: [bases.slice(0, 2), bases.slice(2, 4)],
+      appsRow1: [
+        { n: '01', src: img('05'), cap: C('Tote bag', 'Bolsa de tela') },
+        { n: '02', src: img('08'), cap: C('Instagram post', 'Post de Instagram') },
+        { n: '03', src: img('07'), cap: C('Salon interior', 'Interior del salón') },
+      ],
+      appsRow2: [
+        { n: '04', src: img('09'), cap: C('Business cards', 'Tarjetas de visita') },
+        { n: '05', src: img('10'), cap: C('Gift card', 'Tarjeta regalo') },
+      ],
+      ...(() => { const es = this.state.lang === 'es'; const open = !!this.state.nav; const P = 'index.html';
+        const labels = es ? ['Proyectos', 'Sobre mí', 'Experiencia', 'Contacto'] : ['Work', 'About', 'Experience', 'Contact'];
+        return {
+          navCta: es ? '¿Tienes un proyecto en mente? Trabajemos juntos.' : "Have a project in mind? Let's work together.",
+          navOpenStr: open ? 'true' : 'false', navPlusRot: open ? '135deg' : '0deg', navPlusBg: open ? '#756CE5' : 'transparent',
+          navMenuOp: open ? 1 : 0, navMenuVis: open ? 'visible' : 'hidden', navMenuY: open ? '0px' : '-12px',
+          navToggle: () => this.setState((s) => ({ nav: !s.nav })),
+          navClose: () => { if (this.state.nav) this.setState({ nav: false }); },
+          navItems: ['#work', '#about', '#experience', '#contact'].map((hash, i) => ({ href: hash === '#contact' ? 'contacto.html' : P + hash, label: labels[i], n: String(i + 1).padStart(2, '0'),
+            op: open ? 1 : 0, y: open ? '0px' : '18px', d: open ? (0.08 + i * 0.06) + 's' : '0s' })),
+        }; })(),
+      langLabel: es ? 'EN' : 'ES',
+      toggleLang: () => this.setState((s) => { const next = s.lang === 'es' ? 'en' : 'es'; try { localStorage.setItem('ob-lang', next); } catch (e) {} return { lang: next }; }),
+    };
+  }
+}
+</script>
+</body>
+</html>

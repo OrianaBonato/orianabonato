@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&amp;family=Manrope:wght@200..700&amp;family=Inter:wght@400;500&amp;family=Rock+Salt&amp;display=swap" rel="stylesheet">
+  <script src="portfolio-content.js"></script>
+  <style>
+    body { margin: 0; background: #E9E9E9; color: #131E21; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: #756CE5; }
+    ::selection { background: #756CE5; color: #E9E9E9; }
+    .ob-plus { transition: border-color .35s ease, background .35s ease; }
+    .ob-plus:hover { border-color: #D8FD80 !important; }
+    .ob-mi { transition: color .35s ease; }
+    .ob-mi:hover { color: #D8FD80 !important; }
+    .ob-mi .ob-mi-arr { display: inline-flex; color: #756CE5; transition: color .35s ease; }
+    .ob-mi:hover .ob-mi-arr { color: #D8FD80; }
+    .ob-ico { flex-shrink: 0; transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-mi:hover .ob-ico, .ob-mm:hover .ob-ico { transform: rotate(45deg); }
+    .ob-mm { transition: border-color .35s ease; }
+    .ob-mm:hover { border-color: #D8FD80 !important; }
+  </style>
+</helmet>
+
+<section style="padding:{{ embPad }};font-family:'Bricolage Grotesque',sans-serif;">
+  <sc-if value="{{ notEmb }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px;margin-bottom:48px;max-width:760px;">
+    <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">Propuesta responsive · Página de proyecto (plantilla)</span>
+    <h1 style="margin:0;font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">SmartRest — Móvil y Tablet<span style="color:#756CE5;">.</span></h1>
+    <p style="margin:0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:#5A6568;">Mismos campos y orden que la página de escritorio. En móvil la galería de interfaz y el antes/después se deslizan en horizontal para ahorrar scroll; en tablet la galería mantiene la imagen destacada con miniaturas.</p>
+  </div>
+
+  </sc-if>
+  <div style="display:{{ wrapDisp }};gap:80px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- ============ 1a · MÓVIL ============ -->
+    <sc-if value="{{ showM }}" hint-placeholder-val="{{ true }}"><div id="1a" style="display:flex;flex-direction:column;gap:14px;">
+      <sc-if value="{{ notEmb }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:10px;">
+        <span style="padding:5px 11px;border-radius:999px;background:#131E21;color:#E9E9E9;font-size:12px;font-weight:700;">1a</span>
+        <span style="font-size:14px;font-weight:600;">Móvil · 390px</span>
+      </div></sc-if>
+      <div style="width:{{ fwM }};position:relative;overflow:hidden;background:#E9E9E9;color:#131E21;border-radius:{{ fRad }};box-shadow:{{ fSh }};">
+
+        <header style="position:relative;z-index:21;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#131E21;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <a href="index.html" style="display:flex;align-items:center;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:22px;width:auto;display:block;"></a>
+            <span style="width:1px;height:22px;background:rgba(233,233,233,.2);"></span>
+            <div style="display:flex;align-items:center;">
+              <a href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:36px;height:44px;"><img src="img/icons/linkedin.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"></a>
+              <a href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" aria-label="Behance" style="display:flex;align-items:center;justify-content:center;width:36px;height:44px;"><img src="img/icons/behance.svg" alt="" style="width:20px;height:20px;display:block;filter:brightness(0) invert(1);"></a>
+              <a href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:36px;height:44px;"><img src="img/icons/github.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"></a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button type="button" class="ob-plus" onClick="{{ navM.toggle }}" aria-label="Menu" style="width:44px;height:44px;padding:0;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);background:{{ navM.bg }};color:#E9E9E9;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="transform:rotate({{ navM.rot }});transition:transform .5s cubic-bezier(.16,1,.3,1);"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></button>
+            <span onClick="{{ toggleLang }}" role="button" style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:32px;padding:0 12px;box-sizing:border-box;border-radius:999px;background:#756CE5;color:#FFFFFF;font-size:12px;font-weight:700;letter-spacing:.14em;cursor:pointer;">{{ langLabel }}</span>
+          </div>
+        </header>
+        <sc-if value="{{ navM.open }}" hint-placeholder-val="{{ false }}">
+          <div style="position:{{ hdrPos }};top:72px;left:0;right:0;z-index:20;background:#131E21;color:#E9E9E9;padding:20px 20px 36px;box-shadow:0 30px 60px rgba(0,0,0,.35);">
+            <nav style="display:flex;flex-direction:column;">
+              <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4">
+                <a href="{{ n.href }}" onClick="{{ navM.close }}" class="ob-mi" style="display:flex;align-items:baseline;gap:16px;border-top:1px solid rgba(233,233,233,.18);padding:16px 0;color:#E9E9E9;">
+                  <span style="font-family:'Courier New',monospace;font-size:13px;color:#D8FD80;">[{{ n.n }}]</span>
+                  <span style="font-size:40px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ n.label }}</span>
+                  <span class="ob-mi-arr" style="margin-left:auto;align-self:center;"><svg class="ob-ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+                </a>
+              </sc-for>
+            </nav>
+            <div style="display:flex;flex-direction:column;gap:18px;margin-top:22px;">
+              <p style="margin:0;font-family:'Manrope',sans-serif;font-size:17px;font-weight:500;line-height:1.35;color:#E9E9E9;">{{ navCta }}</p>
+              <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:16px;padding:5px 5px 5px 20px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
+                <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
+                <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+              </a>
+            </div>
+          </div>
+        </sc-if>
+
+        <section style="background:#131E21;color:#E9E9E9;padding:56px 20px 48px;">
+          <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid rgba(233,233,233,.22);padding-bottom:14px;margin-bottom:36px;">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">({{ p.index }}) — {{ t.caseStudy }}</span>
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.tag }} · {{ p.year }}</span>
+          </div>
+          <h2 style="margin:0;font-size:56px;line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.name }}<span style="color:#756CE5;">.</span></h2>
+          <p style="margin:24px 0 0;font-family:'Manrope',sans-serif;font-size:18px;font-weight:500;line-height:1.35;">{{ p.summary }}</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px 20px;border-top:1px solid rgba(233,233,233,.22);margin-top:40px;padding-top:22px;">
+            <div>
+              <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.role }}</p>
+              <p style="margin:0;font-size:15px;line-height:1.45;">{{ p.role }}</p>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.duration }}</p>
+              <p style="margin:0;font-size:15px;line-height:1.45;">{{ p.duration }}<br><span style="color:#9AA3A5;">{{ p.period }}</span></p>
+            </div>
+            <div style="grid-column:1 / -1;">
+              <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.stack }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ p.stack }}" as="s" hint-placeholder-count="4">
+                  <span style="padding:7px 13px;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-family:'Courier New',monospace;font-size:13px;">{{ s }}</span>
+                </sc-for>
+              </div>
+            </div>
+            <div style="grid-column:1 / -1;">
+              <p style="margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.links }}</p>
+              <div style="display:flex;gap:22px;">
+                <sc-for list="{{ p.links }}" as="l" hint-placeholder-count="2">
+                  <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;color:#756CE5;">{{ l.label }}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style="background:#131E21;color:#E9E9E9;padding:8px 20px 72px;">
+          <div style="height:220px;display:flex;align-items:center;justify-content:center;border-top:1px solid rgba(233,233,233,.12);border-bottom:1px solid rgba(233,233,233,.12);">
+            <img src="{{ p.logo }}" alt="{{ p.name }}" style="width:160px;height:auto;display:block;">
+          </div>
+          <span style="display:block;margin-top:48px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01)</span>
+          <h3 style="margin:12px 0 20px;font-size:32px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.problem }}</h3>
+          <p style="margin:0;font-size:19px;line-height:1.4;font-weight:300;letter-spacing:-.01em;">{{ p.problem }}</p>
+        </section>
+
+        <section style="padding:72px 20px 0;">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(02)</span>
+          <h3 style="margin:12px 0 18px;font-size:32px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.built }}</h3>
+          <sc-for list="{{ p.built }}" as="b" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:baseline;border-bottom:1px solid rgba(19,30,33,.18);padding:16px 0;">
+              <span style="font-family:'Courier New',monospace;font-size:14px;color:#756CE5;">[{{ b.n }}]</span>
+              <p style="margin:0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;">{{ b.text }}</p>
+            </div>
+          </sc-for>
+        </section>
+
+        <section style="margin-top:72px;background:#131E21;color:#E9E9E9;padding:64px 0 56px;">
+          <div style="padding:0 20px;">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(03)</span>
+            <h3 style="margin:12px 0 24px;font-size:32px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.interface }}</h3>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+              <div style="display:flex;gap:6px;">
+                <sc-for list="{{ gm.roles }}" as="r" hint-placeholder-count="2">
+                  <span onClick="{{ r.onClick }}" role="button" style="display:inline-flex;align-items:center;min-height:40px;padding:0 16px;box-sizing:border-box;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-size:13px;cursor:pointer;background:{{ r.bgD }};color:{{ r.colorD }};">{{ r.label }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:3px;padding:3px;border:1px solid rgba(233,233,233,.35);border-radius:999px;">
+                <sc-for list="{{ gm.devices }}" as="d" hint-placeholder-count="2">
+                  <span onClick="{{ d.onClick }}" role="button" style="display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:{{ d.bg }};color:{{ d.colorD }};">{{ d.label }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:26px 20px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
+            <span>{{ gm.count }} {{ gm.countLabel }}</span><span>{{ t.swipe }}</span>
+          </div>
+          <div style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px 4px;scroll-padding-left:20px;scrollbar-width:none;align-items:flex-start;">
+            <sc-for list="{{ gm.shots }}" as="g" hint-placeholder-count="4">
+              <figure style="margin:0;flex:0 0 {{ g.w }};scroll-snap-align:start;display:flex;flex-direction:column;gap:10px;">
+                <div style="aspect-ratio:{{ g.ratio }};overflow:hidden;background:#1B282B;">
+                  <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+                </div>
+                <figcaption style="display:flex;gap:10px;align-items:baseline;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:12px;color:#D8FD80;">{{ g.n }}</span>{{ g.cap }}</figcaption>
+              </figure>
+            </sc-for>
+          </div>
+          <sc-if value="{{ gm.hasNote }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:20px 20px 0;font-family:'Inter',sans-serif;font-size:13px;line-height:1.6;color:#9AA3A5;">{{ gm.note }}</p>
+          </sc-if>
+        </section>
+
+        <section style="padding:72px 20px 0;">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(04)</span>
+          <h3 style="margin:12px 0 20px;font-size:32px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.decisions }}</h3>
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <sc-for list="{{ p.decisions }}" as="d" hint-placeholder-count="4">
+              <p style="margin:0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.8;">{{ d }}</p>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="padding:72px 20px 0;">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(05)</span>
+          <h3 style="margin:12px 0 8px;font-size:32px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.ba }}</h3>
+          <p style="margin:0 0 20px;font-family:'Inter',sans-serif;font-size:13px;color:#5A6568;">{{ t.baNote }}</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="display:flex;gap:6px;">
+              <sc-for list="{{ gm.baTabs }}" as="b" hint-placeholder-count="2">
+                <span onClick="{{ b.onClick }}" role="button" style="display:inline-flex;align-items:center;min-height:40px;padding:0 16px;box-sizing:border-box;border:1px solid #131E21;border-radius:999px;font-size:13px;cursor:pointer;background:{{ b.bg }};color:{{ b.color }};">{{ b.label }}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:3px;padding:3px;border:1px solid #131E21;border-radius:999px;">
+              <sc-for list="{{ gm.baDevices }}" as="d" hint-placeholder-count="2">
+                <span onClick="{{ d.onClick }}" role="button" style="display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:{{ d.bg }};color:{{ d.colorL }};">{{ d.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="position:relative;width:100%;max-width:{{ gm.ba.maxWm }};margin:0 auto;aspect-ratio:{{ gm.ba.ratio }};overflow:hidden;background:#1B282B;user-select:none;touch-action:pan-y;">
+            <img src="{{ gm.ba.after }}" alt="V2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+            <img src="{{ gm.ba.before }}" alt="V1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block;clip-path:inset(0 {{ gm.baClip }}% 0 0);">
+            <div style="position:absolute;top:0;bottom:0;left:{{ gm.baPos }}%;width:2px;margin-left:-1px;background:#756CE5;pointer-events:none;">
+              <span style="position:absolute;top:50%;left:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:15px;">↔</span>
+            </div>
+            <span style="position:absolute;top:10px;left:10px;padding:5px 11px;border-radius:999px;background:#131E21;color:#E9E9E9;font-size:10px;letter-spacing:.14em;pointer-events:none;">{{ t.v1 }}</span>
+            <span style="position:absolute;top:10px;right:10px;padding:5px 11px;border-radius:999px;background:#756CE5;color:#FFFFFF;font-size:10px;letter-spacing:.14em;pointer-events:none;">{{ t.v2 }}</span>
+            <input type="range" min="0" max="100" value="{{ gm.baPos }}" onChange="{{ gm.onBa }}" aria-label="{{ t.baNote }}" style="position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;">
+          </div>
+          <sc-if value="{{ gm.ba.hasDesc }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:12px 0 0;font-family:'Inter',sans-serif;font-size:13px;color:#5A6568;">{{ gm.ba.desc }}</p>
+          </sc-if>
+        </section>
+
+        <section style="padding:72px 20px 80px;">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(06)</span>
+          <h3 style="margin:12px 0 20px;font-size:32px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.learned }}</h3>
+          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:17px;font-weight:500;line-height:1.55;">{{ p.learned }}</p>
+        </section>
+
+        <a href="{{ p.next.url }}" style="display:block;background:#131E21;color:#E9E9E9;padding:56px 20px 24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid rgba(233,233,233,.22);padding-top:16px;margin-bottom:22px;">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;">{{ t.next }}</span>
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.next.tag }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;">
+            <span style="font-size:72px;line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.next.name }}<span style="color:#756CE5;">.</span></span>
+            <span style="flex-shrink:0;width:56px;height:56px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding-top:48px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
+            <span>© 2026 Oriana Bonato</span><span>{{ t.credit }}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    </sc-if>
+    <!-- ============ 1b · TABLET ============ -->
+    <sc-if value="{{ showT }}" hint-placeholder-val="{{ true }}"><div id="1b" style="display:flex;flex-direction:column;gap:14px;">
+      <sc-if value="{{ notEmb }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:10px;">
+        <span style="padding:5px 11px;border-radius:999px;background:#131E21;color:#E9E9E9;font-size:12px;font-weight:700;">1b</span>
+        <span style="font-size:14px;font-weight:600;">Tablet · 834px</span>
+      </div></sc-if>
+      <div style="width:{{ fwT }};position:relative;overflow:hidden;background:#E9E9E9;color:#131E21;border-radius:{{ fRad }};box-shadow:{{ fSh }};">
+
+        <header style="position:relative;z-index:21;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:#131E21;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <a href="index.html" style="display:flex;align-items:center;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:30px;width:auto;display:block;"></a>
+            <span style="width:1px;height:22px;background:rgba(233,233,233,.2);"></span>
+            <div style="display:flex;align-items:center;">
+              <a href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:36px;height:44px;"><img src="img/icons/linkedin.svg" alt="" style="width:20px;height:20px;display:block;filter:brightness(0) invert(1);"></a>
+              <a href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" aria-label="Behance" style="display:flex;align-items:center;justify-content:center;width:36px;height:44px;"><img src="img/icons/behance.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
+              <a href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:36px;height:44px;"><img src="img/icons/github.svg" alt="" style="width:20px;height:20px;display:block;filter:brightness(0) invert(1);"></a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button type="button" class="ob-plus" onClick="{{ navT.toggle }}" aria-label="Menu" style="width:44px;height:44px;padding:0;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);background:{{ navT.bg }};color:#E9E9E9;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="transform:rotate({{ navT.rot }});transition:transform .5s cubic-bezier(.16,1,.3,1);"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></button>
+            <span onClick="{{ toggleLang }}" role="button" style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:32px;padding:0 12px;box-sizing:border-box;border-radius:999px;background:#756CE5;color:#FFFFFF;font-size:12px;font-weight:700;letter-spacing:.14em;cursor:pointer;">{{ langLabel }}</span>
+          </div>
+        </header>
+        <sc-if value="{{ navT.open }}" hint-placeholder-val="{{ false }}">
+          <div style="position:{{ hdrPos }};top:76px;left:0;right:0;z-index:20;background:#131E21;color:#E9E9E9;padding:28px 40px 44px;box-shadow:0 30px 60px rgba(0,0,0,.35);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:end;">
+            <nav style="display:flex;flex-direction:column;">
+              <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4">
+                <a href="{{ n.href }}" onClick="{{ navT.close }}" class="ob-mi" style="display:flex;align-items:baseline;gap:16px;border-top:1px solid rgba(233,233,233,.18);padding:14px 0;color:#E9E9E9;">
+                  <span style="font-family:'Courier New',monospace;font-size:13px;color:#D8FD80;">[{{ n.n }}]</span>
+                  <span style="font-size:52px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ n.label }}</span>
+                  <span class="ob-mi-arr" style="margin-left:auto;align-self:center;"><svg class="ob-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+                </a>
+              </sc-for>
+            </nav>
+            <div style="display:flex;flex-direction:column;gap:18px;">
+              <p style="margin:0;font-family:'Manrope',sans-serif;font-size:19px;font-weight:500;line-height:1.35;color:#E9E9E9;">{{ navCta }}</p>
+              <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:16px;padding:5px 5px 5px 20px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
+                <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
+                <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+              </a>
+            </div>
+          </div>
+        </sc-if>
+
+        <section style="background:#131E21;color:#E9E9E9;padding:90px 40px 64px;">
+          <div style="display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid rgba(233,233,233,.22);padding-bottom:14px;margin-bottom:48px;">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">({{ p.index }}) — {{ t.caseStudy }}</span>
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.tag }} · {{ p.year }}</span>
+          </div>
+          <h2 style="margin:0;font-size:118px;line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.name }}<span style="color:#756CE5;">.</span></h2>
+          <p style="margin:32px 0 0;max-width:34ch;font-family:'Manrope',sans-serif;font-size:21px;font-weight:500;line-height:1.3;">{{ p.summary }}</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;border-top:1px solid rgba(233,233,233,.22);margin-top:56px;padding-top:24px;">
+            <div>
+              <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.role }}</p>
+              <p style="margin:0;font-size:16px;line-height:1.5;">{{ p.role }}</p>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.stack }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ p.stack }}" as="s" hint-placeholder-count="4">
+                  <span style="padding:7px 14px;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-family:'Courier New',monospace;font-size:13px;">{{ s }}</span>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.duration }}</p>
+              <p style="margin:0;font-size:16px;line-height:1.5;">{{ p.duration }} · <span style="color:#9AA3A5;">{{ p.period }}</span></p>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.links }}</p>
+              <div style="display:flex;gap:24px;">
+                <sc-for list="{{ p.links }}" as="l" hint-placeholder-count="2">
+                  <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;color:#756CE5;">{{ l.label }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style="background:#131E21;color:#E9E9E9;padding:16px 40px 96px;">
+          <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:48px;align-items:center;">
+            <div style="aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border:1px solid rgba(233,233,233,.12);">
+              <img src="{{ p.logo }}" alt="{{ p.name }}" style="width:62%;height:auto;display:block;">
+            </div>
+            <div>
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01)</span>
+              <h3 style="margin:12px 0 20px;font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.problem }}</h3>
+              <p style="margin:0;font-size:20px;line-height:1.38;font-weight:300;letter-spacing:-.01em;">{{ p.problem }}</p>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding:100px 40px 0;">
+          <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:22px;">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(02)</span>
+            <h3 style="margin:0;font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.built }}</h3>
+          </div>
+          <sc-for list="{{ p.built }}" as="b" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:baseline;border-bottom:1px solid rgba(19,30,33,.18);padding:18px 0;">
+              <span style="font-family:'Courier New',monospace;font-size:15px;color:#756CE5;">[{{ b.n }}]</span>
+              <p style="margin:0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;max-width:62ch;">{{ b.text }}</p>
+            </div>
+          </sc-for>
+        </section>
+
+        <section style="margin-top:100px;background:#131E21;color:#E9E9E9;padding:88px 40px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:32px;">
+            <div>
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(03)</span>
+              <h3 style="margin:12px 0 0;font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.interface }}</h3>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+              <div style="display:flex;gap:8px;">
+                <sc-for list="{{ gt.roles }}" as="r" hint-placeholder-count="2">
+                  <span onClick="{{ r.onClick }}" role="button" style="padding:11px 20px;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-size:13px;cursor:pointer;background:{{ r.bgD }};color:{{ r.colorD }};">{{ r.label }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:4px;padding:4px;border:1px solid rgba(233,233,233,.35);border-radius:999px;">
+                <sc-for list="{{ gt.devices }}" as="d" hint-placeholder-count="2">
+                  <span onClick="{{ d.onClick }}" role="button" style="padding:8px 16px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:{{ d.bg }};color:{{ d.colorD }};">{{ d.label }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ gt.isDesk }}" hint-placeholder-val="{{ true }}">
+            <figure style="margin:0;display:flex;flex-direction:column;gap:12px;">
+              <p style="margin:0;display:flex;justify-content:space-between;gap:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span>{{ gt.feature.cap }}</span><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:12px;color:#D8FD80;">{{ gt.feature.n }}</span></p>
+              <div style="aspect-ratio:1920/910;overflow:hidden;background:#1B282B;">
+                <img src="{{ gt.feature.src }}" alt="{{ gt.feature.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+              </div>
+            </figure>
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px;">
+              <sc-for list="{{ gt.thumbs }}" as="g" hint-placeholder-count="5">
+                <figure onClick="{{ g.onClick }}" role="button" style="margin:0;display:flex;flex-direction:column;gap:8px;cursor:pointer;">
+                  <div style="aspect-ratio:1920/910;overflow:hidden;background:#1B282B;">
+                    <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+                  </div>
+                  <p style="margin:0;display:flex;gap:8px;align-items:baseline;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:11px;color:#D8FD80;">{{ g.n }}</span>{{ g.cap }}</p>
+                </figure>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ gt.isTab }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 16px;align-items:start;">
+              <sc-for list="{{ gt.shots }}" as="g" hint-placeholder-count="3">
+                <figure style="margin:0;display:flex;flex-direction:column;gap:10px;">
+                  <p style="margin:0;display:flex;gap:10px;align-items:baseline;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:12px;color:#D8FD80;">{{ g.n }}</span>{{ g.cap }}</p>
+                  <div style="aspect-ratio:{{ g.ratio }};overflow:hidden;background:#1B282B;">
+                    <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+                  </div>
+                </figure>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ gt.hasNote }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:24px 0 0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;color:#9AA3A5;">{{ gt.note }}</p>
+          </sc-if>
+        </section>
+
+        <section style="padding:100px 40px 0;">
+          <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:26px;">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(04)</span>
+            <h3 style="margin:0;font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.decisions }}</h3>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;">
+            <sc-for list="{{ p.decisions }}" as="d" hint-placeholder-count="4">
+              <p style="margin:0;border-top:1px solid rgba(19,30,33,.18);padding-top:18px;font-family:'Inter',sans-serif;font-size:14px;line-height:1.8;">{{ d }}</p>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="padding:100px 40px 0;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:24px;">
+            <div>
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(05)</span>
+              <h3 style="margin:12px 0 8px;font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.ba }}</h3>
+              <p style="margin:0;font-family:'Inter',sans-serif;font-size:14px;color:#5A6568;">{{ t.baNote }}</p>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+              <div style="display:flex;gap:8px;">
+                <sc-for list="{{ gt.baTabs }}" as="b" hint-placeholder-count="2">
+                  <span onClick="{{ b.onClick }}" role="button" style="padding:11px 20px;border:1px solid #131E21;border-radius:999px;font-size:13px;cursor:pointer;background:{{ b.bg }};color:{{ b.color }};">{{ b.label }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:4px;padding:4px;border:1px solid #131E21;border-radius:999px;">
+                <sc-for list="{{ gt.baDevices }}" as="d" hint-placeholder-count="2">
+                  <span onClick="{{ d.onClick }}" role="button" style="padding:8px 16px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:{{ d.bg }};color:{{ d.colorL }};">{{ d.label }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <div style="position:relative;width:100%;max-width:{{ gt.ba.maxWt }};margin:0 auto;aspect-ratio:{{ gt.ba.ratio }};overflow:hidden;background:#1B282B;user-select:none;">
+            <img src="{{ gt.ba.after }}" alt="V2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+            <img src="{{ gt.ba.before }}" alt="V1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block;clip-path:inset(0 {{ gt.baClip }}% 0 0);">
+            <div style="position:absolute;top:0;bottom:0;left:{{ gt.baPos }}%;width:2px;margin-left:-1px;background:#756CE5;pointer-events:none;">
+              <span style="position:absolute;top:50%;left:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:17px;">↔</span>
+            </div>
+            <span style="position:absolute;top:14px;left:14px;padding:6px 13px;border-radius:999px;background:#131E21;color:#E9E9E9;font-size:11px;letter-spacing:.14em;pointer-events:none;">{{ t.v1 }}</span>
+            <span style="position:absolute;top:14px;right:14px;padding:6px 13px;border-radius:999px;background:#756CE5;color:#FFFFFF;font-size:11px;letter-spacing:.14em;pointer-events:none;">{{ t.v2 }}</span>
+            <input type="range" min="0" max="100" value="{{ gt.baPos }}" onChange="{{ gt.onBa }}" aria-label="{{ t.baNote }}" style="position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;">
+          </div>
+          <sc-if value="{{ gt.ba.hasDesc }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:14px 0 0;font-family:'Inter',sans-serif;font-size:14px;color:#5A6568;">{{ gt.ba.desc }}</p>
+          </sc-if>
+        </section>
+
+        <section style="padding:100px 40px 110px;">
+          <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:48px;">
+            <div>
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(06)</span>
+              <h3 style="margin:12px 0 0;font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.learned }}</h3>
+            </div>
+            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:19px;font-weight:500;line-height:1.55;">{{ p.learned }}</p>
+          </div>
+        </section>
+
+        <a href="{{ p.next.url }}" style="display:block;background:#131E21;color:#E9E9E9;padding:80px 40px 28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid rgba(233,233,233,.22);padding-top:18px;margin-bottom:28px;">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;">{{ t.next }}</span>
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.next.tag }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;">
+            <span style="font-size:140px;line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.next.name }}<span style="color:#756CE5;">.</span></span>
+            <span style="flex-shrink:0;width:80px;height:80px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:20px;padding-top:64px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
+            <span>© 2026 Oriana Bonato</span><span>{{ t.credit }}</span>
+          </div>
+        </a>
+      </div>
+    </div></sc-if>
+    
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    lang: (() => { try { return localStorage.getItem('ob-lang') || 'en'; } catch (e) { return 'en'; } })(),
+    ready: !!window.OB_CONTENT,
+    m: { role: 'sala', dev: 'desktop', sel: 0, baKey: 'sala', baDev: 'desktop', ba: 50 },
+    t: { role: 'sala', dev: 'desktop', sel: 0, baKey: 'sala', baDev: 'desktop', ba: 50 },
+  };
+
+  componentDidMount() {
+    if (!window.OB_CONTENT) { this._h = () => this.setState({ ready: true }); window.addEventListener('ob-content', this._h); }
+  }
+  componentWillUnmount() { if (this._h) window.removeEventListener('ob-content', this._h); }
+
+  _set(k, patch) { this.setState((s) => ({ [k]: { ...s[k], ...patch } })); }
+
+  _build(k, p, lang) {
+    const st = this.state[k];
+    const gset = p.gallery[st.role];
+    const nn = (i) => '[' + String(i + 1).padStart(2, '0') + ']';
+    const isDesk = st.dev === 'desktop';
+    const list = isDesk ? gset.desktop : gset.tablet;
+    const sel = Math.min(st.sel, gset.desktop.length - 1);
+    const pair = p.ba[st.baKey];
+    const baTab = st.baDev === 'tablet';
+    const devs = ['desktop', 'tablet'];
+    return {
+      roles: ['sala', 'cocina'].map((r) => ({ label: p.gallery[r].label, onClick: () => this._set(k, { role: r, sel: 0 }),
+        bgD: st.role === r ? '#E9E9E9' : 'transparent', colorD: st.role === r ? '#131E21' : '#E9E9E9' })),
+      devices: devs.map((d) => ({ label: d === 'desktop' ? 'Desktop' : 'Tablet', onClick: () => this._set(k, { dev: d }),
+        bg: st.dev === d ? '#756CE5' : 'transparent', colorD: st.dev === d ? '#FFFFFF' : '#E9E9E9' })),
+      isDesk, isTab: !isDesk,
+      count: String(list.length).padStart(2, '0'),
+      countLabel: lang === 'es' ? 'pantallas' : 'screens',
+      shots: list.map((g, i) => ({ ...g, n: nn(i), w: isDesk ? '318px' : '232px', ratio: isDesk ? '1920/910' : gset.ratio })),
+      feature: { ...gset.desktop[sel], n: nn(sel) },
+      thumbs: gset.desktop.map((g, i) => ({ ...g, i, n: nn(i) })).filter((g) => g.i !== sel)
+        .map((g) => ({ ...g, onClick: () => this._set(k, { sel: g.i }) })),
+      note: gset.note, hasNote: !!gset.note,
+      baTabs: ['sala', 'cocina'].map((b) => ({ label: p.ba[b].label, onClick: () => this._set(k, { baKey: b, ba: 50 }),
+        bg: st.baKey === b ? '#131E21' : 'transparent', color: st.baKey === b ? '#E9E9E9' : '#131E21' })),
+      baDevices: devs.map((d) => ({ label: d === 'desktop' ? 'Desktop' : 'Tablet', onClick: () => this._set(k, { baDev: d, ba: 50 }),
+        bg: st.baDev === d ? '#756CE5' : 'transparent', colorL: st.baDev === d ? '#FFFFFF' : '#131E21' })),
+      ba: {
+        before: baTab ? pair.tBefore : pair.before, after: baTab ? pair.tAfter : pair.after,
+        ratio: baTab ? pair.tRatio : '1920/912', maxWm: baTab ? '280px' : '100%', maxWt: baTab ? '440px' : '100%',
+        desc: pair.desc, hasDesc: !!pair.desc,
+      },
+      baPos: st.ba, baClip: 100 - st.ba,
+      onBa: (e) => this._set(k, { ba: Number(e.target.value) }),
+    };
+  }
+
+  _rv0() {
+    const D = window.OB_CONTENT;
+    const lang = this.state.lang === 'es' ? 'es' : 'en';
+    const base = {
+      langLabel: lang === 'en' ? 'ES' : 'EN',
+      ...(() => { const es = this.state.lang === 'es'; const labels = es ? ['Proyectos', 'Sobre mí', 'Experiencia', 'Contacto'] : ['Work', 'About', 'Experience', 'Contact'];
+        const mk = (k) => { const open = !!this.state[k]; return { open, rot: open ? '135deg' : '0deg', bg: open ? '#756CE5' : 'transparent',
+          toggle: () => this.setState((s) => ({ [k]: !s[k] })), close: () => this.setState({ [k]: false }) }; };
+        return { navM: mk('navM'), navT: mk('navT'),
+          navCta: es ? '¿Tienes un proyecto en mente? Trabajemos juntos.' : "Have a project in mind? Let's work together.",
+          navItems: ['#work', '#about', '#experience', 'contacto.html'].map((hh, i) => ({ href: i === 3 ? hh : 'index.html' + hh, label: labels[i], n: String(i + 1).padStart(2, '0') })) }; })(),
+      toggleLang: () => this.setState((s) => { const next = s.lang === 'es' ? 'en' : 'es'; try { localStorage.setItem('ob-lang', next); } catch (e) {} return { lang: next }; }),
+    };
+    if (!D) {
+      const empty = { roles: [], devices: [], shots: [], thumbs: [], baTabs: [], baDevices: [], feature: {}, ba: {} };
+      return { ...base, t: {}, p: { stack: [], links: [], built: [], decisions: [], next: {} }, gm: empty, gt: empty };
+    }
+    const { t, p } = D.smartrest(lang);
+    return { ...base, t, p, gm: this._build('m', p, lang), gt: this._build('t', p, lang) };
+  }
+  renderVals() {
+    const v = this._rv0(); const d = this.props.device; const emb = !!d;
+    return { ...v, notEmb: !emb, showM: !emb || d === 'mobile', showT: !emb || d === 'tablet',
+      embPad: emb ? '0' : '72px 80px 120px', wrapDisp: emb ? 'block' : 'flex', fwM: emb ? '100%' : '390px', fwT: emb ? '100%' : '834px',
+      fRad: emb ? '0' : '28px', fSh: emb ? 'none' : '0 30px 80px rgba(19,30,33,.18)', hdrPos: emb ? 'fixed' : 'absolute',
+      heroHM: emb ? 'max(100svh,640px)' : '760px', heroHT: emb ? 'max(100svh,760px)' : '900px' };
+  }
+}
+</script>
+</body>
+</html>

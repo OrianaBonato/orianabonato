@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oriana Bonato</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&amp;family=Inter+Tight:ital,wght@0,300..700;1,300..700&amp;family=Manrope:wght@400..700&amp;family=Rock+Salt&amp;family=Reenie+Beanie&amp;family=Inter:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #E9E9E9; color: #131E21; }
+    a { color: #131E21; text-decoration: none; }
+    a:hover { color: #756CE5; }
+    ::selection { background: #756CE5; color: #E9E9E9; }
+    @keyframes ob-marq { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+    .ob-btn { transition: background .35s ease; }
+    .ob-btn .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); transform: rotate(0deg); }
+    .ob-btn .ob-circ { transition: background .35s ease, color .35s ease; }
+    .ob-btn:hover { background: #131E21; }
+    .ob-btn-touch { transition: background .35s ease, border-color .35s ease; }
+    .ob-btn-touch:hover { border-color: #D8FD80 !important; }
+    .ob-btn:hover .ob-ico { transform: rotate(45deg); }
+    .ob-btn:hover .ob-circ { background: #131E21; color: #756CE5; }
+    .ob-btn:hover span:first-child { color: #756CE5; }
+    .ob-btn-mail { transition: background .35s ease, transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-btn-mail span:first-child { transition: color .35s ease; }
+    .ob-btn-mail:hover { transform: scale(1.04); }
+    .ob-btn-mail:hover span:first-child { color: #756CE5 !important; }
+    .ob-btn-mail:hover .ob-circ { background-color: #756CE5 !important; color: #E9E9E9 !important; }
+    @keyframes ob-caret { 0%,49% { visibility:visible; } 50%,100% { visibility:hidden; } }
+    @keyframes ob-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    @keyframes ob-spin { to { transform: rotate(360deg); } }
+    @keyframes ob-rise { from { transform: translateY(108%); } to { transform: none; } }
+    @keyframes ob-letter { from { opacity: 0; transform: translateY(.32em); } to { opacity: 1; transform: none; } }
+    @keyframes ob-fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @keyframes ob-photo { from { opacity: 0; transform: translateX(-50%) scale(1.05); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
+    @keyframes ob-rule { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes ob-rA { 0%,42% { transform: translateY(0); opacity: 1; } 50%,92% { transform: translateY(-110%); opacity: 0; } 92.01% { transform: translateY(110%); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    @keyframes ob-rB { 0%,42% { transform: translateY(110%); opacity: 0; } 50%,92% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110%); opacity: 0; } }
+    .ob-inl { transition: color .3s ease; }
+    .ob-inl:hover { color: #131E21 !important; }
+    .ob-inl-ico { flex-shrink: 0; transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-inl:hover .ob-inl-ico { transform: rotate(45deg); }
+    .ob-plus { transition: border-color .35s ease, background .35s ease; }
+    .ob-plus:hover { border-color: #D8FD80 !important; }
+    .ob-plus svg { transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .ob-soc { transition: opacity .3s ease; }
+    .ob-soc:hover { opacity: .6; }
+    .ob-mi { transition: color .35s ease; }
+    .ob-mi:hover { color: #D8FD80 !important; }
+    .ob-mi .ob-mi-arr { display: inline-flex; color: #756CE5; transition: color .35s ease; }
+    .ob-mi:hover .ob-mi-arr { color: #D8FD80; }
+    .ob-mi .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); transform: rotate(0deg); }
+    .ob-mi:hover .ob-ico { transform: rotate(45deg); }
+    .ob-mm { transition: border-color .35s ease; }
+    .ob-mm:hover { border-color: #D8FD80 !important; }
+    .ob-mm .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-mm:hover .ob-ico { transform: rotate(45deg); }
+    .ob-line { display: block; overflow: hidden; }
+    .ob-line > span { display: block; transform: translateY(110%); transition: transform 1.05s cubic-bezier(.16,1,.3,1); }
+    .in .ob-line > span, .ob-line.in > span { transform: translateY(0); }
+    .rv { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .rv.in { opacity: 1; transform: none; }
+    .ob-ul { background-image: linear-gradient(#131E21,#131E21); background-size: 0% 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .5s cubic-bezier(.16,1,.3,1); }
+    .ob-br { cursor: default; }
+    .ob-br:hover { color: #756CE5 !important; }
+    .ob-ul:hover { background-size: 100% 1px; }
+    @media (hover: none) { .ob-cursor { display: none !important; } }
+  </style>
+</helmet>
+
+<div ref="{{ rootRef }}" onMouseMove="{{ onMove }}" style="display: {{ deskDisplay }}; position: relative; font-family: 'Bricolage Grotesque',sans-serif; background: #E9E9E9; overflow-x: clip; cursor: {{ rootCursor }}">
+
+  <!-- CURSOR TRACKER -->
+  <div class="ob-cursor" ref="{{ ringRef }}" data-om-ignore="" style="display:{{ cursorDisplay }};position:fixed;top:0;left:0;z-index:120;pointer-events:none;width:56px;height:56px;margin:-28px 0 0 -28px;border:1px solid #131E21;border-radius:50%;align-items:center;justify-content:center;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),margin .35s cubic-bezier(.16,1,.3,1),background .35s ease,border-color .35s ease;mix-blend-mode:normal;">
+    <span ref="{{ ringLabelRef }}" style="font-size:10px;font-weight:700;letter-spacing:.16em;color:#E9E9E9;opacity:0;transition:opacity .25s ease;">VIEW</span>
+  </div>
+  <div class="ob-cursor" ref="{{ dotRef }}" data-om-ignore="" style="display: {{ cursorDisplay }}; position: fixed; top: -2px; left: 0; z-index: 121; pointer-events: none; width: 8px; height: 8px; margin: -3px 0 0 -3px; border-radius: 50%; background: #756CE5"></div>
+
+  <!-- HEADER -->
+  <header data-ob-dark="1" style="position:fixed;top:0;left:0;right:0;z-index:100;background:{{ headerBg }};box-shadow:{{ headerBoxShadow }};transition:background .5s ease,box-shadow .5s ease;">
+    <div style="height:80px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
+      <div style="display:flex;align-items:center;">
+        <div aria-hidden="{{ logoHidden }}" style="display:flex;align-items:center;gap:clamp(20px,2.4vw,36px);overflow:hidden;max-width:{{ logoMaxW }};opacity:{{ logoOp }};margin-right:{{ logoMr }};transition:max-width .7s cubic-bezier(.16,1,.3,1),opacity .5s ease,margin-right .7s cubic-bezier(.16,1,.3,1);">
+          <a href="#top" onClick="{{ closeMenu }}" tabindex="{{ logoTab }}" style="display:flex;align-items:center;flex-shrink:0;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:34px;width:auto;display:block;"></a>
+          <span style="width:1px;height:26px;flex-shrink:0;background:rgba(233,233,233,.2);"></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <a class="ob-soc" href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/linkedin.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
+          <a class="ob-soc" href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" aria-label="Behance" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/behance.svg" alt="" style="width:24px;height:24px;display:block;filter:brightness(0) invert(1);"></a>
+          <a class="ob-soc" href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/github.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button type="button" class="ob-plus" onClick="{{ toggleMenu }}" aria-label="Menu" aria-expanded="{{ menuOpenStr }}" style="width:44px;height:44px;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);background:{{ plusBg }};color:#E9E9E9;display:flex;align-items:center;justify-content:center;cursor:pointer;font:inherit;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="transform:rotate({{ plusRot }});"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg>
+        </button>
+        <span onClick="{{ toggleLang }}" role="button" title="{{ t.langTitle }}" style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:30px;padding:0 14px;box-sizing:border-box;border-radius:999px;background:{{ langBg }};border:1px solid {{ langBd }};font-size:12px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;cursor:pointer;transition:background .45s ease,border-color .45s ease;">{{ langLabel }}</span>
+      </div>
+    </div>
+    <div data-ob-dark="1" style="position:absolute;top:100%;left:0;right:0;background:#131E21;border-top:1px solid rgba(233,233,233,.14);box-shadow:0 40px 80px rgba(0,0,0,.35);padding:clamp(28px,4vh,48px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(32px,5vh,56px);opacity:{{ menuOp }};visibility:{{ menuVis }};transform:translateY({{ menuY }});transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),visibility .45s;">
+      <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(32px,6vw,110px);align-items:end;">
+        <nav style="display:flex;flex-direction:column;">
+          <sc-for list="{{ menuItems }}" as="it" hint-placeholder-count="4">
+            <a href="{{ it.href }}" onClick="{{ closeMenu }}" class="ob-mi" style="display:flex;align-items:baseline;gap:22px;border-top:1px solid rgba(233,233,233,.14);padding:clamp(10px,1.6vh,16px) 0;color:#E9E9E9;opacity:{{ it.op }};transform:translateY({{ it.y }});transition:color .35s ease,opacity .5s ease {{ it.d }},transform .7s cubic-bezier(.16,1,.3,1) {{ it.d }};">
+              <span style="font-family:'Courier New',monospace;font-size:13px;color:#D8FD80;min-width:36px;">[{{ it.n }}]</span>
+              <span style="font-size:clamp(34px,4.4vw,64px);line-height:.95;letter-spacing:-.035em;font-weight:800;text-transform:uppercase;">{{ it.label }}</span>
+              <span class="ob-mi-arr" style="margin-left:auto;align-self:center;"><svg class="ob-ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+            </a>
+          </sc-for>
+        </nav>
+        <div style="display:flex;flex-direction:column;gap:22px;padding-bottom:6px;">
+          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(17px,1.4vw,21px);font-weight:500;line-height:1.35;color:#E9E9E9;max-width:24ch;">{{ t.cta }}</p>
+          <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
+            <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+          </a>
+          <p style="margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Vigo · {{ clock }}</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="{{ id_top }}" data-ob-dark="1" style="height: 100vh; min-height: 640px; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)); background: #131E21; color: #E9E9E9">
+    
+    <div style="position: relative; z-index: 1; flex: 1; display: flex; justify-content: center; align-items: center; padding-top: calc(80px + clamp(16px,3vh,40px)); width: 100%; max-width: 1308px; margin: 0 auto; flex-direction: row; box-sizing: border-box; min-height: 0">
+      <div style="display: flex; align-items: stretch; justify-content: center; gap: clamp(24px,4vw,64px); width: 100%">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:clamp(18px,2.6vh,28px);max-width:min(15ch,28%);">
+        
+        
+      </div>
+      <span aria-label="Oriana Bonato." style="display: block; flex: 0 1 auto; min-width: 0; font-size: min(200px, 15vw, 27vh); text-align: left; line-height: 0.8; font-weight: 500; white-space: nowrap"><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.25s both;">O</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.31s both;">r</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.37s both;">i</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.43s both;">a</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.49s both;">n</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.55s both;">a</span> <br><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.61s both;">B</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.67s both;">o</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.73s both;">n</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.79s both;">a</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.85s both;">t</span><span style="display:inline-block;animation:ob-letter .9s cubic-bezier(.16,1,.3,1) 0.91s both;">o</span><span ref="{{ heroDotRef }}" style="display:inline-block;color: rgb(117, 108, 229);">.</span></span><div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 0px; flex: 0 1 300px; min-width: 0; align-self: stretch; padding: .12em 0 0; box-sizing: border-box; width: 302px; height: 300px; padding-top: 2.73em">
+        
+        <p ref="{{ heroLocRef }}" style="margin: 0; font-family: 'Manrope',sans-serif; font-size: clamp(14px,1.1vw,16px); line-height: 1.6; color: #C7CCCD; max-width: 30ch">{{ locTyped }}<span style="display:inline-block;width:2px;height:1.05em;margin:0 1px -0.15em;background:#756CE5;animation:ob-caret 1s steps(1) infinite;opacity:{{ caretOn }};"></span><span style="color:transparent;">{{ locRest }}</span></p><a ref="{{ heroCtaRef }}" href="#work" class="ob-mm" style="display: inline-flex; align-items: center; gap: 18px; padding: 5px 5px 5px 22px; border: 1px solid #E9E9E9; border-radius: 999px; color: #E9E9E9; white-space: nowrap; box-sizing: border-box">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ t.heroCta }}</span>
+          <span style="width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+        </a>
+      </div>
+      </div>
+    </div>
+    <h1 style="position:relative;z-index:1;margin:0 0 -.07em;overflow:hidden;font-size:min(10.6vw,152px);line-height:.86;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;white-space:nowrap;text-align:center;"></h1>
+  </section>
+
+  
+
+  
+
+  <!-- MARQUEE BAND -->
+  
+
+  <!-- STATEMENT -->
+  <section ref="{{ approachRef }}" style="position: relative; height: 320vh; width: 100%; margin-bottom: -18vh">
+    <div style="position: sticky; top: 0; height: 100vh; box-sizing: border-box; padding: 80px 0 0; display: flex; flex-direction: column; overflow: hidden">
+      
+      <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: clamp(36px,6vh,72px); padding: clamp(24px,4vh,48px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2))">
+      
+      <div style="display: flex; flex-direction: column; gap: clamp(18px,2vw,28px); width: 1300px; height: 330px">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;white-space:nowrap;">{{ t.lblApproach }}</span>
+        <p style="margin: 0; font-family: 'Bricolage Grotesque',sans-serif; font-size: 45px; line-height: 1.12; letter-spacing: -0.02em; text-wrap: pretty; max-width: 16.5em"><sc-for list="{{ approachWords1 }}" as="w" hint-placeholder-count="12"><span data-w="" data-c="{{ w.c }}" class="{{ w.cls }}" style="display:inline-block;color:#D2D5D5;transition:color .3s ease;margin-right:{{ w.mr }};font-family:{{ w.ff }};font-weight:{{ w.fw }};">{{ w.t }}</span></sc-for></p>
+      </div><p style="margin: 0 0 0 auto; width: 873px; min-width: 260px; font-family: 'Bricolage Grotesque',sans-serif; font-size: 35px; line-height: 1.25; letter-spacing: -0.01em; text-wrap: pretty; height: 211px"><sc-for list="{{ approachWords2 }}" as="w" hint-placeholder-count="12"><span data-w="" data-c="{{ w.c }}" class="{{ w.cls }}" style="display:inline-block;color:#D2D5D5;transition:color .3s ease;margin-right:{{ w.mr }};font-family:{{ w.ff }};font-weight:{{ w.fw }};">{{ w.t }}</span></sc-for></p>
+      </div>
+      <div style="flex-shrink:0;background:#E9E9E9;color:#131E21;padding:clamp(14px,2vh,20px) 0;overflow:hidden;">
+    <div style="display:flex;width:max-content;animation:ob-marq 34s linear infinite;">
+      <sc-for list="{{ marqueeLoop }}" as="m" hint-placeholder-count="8">
+        <span style="display:flex;align-items:center;gap:38px;padding-right:38px;font-size:clamp(20px,2.6vw,38px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;color:#131E21;">{{ m }}<span style="color:#756CE5;font-size:.6em;">✱</span></span>
+      </sc-for>
+    </div>
+  </div>
+      <div ref="{{ stripRef }}" data-ob-dark="1" style="position:absolute;z-index:2;left:0;right:0;bottom:0;height:18vh;transform:translateY(100%);will-change:transform;background:#131E21;display:flex;justify-content:space-between;align-items:flex-start;box-sizing:border-box;padding:clamp(74px,9vh,110px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.lblWork }}</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.drag }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK — HORIZONTAL SCROLL -->
+  <section id="{{ id_work }}" ref="{{ pinSectionRef }}" data-ob-dark="1" style="position:relative;z-index:2;height:420vh;background:#131E21;color:#E9E9E9;">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(74px,9vh,110px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.lblWork }}</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.drag }}</span>
+      </div>
+      <div style="flex:1;display:flex;align-items:center;">
+        <div ref="{{ trackRef }}" style="display:flex;align-items:center;gap:clamp(28px,4vw,72px);padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));will-change:transform;">
+          <h2 style="margin:0;flex-shrink:0;font-size:clamp(52px,min(11vw,17vh),150px);line-height:.85;letter-spacing:-.04em;font-weight:800;font-stretch:100%;text-transform:uppercase;">{{ t.work1 }}<br>{{ t.work2 }}<span style="color:#756CE5;">.</span></h2>
+          <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+            <a href="{{ p.url }}" onMouseEnter="{{ enterProject }}" onMouseLeave="{{ leaveProject }}" style="flex-shrink:0;width:clamp(220px,min(30vw,calc((100vh - 330px) * .8)),440px);display:block;color:#E9E9E9;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(233,233,233,.25);padding:10px 0 14px;">
+                <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;">{{ p.index }}</span>
+                <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.tag }}</span>
+              </div>
+              <div style="position:relative;aspect-ratio:4/5;background:#1B282B;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+                <img src="{{ p.img }}" alt="{{ p.name }}" style="max-width:66%;max-height:52%;object-fit:contain;">
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-top:16px;">
+                <h3 style="margin:0;font-size:clamp(20px,min(2.4vw,4vh),38px);line-height:1;letter-spacing:-.02em;font-weight:700;font-stretch:100%;text-transform:uppercase;">{{ p.name }}</h3>
+                <span style="font-family:'Rock Salt',cursive;font-size:14px;color:#B5BCBE;white-space:nowrap;">{{ p.year }}</span>
+              </div>
+            </a>
+          </sc-for>
+          <div style="flex-shrink:0;width:clamp(220px,22vw,340px);">
+            <p style="margin:0 0 22px;font-family:'Manrope',sans-serif;font-weight:500;font-style:normal;font-size:clamp(20px,2vw,32px);line-height:1.2;">{{ t.more }}</p>
+            <a href="contacto.html" class="ob-btn ob-btn-touch" style="width:fit-content;display:inline-flex;align-items:center;gap:20px;padding:6px 6px 6px 24px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ t.getInTouch }}</span>
+              <span class="ob-circ" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;">
+                <svg class="ob-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div style="padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(28px,4vh,44px);">
+        <div style="height:1px;background:rgba(233,233,233,.22);position:relative;">
+          <div ref="{{ progressRef }}" style="position:absolute;left:0;top:0;height:1px;width:0%;background:#756CE5;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="{{ id_about }}" style="padding:clamp(96px,14vh,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
+    <div style="display:flex;gap:clamp(24px,5vw,90px);align-items:flex-start;flex-wrap:wrap;margin-bottom:clamp(24px,5vh,56px);">
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;padding-top:.9em;white-space:nowrap;">{{ t.lblAbout }}</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;row-gap:48px;align-items:flex-start;">
+      <div class="rv" style="flex: 0 1 30%; min-width: 260px; position: sticky; top: 100px; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(18px,2.5vw,36px)">
+        <h2 style="margin: 0; text-align: left; font-size: clamp(38px,5.4vw,77px); line-height: .9; letter-spacing: -.035em; font-weight: 800; font-stretch: 100%; text-transform: uppercase; white-space: nowrap">{{ t.hello1 }}<br>{{ t.hello2 }}<span style="color:#756CE5;">.</span></h2>
+        <div style="width: 100%; aspect-ratio: 667/417; overflow: hidden">
+          <img src="img/foto-perfil-oriana-2026.png" alt="Oriana Bonato" style="width: 100%; height: 100%; object-position: center 80%; display: block; object-fit: cover">
+        </div>
+        <a href="{{ cvUrl }}" download="" target="_blank" rel="noopener noreferrer" class="ob-btn" style="width:fit-content;display:inline-flex;align-items:center;gap:20px;padding:6px 6px 6px 24px;border:1px solid #131E21;border-radius:999px;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ t.cv }}</span>
+          <span class="ob-circ" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;">
+            <svg class="ob-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
+          </span>
+        </a>
+      </div>
+      <div class="rv" style="flex:0 1 47%;min-width:min(100%,340px);display:flex;flex-direction:column;gap:clamp(14px,1.7vw,24px);">
+        <p style="margin: 0; font-family: {{ aboutIntroFontFamily }}; font-weight: 500; font-style: normal; font-size: clamp(24px,2.9vw,42px); line-height: 1.08">{{ t.aboutTitle }}</p>
+        <p style="margin: -4px 0 0; font-family: 'Manrope',sans-serif; font-weight: 100; font-size: clamp(15px,1.6vw,23px); line-height: 1.4; color: #756CE5; max-width: 562px">{{ t.aboutSub }}</p>
+        <p style="margin: 0; font-family: 'Inter',sans-serif; font-size: clamp(13px,1.05vw,15px); line-height: 1.64">{{ t.aboutBody1 }}<br><br>{{ t.aboutBody2 }}</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;border-top:1px solid rgba(19,30,33,.18);padding-top:clamp(14px,2vh,22px);">
+          <sc-for list="{{ capabilities }}" as="c" hint-placeholder-count="3">
+            <div>
+              <p style="margin:0 0 10px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ c.title }}</p>
+              <p style="margin:0;font-family:'Inter',sans-serif;font-size:clamp(12px,.95vw,14px);line-height:1.5;">{{ c.items }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="position: relative; overflow: hidden; margin-top: clamp(56px,8vw,110px); border-top: 1px solid rgba(19,30,33,.18); border-bottom: 1px solid rgba(19,30,33,.18); padding: 26px 0; border-style: none">
+      <div style="display:flex;align-items:center;width:max-content;animation:ob-marq 60s linear infinite;">
+        <sc-for list="{{ toolsLoop }}" as="t" hint-placeholder-count="20">
+          <img src="{{ t }}" style="width:34px;height:34px;object-fit:contain;flex-shrink:0;opacity:.75;margin-right:56px;">
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="{{ id_experience }}" style="padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(90px,12vw,170px);">
+    <div style="display:flex;gap:clamp(24px,5vw,90px);align-items:flex-start;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,56px);">
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;padding-top:.9em;white-space:nowrap;">{{ t.lblExp }}</span>
+      <h2 class="rv" style="margin: 0; flex: 1; min-width: 260px; font-size: clamp(30px,5.4vw,76px); line-height: .92; letter-spacing: -.035em; font-weight: 800; font-stretch: 100%; text-transform: uppercase; text-align: right">{{ t.exp1 }}<br>{{ t.exp2 }}</h2>
+    </div>
+    <sc-for list="{{ experience }}" as="e" hint-placeholder-count="3">
+      <article class="rv" style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,2.4fr) minmax(0,.8fr);gap:clamp(16px,3vw,60px);align-items:baseline;border-top:1px solid rgba(19,30,33,.18);padding:clamp(24px,3vw,40px) 0;">
+        <div>
+          <h3 style="margin:0 0 6px;font-size:clamp(20px,2.4vw,36px);line-height:1.05;letter-spacing:-.025em;font-weight:700;font-stretch:100%;text-transform:uppercase;">{{ e.title }}</h3>
+          <p style="margin:0;font-family:'Manrope',sans-serif;font-weight:500;font-style:normal;font-size:clamp(15px,1.2vw,19px);line-height:1.3;"><a href="{{ e.url }}" target="_blank" rel="noopener noreferrer" onMouseEnter="{{ enterLink }}" onMouseLeave="{{ leaveProject }}" class="ob-inl" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;color:#756CE5;">{{ e.place }}<svg class="ob-inl-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a></p>
+        </div>
+        <p style="margin:0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.85;max-width:62ch;">{{ e.desc }}</p>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5A6568;text-align:right;white-space:nowrap;">{{ e.date }}</span>
+      </article>
+    </sc-for>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="{{ id_contact }}" data-ob-dark="1" style="background:#131E21;color:#E9E9E9;padding:clamp(70px,9vw,130px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 28px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:clamp(50px,7vw,100px);">
+      <p class="rv" style="margin:0;font-family:'Manrope',sans-serif;font-weight:500;font-style:normal;font-size:clamp(20px,2vw,32px);line-height:1.25;max-width:22ch;">{{ t.cta }}</p>
+      <a href="contacto.html" class="ob-btn ob-btn-touch" onMouseEnter="{{ enterLink }}" onMouseLeave="{{ leaveProject }}" style="width:fit-content;display:inline-flex;align-items:center;gap:20px;padding:6px 6px 6px 24px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">hello@orianabonato.com</span>
+        <span class="ob-circ" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;">
+          <svg class="ob-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
+        </span>
+      </a>
+    </div>
+    <h2 style="margin:0;font-size:clamp(48px,14.6vw,250px);line-height:.82;letter-spacing:-.04em;font-weight:800;font-stretch:100%;text-transform:uppercase;">{{ t.talk }}<span style="color:#756CE5;">.</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px;border-top:1px solid rgba(233,233,233,.22);margin-top:clamp(40px,5vw,70px);padding-top:26px;">
+      <div>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.social }}</p>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+          <a href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">LinkedIn</a>
+          <a href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Behance</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.menu }}</p>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+          <a href="#work" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.navWork }}</a>
+          <a href="#about" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.navAbout }}</a>
+          <a href="#experience" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.navExp }}</a><a href="design-system.html" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Design System</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.time }}</p>
+        <p style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ clock }}</p>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.based }}</p>
+        <p style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.basedVal }}</p>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:60px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
+      <span>© 2026 Oriana Bonato</span>
+      <span>{{ t.credit }}</span>
+    </div>
+  </footer>
+</div>
+<sc-if value="{{ isCompact }}" hint-placeholder-val="{{ false }}"><dc-import name="inicio-responsive" device="{{ device }}" hint-size="100%,100vh"></dc-import></sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;aboutIntroFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Default&quot;,&quot;options&quot;:[&quot;Default&quot;,&quot;Rock Salt&quot;,&quot;Reenie Beanie&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Typography&quot;},&quot;customCursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;}}">
+class Component extends DCLogic {
+  state = {
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1440, clock: '', navVisible: false, menu: false, typed: 0, typing: true, lang: (() => { try { return localStorage.getItem('ob-lang') || 'en'; } catch (e) { return 'en'; } })() };
+  rootRef = React.createRef();
+  dotRef = React.createRef();
+  approachRef = React.createRef();
+  heroDotRef = React.createRef();
+  heroCtaRef = React.createRef();
+  heroLocRef = React.createRef();
+  stripRef = React.createRef();
+  ringRef = React.createRef();
+  ringLabelRef = React.createRef();
+  trackRef = React.createRef();
+  pinSectionRef = React.createRef();
+  progressRef = React.createRef();
+
+  _startType(delay) {
+    clearTimeout(this._typeT); clearInterval(this._typeI);
+    this.setState({ typed: 0, typing: true });
+    this._typeT = setTimeout(() => {
+      this._typeI = setInterval(() => {
+        const full = (this._locText || '').length;
+        this.setState((s) => {
+          if (s.typed >= full) { clearInterval(this._typeI); this._typeDone = setTimeout(() => this.setState({ typing: false }), 2400); return null; }
+          return { typed: s.typed + 1 };
+        });
+      }, 26);
+    }, delay);
+  }
+
+  componentDidUpdate(pp, ps) { if (ps.lang !== this.state.lang) this._startType(150); }
+
+  _introLogo() {
+    const dot = this.heroDotRef.current, cta = this.heroCtaRef.current, loc = this.heroLocRef.current;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!dot || !cta || !dot.animate || reduce) return 1500;
+    const FALL = 1000, LAND = FALL + 700, MORPH_END = LAND + 750, CTA_IN = MORPH_END - 300, LOC_IN = MORPH_END, DOT_IN = MORPH_END;
+    const ease = 'cubic-bezier(.16,1,.3,1)';
+    dot.animate([{ opacity: 0 }, { opacity: 1 }], { delay: DOT_IN, duration: 600, easing: 'ease', fill: 'backwards' });
+    cta.animate([{ opacity: 0 }, { opacity: 1 }], { delay: CTA_IN, duration: 300, easing: 'ease', fill: 'backwards' });
+    if (loc) loc.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { delay: LOC_IN, duration: 500, easing: ease, fill: 'backwards' });
+    this._introT = setTimeout(() => {
+      const host = cta.closest('section') || document.body;
+      const hr = host.getBoundingClientRect(), br = cta.getBoundingClientRect(), pr = dot.getBoundingClientRect();
+      const fs = parseFloat(getComputedStyle(dot).fontSize) || 200;
+      const d = Math.max(12, Math.round(fs * 0.14));
+      const cx = pr.left + fs * 0.085 - hr.left, cy = pr.bottom - fs * 0.1 - hr.top;
+      const blob = 'border-radius:' + Math.round(d * 0.32) + 'px;';
+      const x0 = cx - d / 2, y0 = cy - d / 2;
+      const fly = document.createElement('span');
+      fly.setAttribute('aria-hidden', 'true');
+      fly.style.cssText = 'position:absolute;z-index:5;pointer-events:none;box-sizing:border-box;background:#756CE5;border:1px solid #756CE5;' + blob + 'left:' + x0 + 'px;top:' + y0 + 'px;width:' + d + 'px;height:' + d + 'px;';
+      host.appendChild(fly);
+      this._introFly = fly;
+      const fall = fly.animate([
+        { transform: 'translateY(' + (-(cy + 80)) + 'px) scale(1,1.15)' },
+        { transform: 'translateY(0) scale(1.22,.8)', offset: .82 },
+        { transform: 'translateY(-8px) scale(.96,1.04)', offset: .92 },
+        { transform: 'translateY(0) scale(1,1)' },
+      ], { duration: LAND - FALL, easing: 'cubic-bezier(.55,0,.75,.2)', fill: 'forwards' });
+      fall.onfinish = () => {
+        const L = br.left - hr.left, T = br.top - hr.top, midT = y0 + (T + br.height / 2 - cy) * 0.5;
+        const slide = fly.animate([
+          { left: x0 + 'px', top: y0 + 'px', width: d + 'px', height: d + 'px', backgroundColor: '#756CE5', borderColor: '#756CE5' },
+          { left: x0 + 'px', top: midT + 'px', width: (br.right - hr.left - x0) + 'px', height: d + 'px', backgroundColor: '#756CE5', borderColor: '#756CE5', offset: .55 },
+          { left: L + 'px', top: T + 'px', width: br.width + 'px', height: br.height + 'px', backgroundColor: 'rgba(117,108,229,0)', borderColor: '#E9E9E9', borderRadius: '999px' },
+        ], { duration: MORPH_END - LAND, easing: ease, fill: 'forwards' });
+        slide.onfinish = () => {
+          const out = fly.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, fill: 'forwards' });
+          out.onfinish = () => { fly.remove(); this._introFly = null; };
+        };
+      };
+    }, FALL);
+    return LOC_IN;
+  }
+
+  componentDidMount() {
+    [150, 700, 1500].forEach((ms) => setTimeout(() => this._hashGo(), ms));
+    this._onRs = () => { if (window.innerWidth !== this.state.vw) this.setState({ vw: window.innerWidth }); }; window.addEventListener('resize', this._onRs);
+    const typeAt = this._introLogo();
+    this._startType(typeAt);
+    this._onKey = (e) => { if (e.key === 'Escape' && this.state.menu) this.setState({ menu: false }); };
+    window.addEventListener('keydown', this._onKey);
+    this._target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    this._ring = { x: this._target.x, y: this._target.y };
+    this._raf = requestAnimationFrame(this._tick);
+    this._onScroll = () => { this._updatePin(); this._updateNav(); this._updateApproach(); this._needsDetect = true; };
+    setTimeout(() => this._updateApproach(), 50);
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll);
+    this._io = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    const root = this.rootRef.current;
+    if (root) root.querySelectorAll('.rv, section .ob-line').forEach((el) => this._io.observe(el));
+    this._updatePin();
+    this._updateNav();
+    this._clock();
+    this._clockId = setInterval(() => this._clock(), 30000);
+  }
+
+  componentDidUpdate(pp, ps) {
+    if (ps.lang !== this.state.lang) { this._updateApproach(); document.documentElement.lang = this.state.lang; }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._introT); if (this._introFly) this._introFly.remove();
+    clearTimeout(this._typeT); clearInterval(this._typeI); clearTimeout(this._typeDone);
+    window.removeEventListener('keydown', this._onKey);
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onScroll);
+    if (this._io) this._io.disconnect();
+    clearInterval(this._clockId);
+  }
+
+  _updateNav() {
+    const visible = window.scrollY > window.innerHeight * 0.5;
+    if (visible !== this.state.navVisible) this.setState({ navVisible: visible });
+  }
+
+  _clock() {
+    const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit' });
+    this.setState({ clock: t + ' CET' });
+  }
+
+  _imgSample(img, x, y) {
+    if (!img.complete || !img.naturalWidth) return null;
+    this._imgCache = this._imgCache || new Map();
+    let c = this._imgCache.get(img.currentSrc || img.src);
+    if (!c) {
+      try {
+        const k = Math.min(1, 256 / Math.max(img.naturalWidth, img.naturalHeight));
+        const cv = document.createElement('canvas');
+        cv.width = Math.max(1, Math.round(img.naturalWidth * k)); cv.height = Math.max(1, Math.round(img.naturalHeight * k));
+        const ctx = cv.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, cv.width, cv.height);
+        c = { ctx, w: cv.width, h: cv.height };
+      } catch (e) { c = { bad: true }; }
+      this._imgCache.set(img.currentSrc || img.src, c);
+    }
+    if (c.bad) return null;
+    const rc = img.getBoundingClientRect();
+    const cs = getComputedStyle(img);
+    const fit = cs.objectFit;
+    const iw = c.w, ih = c.h;
+    let sx = rc.width / iw, sy = rc.height / ih;
+    if (fit === 'cover') { sx = sy = Math.max(sx, sy); } else if (fit === 'contain' || fit === 'scale-down') { sx = sy = Math.min(sx, sy); }
+    const dw = iw * sx, dh = ih * sy;
+    const pos = cs.objectPosition.split(' ');
+    const pct = (v, free) => v.endsWith('%') ? free * parseFloat(v) / 100 : parseFloat(v) || 0;
+    const ox = pct(pos[0] || '50%', rc.width - dw), oy = pct(pos[1] || '50%', rc.height - dh);
+    const px = Math.floor((x - rc.left - ox) / sx), py = Math.floor((y - rc.top - oy) / sy);
+    if (px < 0 || py < 0 || px >= iw || py >= ih) return null;
+    try {
+      const d = c.ctx.getImageData(px, py, 1, 1).data;
+      if (d[3] < 128) return null;
+      return (0.2126 * d[0] + 0.7152 * d[1] + 0.0722 * d[2]) < 128;
+    } catch (e) { c.bad = true; return null; }
+  }
+
+  _bgDarkAt(x, y) {
+    let el = document.elementFromPoint(x, y);
+    if (el && el.tagName === 'IMG') { const s = this._imgSample(el, x, y); if (s !== null) return s; }
+    while (el && el !== document.documentElement) {
+      const m = getComputedStyle(el).backgroundColor.match(/rgba?\(([^)]+)\)/);
+      if (m) {
+        const [r, g, b, a = 1] = m[1].split(/[\s,\/]+/).filter(Boolean).map(Number);
+        if (a > 0.5) return (0.2126 * r + 0.7152 * g + 0.0722 * b) < 128;
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  _tick = () => {
+    const d = this.dotRef.current, r = this.ringRef.current;
+    this._frame = (this._frame || 0) + 1;
+    if (this._needsDetect || this._frame % 4 === 0) { this._needsDetect = false; this._isDark = this._bgDarkAt(this._target.x, this._target.y); }
+    if (d && r) {
+      this._ring.x += (this._target.x - this._ring.x) * 0.14;
+      this._ring.y += (this._target.y - this._ring.y) * 0.14;
+      d.style.transform = 'translate3d(' + this._target.x + 'px,' + this._target.y + 'px,0)';
+      r.style.transform = 'translate3d(' + this._ring.x + 'px,' + this._ring.y + 'px,0)';
+      if (!this._mode) r.style.borderColor = this._isDark ? '#D8FD80' : '#131E21';
+    }
+    this._raf = requestAnimationFrame(this._tick);
+  };
+
+  _updateApproach() {
+    const sec = this.approachRef.current;
+    if (!sec) return;
+    const words = sec.querySelectorAll('[data-w]');
+    const n = words.length;
+    const rect = sec.getBoundingClientRect();
+    const vh = window.innerHeight;
+const dist = Math.max(1, rect.height - vh);
+    const prog = Math.min(1, Math.max(0, -rect.top / dist));
+    // words paint over the first 78% of the pinned scroll; the last stretch reveals the next section's top band
+    const p = Math.min(1, Math.max(0, (vh * 0.35 - rect.top) / (dist * 0.78 + vh * 0.35)));
+    const lit = Math.round(p * n);
+    words.forEach((el, i) => { el.style.color = i < lit ? el.dataset.c : '#D2D5D5'; });
+    const strip = this.stripRef.current;
+    if (strip) {
+      const q = lit >= n ? Math.min(1, Math.max(0, (prog - 0.8) / 0.2)) : 0;
+      strip.style.transform = 'translateY(' + ((1 - q) * 100).toFixed(2) + '%)';
+    }
+  }
+
+  _updatePin() {
+    const sec = this.pinSectionRef.current, track = this.trackRef.current;
+    if (!sec || !track) return;
+    const rect = sec.getBoundingClientRect();
+    const dist = sec.offsetHeight - window.innerHeight;
+    const p = Math.min(1, Math.max(0, -rect.top / (dist || 1)));
+    const maxX = Math.max(0, track.scrollWidth - window.innerWidth);
+    track.style.transform = 'translate3d(' + (-p * maxX) + 'px,0,0)';
+    if (this.progressRef.current) this.progressRef.current.style.width = (p * 100).toFixed(2) + '%';
+  }
+
+  _hashGo() {
+    const id = (location.hash || "").slice(1);
+    if (!id || window.innerWidth < 1024) return;
+    const el = document.getElementById(id);
+    if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY);
+  }
+
+  _setCursor(mode) {
+    const r = this.ringRef.current, l = this.ringLabelRef.current, d = this.dotRef.current;
+    if (!r || !l) return;
+    this._mode = mode;
+    if (mode === 'view') {
+      r.style.width = '104px'; r.style.height = '104px'; r.style.margin = '-52px 0 0 -52px';
+      r.style.background = '#756CE5'; r.style.borderColor = '#756CE5'; l.style.opacity = '1';
+      if (d) d.style.background = '#D8FD80';
+    } else if (mode === 'link') {
+      r.style.width = '80px'; r.style.height = '80px'; r.style.margin = '-40px 0 0 -40px';
+      r.style.background = 'rgba(117,108,229,.15)'; r.style.borderColor = '#756CE5'; l.style.opacity = '0';
+      if (d) d.style.background = '#756CE5';
+    } else {
+      r.style.width = '56px'; r.style.height = '56px'; r.style.margin = '-28px 0 0 -28px';
+      r.style.background = 'transparent'; r.style.borderColor = this._isDark ? '#D8FD80' : '#131E21'; l.style.opacity = '0';
+      if (d) d.style.background = '#756CE5';
+    }
+  }
+
+  _rv0() {
+    const tools = ['figma','photoshop','illustrator','after-effects','html5','css3','javascript','angular','github','git']
+      .map((n) => 'img/icons/' + n + '.svg');
+    const marquee = ['Frontend Development', 'Web Design', 'UI/UX', 'Branding', 'Graphic Design'];
+    const lang = this.state.lang === 'es' ? 'es' : 'en';
+    const T = {
+      en: {
+        navWork: 'Work', navAbout: 'About', navExp: 'Experience', navContact: 'Contact', langTitle: 'Ver en español',
+        role1: 'Frontend Developer', role2: '· UX/UI Designer',
+        heroBadge: 'Open to frontend roles', heroHead: 'Frontend Developer & UX/UI Designer', heroCta: 'See my work',
+        location: "Based in Vigo, Spain. Looking for a frontend role on a product team where design and code work side by side — remote, hybrid or on-site.",
+        heroWork: 'Selected work 2019 — 2026',
+        lblApproach: '(01) — Approach',
+        approachTitle: 'I design it in [Figma] & bring it to life in [code].',
+        approachBody: 'I think in systems before screens: every spacing and button state is a decision that comes alive in code. So I follow each one all the way, from the Figma prototype to the Angular or React component that makes it work.',
+        lblWork: '(02) — Selected work', drag: 'Drag / Scroll →', work1: 'Selected', work2: 'Work',
+        more: 'More projects on request.', getInTouch: 'Get in touch',
+        lblAbout: '(03) — About me', hello1: 'Hello,', hello2: "I'm Oriana", cv: 'Download CV',
+        aboutTitle: 'Every branch I explored led me to code.',
+        aboutSub: "[Frontend developer with a graphic designer's eye]",
+        aboutBody1: 'I started in graphic design in 2019 and spent the following years trying a bit of everything: brand identity, editorial, photography, social media, websites. Somewhere along the way I noticed that almost everything I worked on had code behind it, quietly making it move, respond and come to life.',
+        aboutBody2: 'I wanted to understand how the work actually gets finished, so I went further. I earned a Higher National Diploma in Web Application Development while working, and today I build with Angular, React and TypeScript, plus Java and Spring Boot when a project needs a backend. Design is still where I started, and it shapes how I build: with the system, the spacing and the behaviour in mind from the first line.',
+        capTitles: ['Design', 'Development', 'Tools'],
+        lblExp: '(04) — Experience', exp1: "Where I've", exp2: 'worked',
+        cta: "Have a project in mind? Let's work together.", talk: "Let's talk",
+        social: 'Social', menu: 'Menu', time: 'Local time', based: 'Based in', basedVal: 'Vigo, Spain — remote (CET)',
+        credit: 'Designed & coded by Oriana Bonato',
+        exp: [
+          { date: 'Jul 2024 – Jun 2026', title: 'Web Designer & Developer',
+            desc: "Two years, three roles in the same company: Web Designer, then Web Development Intern, then Creative Designer. As a web designer, I launched 100+ websites for freelancers and small businesses in construction, wellness, beauty and health. I handled each launch end to end: domain, DNS and SSL setup, semantic HTML with on-page SEO, Search Console and Analytics, a custom colour, type and button system for every site, and direct contact with each client. As a development intern, I built the templates for an AI app that generates branded Instagram posts by filling each slot with the client's logo, colours and fonts. I worked on my own feature branch in an existing Node.js and Supabase codebase, and developed a React and Tailwind landing page with a booking system. As Creative Designer, I defined the visual rules of Sygna's design system, strict enough for the dev team to automate image generation with Claude and the Canva MCP. I also handed off screens to frontend developers through the Figma MCP in Cursor." },
+          { date: 'Oct 2020 – Present', title: 'Brand & Web Designer',
+            desc: "Brand identities and websites for small businesses starting from scratch: a hair salon, a smash burger restaurant, an interior design studio and a psychology practice, among others. I build each identity as a system rather than a logo, with palette, type and rules that still hold when the brand moves to a website, a menu or a billboard. I've also worked as an external designer for Exlabesa, producing commercial materials, large-format advertising and floor-plan illustrations within their brand guidelines." },
+          { date: 'Mar 2019 – Jun 2020', title: 'Graphic Designer',
+            desc: "My first agency job, in a multidisciplinary team managing 15+ client accounts. I designed websites, visual identities and campaigns for digital and print, including catalogues, billboards, large-format graphics and social media ads, and did the product photography and retouching myself. It's where I learned to handle a brief, a deadline and a client in the same week." },
+        ],
+      },
+      es: {
+        navWork: 'Proyectos', navAbout: 'Sobre mí', navExp: 'Experiencia', navContact: 'Contacto', langTitle: 'View in English',
+        role1: 'Desarrolladora Frontend', role2: '· Diseñadora UX/UI',
+        heroBadge: 'Disponible para puestos frontend', heroHead: 'Desarrolladora Frontend y Diseñadora UX/UI en Vigo', heroCta: 'Ver proyectos',
+        location: 'Vivo en Vigo. Busco un puesto frontend en un equipo de producto donde diseño y código trabajen juntos: en remoto, híbrido o presencial.',
+        heroWork: 'Proyectos 2019 — 2026',
+        lblApproach: '(01) — Enfoque',
+        approachTitle: 'Lo diseño en [Figma] y le doy vida con [código].',
+        approachBody: 'Pienso en sistemas antes que en pantallas: cada espaciado y cada estado de un botón es una decisión que cobra vida en el código. Por eso acompaño cada una de principio a fin, desde el prototipo en Figma hasta el componente en Angular o React que la hace funcionar.',
+        lblWork: '(02) — Proyectos', drag: 'Arrastra / Scroll →', work1: 'Proyectos', work2: 'destacados',
+        more: 'Más proyectos bajo petición.', getInTouch: 'Hablemos',
+        lblAbout: '(03) — Sobre mí', hello1: 'Hola,', hello2: 'soy Oriana', cv: 'Descargar CV',
+        aboutTitle: 'Cada rama que exploré me llevó al código.',
+        aboutSub: 'Desarrolladora frontend con ojo de diseñadora gráfica.',
+        aboutBody1: 'Empecé en diseño gráfico en 2019 y pasé los años siguientes probando un poco de todo: identidad de marca, editorial, fotografía, redes sociales, webs. Por el camino me di cuenta de que casi todo lo que tocaba tenía código detrás, haciendo que las cosas se movieran, respondieran y cobraran vida.',
+        aboutBody2: 'Quería entender cómo se termina el trabajo, así que fui más allá. Me formé como Técnica Superior en Desarrollo de Aplicaciones Web (DAW) mientras trabajaba, y hoy desarrollo con Angular, React y TypeScript, además de Java y Spring Boot cuando un proyecto necesita backend. El diseño sigue siendo mi punto de partida y marca cómo construyo: pensando en el sistema, el espaciado y el comportamiento desde la primera línea.',
+        capTitles: ['Diseño', 'Desarrollo', 'Herramientas'],
+        lblExp: '(04) — Experiencia', exp1: 'Dónde he', exp2: 'trabajado',
+        cta: '¿Tienes un proyecto en mente? Trabajemos juntos.', talk: 'Hablemos',
+        social: 'Redes', menu: 'Menú', time: 'Hora local', based: 'Ubicación', basedVal: 'Vigo, España — en remoto (CET)',
+        credit: 'Diseñado y programado por Oriana Bonato',
+        exp: [
+          { date: 'Jul 2024 – Jun 2026', title: 'Diseñadora y Desarrolladora Web',
+            desc: 'Dos años y tres puestos en la misma empresa: Diseñadora Web, Becaria de Desarrollo Web y Creative Designer. Como diseñadora web lancé más de 100 webs para autónomos y pymes de construcción, bienestar, estética y salud. Me encargaba de cada lanzamiento de principio a fin: dominio, DNS y certificado SSL, HTML semántico con SEO on-page, Search Console y Analytics, un sistema propio de colores, tipografías y botones para cada web, y trato directo con cada cliente. En las prácticas de desarrollo creé las plantillas de una app con IA que genera posts de Instagram insertando en cada hueco el logo, los colores y la tipografía del cliente. Trabajé en mi propia rama de feature sobre un código existente en Node.js y Supabase, y desarrollé una landing con sistema de reservas en React y Tailwind. Como Creative Designer definí las reglas visuales del design system de Sygna, lo bastante estrictas para que el equipo de desarrollo automatizara la generación de imágenes con Claude y el MCP de Canva. También hice el handoff de pantallas a los desarrolladores frontend mediante el MCP de Figma en Cursor.' },
+          { date: 'Oct 2020 – Actualidad', title: 'Diseñadora de Marca y Web',
+            desc: 'Identidades de marca y webs para negocios que empiezan desde cero: una peluquería, una hamburguesería smash, un estudio de interiorismo y una consulta de psicología, entre otros. Construyo cada identidad como un sistema y no como un logo, con paleta, tipografía y reglas que se sostienen cuando la marca pasa a una web, una carta o una valla. También he trabajado como diseñadora externa para Exlabesa, creando material comercial, publicidad en gran formato e ilustraciones de planos dentro de sus guías de marca.' },
+          { date: 'Mar 2019 – Jun 2020', title: 'Diseñadora Gráfica',
+            desc: 'Mi primera agencia, en un equipo multidisciplinar con más de 15 cuentas de cliente. Diseñé webs, identidades visuales y campañas para digital e impresión, entre ellas catálogos, vallas, gran formato y anuncios para redes, y me encargué de la fotografía de producto y el retoque. Ahí aprendí a gestionar un brief, un plazo y un cliente en la misma semana.' },
+        ],
+      },
+    };
+    const t = T[lang];
+    const toWord = (w, fw) => {
+      const m = w.match(/^(Figma|Angular|React)([.,:;]?)$/);
+      return m
+        ? { t: '[' + m[1] + ']' + m[2], c: '#131E21', ff: "'Courier New',monospace", fw: 400, mr: '.24em', cls: 'ob-br' }
+        : { t: w, c: '#131E21', ff: "'Bricolage Grotesque',sans-serif", fw, mr: '.24em', cls: '' };
+    };
+    const purpleDot = (arr) => {
+      const lw = arr[arr.length - 1];
+      if (lw && lw.t.endsWith('.')) { lw.t = lw.t.slice(0, -1); lw.mr = '0'; arr.push({ t: '.', c: '#756CE5', ff: lw.ff, fw: lw.fw, mr: '0', cls: '' }); }
+      return arr;
+    };
+    const bodyWords = t.approachBody.split(' ');
+    const cut = bodyWords.findIndex((w) => w === 'code.' || w === 'código.') + 1;
+    const approachWords1 = purpleDot(bodyWords.slice(0, cut).map((w) => toWord(w, 700)));
+    const approachWords2 = purpleDot(bodyWords.slice(cut).map((w) => toWord(w, 300)));
+    const places = [
+      { place: 'SIWEB', url: 'https://siweb.es/' },
+      { place: 'Freelance', url: 'https://www.behance.net/ocbonato96' },
+      { place: 'Cen Palabras Marketing & Advertising', url: 'https://www.cenpalabras.com/servicios/' },
+    ];
+    const introFonts = { 'Rock Salt': "'Rock Salt',cursive", 'Reenie Beanie': "'Reenie Beanie',cursive" };
+    return {
+      aboutIntroFontFamily: introFonts[this.props.aboutIntroFont] ?? "'Bricolage Grotesque',sans-serif",
+      rootRef: this.rootRef, dotRef: this.dotRef, approachRef: this.approachRef, heroDotRef: this.heroDotRef, heroCtaRef: this.heroCtaRef, heroLocRef: this.heroLocRef, stripRef: this.stripRef, ringRef: this.ringRef, ringLabelRef: this.ringLabelRef,
+      trackRef: this.trackRef, pinSectionRef: this.pinSectionRef, progressRef: this.progressRef,
+      clock: this.state.clock,
+      t, approachWords1, approachWords2,
+      ...(() => { const s = t.location || ''; this._locText = s; const n = Math.min(this.state.typed, s.length); return { locTyped: s.slice(0, n), locRest: s.slice(n), caretOn: this.state.typing ? 1 : 0 }; })(),
+      langLabel: lang === 'en' ? 'ES' : 'EN',
+      toggleLang: () => this.setState((s) => { const next = s.lang === 'es' ? 'en' : 'es'; try { localStorage.setItem('ob-lang', next); } catch (e) {} return { lang: next }; }),
+      rootCursor: (this.props.customCursor ?? true) ? 'none' : 'auto',
+      cursorDisplay: (this.props.customCursor ?? true) ? 'flex' : 'none',
+      logoOpacity: 1,
+      logoMaxW: this.state.navVisible ? '320px' : '0px',
+      logoOp: this.state.navVisible ? 1 : 0,
+      logoMr: this.state.navVisible ? 'clamp(20px,2.4vw,36px)' : '0px',
+      logoHidden: this.state.navVisible ? 'false' : 'true',
+      logoTab: this.state.navVisible ? '0' : '-1',
+      roleA: t.role1, roleB: (t.role2 || '').replace(/^·\s*/, ''),
+      menuOpenStr: this.state.menu ? 'true' : 'false',
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      closeMenu: () => { if (this.state.menu) this.setState({ menu: false }); },
+      plusRot: this.state.menu ? '135deg' : '0deg',
+      plusBg: this.state.menu ? '#756CE5' : 'transparent',
+      menuOp: this.state.menu ? 1 : 0,
+      menuVis: this.state.menu ? 'visible' : 'hidden',
+      menuY: this.state.menu ? '0px' : '-12px',
+      menuItems: [['#work', t.navWork], ['#about', t.navAbout], ['#experience', t.navExp], ['contacto.html', t.navContact]].map(([href, label], i) => ({
+        href, label, n: String(i + 1).padStart(2, '0'),
+        op: this.state.menu ? 1 : 0, y: this.state.menu ? '0px' : '18px', d: this.state.menu ? (0.08 + i * 0.06) + 's' : '0s' })),
+      headerMixBlend: this.state.navVisible ? 'normal' : 'difference',
+      langBg: this.state.navVisible ? '#756CE5' : 'transparent',
+      langBd: this.state.navVisible ? '#756CE5' : 'rgba(233,233,233,.35)',
+      langColor: this.state.navVisible ? '#FFFFFF' : '#000000',
+      headerBg: (this.state.navVisible || this.state.menu) ? '#131E21' : 'transparent',
+      headerMarginTop: '0px',
+      headerBoxShadow: this.state.navVisible ? '0 16px 40px rgba(0,0,0,.3)' : 'none',
+      onMove: (e) => {
+        this._target = { x: e.clientX, y: e.clientY }; this._needsDetect = true;
+        if (this._mode === "view") return;
+        const hit = e.target && e.target.closest && e.target.closest("a, button, [role=\"button\"], label, summary, select");
+        if (hit && this._mode !== "link") this._setCursor("link");
+        else if (!hit && this._mode === "link") this._setCursor("");
+      },
+      enterProject: () => this._setCursor('view'),
+      enterLink: () => this._setCursor('link'),
+      leaveProject: () => this._setCursor(''),
+      toolsLoop: Array(8).fill(tools).flat(),
+      marqueeLoop: Array(6).fill(marquee).flat(),
+      projects: [
+        { index: '01', name: 'SmartRest', tag: 'App Web Frontend / Backend', year: '2026', img: 'img/cards-projects/P00_SMARTREST.png', url: 'smartrest.html' },
+        { index: '02', name: 'Churrería Romero', tag: 'Web Design', year: '2025', img: 'img/CHURRERIA/logo-blanco.png', url: 'churreria-romero.html' },
+        { index: '03', name: 'Estudio 96', tag: 'Brand identity', year: '2023', img: 'img/ESTUDIO96/logo-e96-blanco.svg', url: 'estudio-96.html' },
+      ],
+      capabilities: [
+        { title: t.capTitles[0], items: 'Branding, Art direction, Editorial, UI design' },
+        { title: t.capTitles[1], items: 'HTML, CSS, JavaScript, Angular, Webflow' },
+        { title: t.capTitles[2], items: 'Figma, Photoshop, Illustrator, After Effects' },
+      ],
+      experience: t.exp.map((e, i) => ({ ...e, ...places[i] })),
+    };
+  }
+  renderVals() {
+    const v = this._rv0(); const vw = this.state.vw || 1440;
+    const D = vw >= 1024; return { ...v, cvUrl: this.state.lang === 'es' ? 'assets/cv/CV-Oriana-Bonato-ES.pdf' : 'assets/cv/CV-Oriana-Bonato-EN.pdf', id_work: D ? 'work' : 'd-work', id_about: D ? 'about' : 'd-about', id_experience: D ? 'experience' : 'd-experience', id_contact: D ? 'contact' : 'd-contact', id_top: D ? 'top' : 'd-top', deskDisplay: vw >= 1024 ? 'block' : 'none', isCompact: vw < 1024, device: vw < 700 ? 'mobile' : 'tablet' };
+  }
+}
+</script>
+</body>
+</html>

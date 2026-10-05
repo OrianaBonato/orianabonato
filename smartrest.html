@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oriana Bonato</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&amp;family=Manrope:wght@400..700&amp;family=Inter:ital,wght@0,400;0,500;1,400&amp;family=Rock+Salt&amp;display=swap" rel="stylesheet">
+  <style>
+    .ob-next-circ { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-next:hover .ob-next-circ { transform: rotate(45deg); }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #E9E9E9; color: #131E21; }
+    a { color: #131E21; text-decoration: none; }
+    a:hover { color: #756CE5; }
+    ::selection { background: #756CE5; color: #E9E9E9; }
+    .ob-btn { transition: background .35s ease, border-color .35s ease; }
+    .ob-btn .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-btn .ob-circ { transition: background .35s ease, color .35s ease; }
+    .ob-btn span:first-child { transition: color .35s ease; }
+    .ob-btn:hover { background: #131E21; }
+    .ob-btn:hover .ob-ico { transform: rotate(45deg); }
+    .ob-btn:hover .ob-circ { background: #131E21; color: #756CE5; }
+    .ob-btn:hover span:first-child { color: #756CE5; }
+    .ob-btn-dark:hover { border-color: #D8FD80 !important; }
+    .ob-repo { transition: color .3s ease; }
+    .ob-thumb img { transition: opacity .3s ease; }
+    .ob-thumb:hover img { opacity: .7; }
+    .ob-feat { animation: ob-fade .5s cubic-bezier(.16,1,.3,1); }
+    @keyframes ob-fade { from { opacity: 0; } to { opacity: 1; } }
+    .ob-repo:hover { color: #D8FD80 !important; }
+    .ob-repo svg { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-repo:hover svg { transform: rotate(45deg); }
+    .ob-soc { transition: opacity .3s ease; }
+    .ob-soc:hover { opacity: .6; }
+    .ob-plus { transition: border-color .35s ease, background .35s ease; }
+    .ob-plus:hover { border-color: #D8FD80 !important; }
+    .ob-plus svg { transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .ob-mi { transition: color .35s ease; }
+    .ob-mi:hover { color: #D8FD80 !important; }
+    .ob-mi .ob-mi-arr { display: inline-flex; color: #756CE5; transition: color .35s ease; }
+    .ob-mi:hover .ob-mi-arr { color: #D8FD80; }
+    .ob-mi .ob-ico, .ob-mm .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); transform: rotate(0deg); }
+    .ob-mi:hover .ob-ico, .ob-mm:hover .ob-ico { transform: rotate(45deg); }
+    .ob-mm { transition: border-color .35s ease; }
+    .ob-mm:hover { border-color: #D8FD80 !important; }
+  </style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="display: {{ deskDisplay }}; position:relative;font-family:'Bricolage Grotesque',sans-serif;background:#E9E9E9;color:#131E21;overflow-x:clip;">
+
+  <header data-ob-dark="1" style="position:fixed;top:0;left:0;right:0;z-index:100;background:#131E21;box-shadow:0 16px 40px rgba(0,0,0,.3);">
+    <div style="height:80px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
+      <div style="display:flex;align-items:center;gap:clamp(20px,2.4vw,36px);">
+        <a href="index.html" style="display:flex;align-items:center;flex-shrink:0;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:34px;width:auto;display:block;"></a>
+        <span style="width:1px;height:26px;flex-shrink:0;background:rgba(233,233,233,.2);"></span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <a class="ob-soc" href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/linkedin.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
+          <a class="ob-soc" href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" aria-label="Behance" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/behance.svg" alt="" style="width:24px;height:24px;display:block;filter:brightness(0) invert(1);"></a>
+          <a class="ob-soc" href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/github.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button type="button" class="ob-plus" onClick="{{ navToggle }}" aria-label="Menu" aria-expanded="{{ navOpenStr }}" style="width:44px;height:44px;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);background:{{ navPlusBg }};color:#E9E9E9;display:flex;align-items:center;justify-content:center;cursor:pointer;font:inherit;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="transform:rotate({{ navPlusRot }});"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg>
+        </button>
+        <span onClick="{{ toggleLang }}" role="button" style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:30px;padding:0 14px;box-sizing:border-box;border-radius:999px;background:#756CE5;border:1px solid #756CE5;font-size:12px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;cursor:pointer;">{{ langLabel }}</span>
+      </div>
+    </div>
+    <div data-ob-dark="1" style="position:absolute;top:100%;left:0;right:0;background:#131E21;border-top:1px solid rgba(233,233,233,.14);box-shadow:0 40px 80px rgba(0,0,0,.35);padding:clamp(28px,4vh,48px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(32px,5vh,56px);opacity:{{ navMenuOp }};visibility:{{ navMenuVis }};transform:translateY({{ navMenuY }});transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),visibility .45s;">
+      <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(32px,6vw,110px);align-items:end;">
+        <nav style="display:flex;flex-direction:column;">
+          <sc-for list="{{ navItems }}" as="it" hint-placeholder-count="4">
+            <a href="{{ it.href }}" onClick="{{ navClose }}" class="ob-mi" style="display:flex;align-items:baseline;gap:22px;border-top:1px solid rgba(233,233,233,.14);padding:clamp(10px,1.6vh,16px) 0;color:#E9E9E9;opacity:{{ it.op }};transform:translateY({{ it.y }});transition:color .35s ease,opacity .5s ease {{ it.d }},transform .7s cubic-bezier(.16,1,.3,1) {{ it.d }};">
+              <span style="font-family:'Courier New',monospace;font-size:13px;color:#D8FD80;min-width:36px;">[{{ it.n }}]</span>
+              <span style="font-size:clamp(34px,4.4vw,64px);line-height:.95;letter-spacing:-.035em;font-weight:800;text-transform:uppercase;">{{ it.label }}</span>
+              <span class="ob-mi-arr" style="margin-left:auto;align-self:center;"><svg class="ob-ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+            </a>
+          </sc-for>
+        </nav>
+        <div style="display:flex;flex-direction:column;gap:22px;padding-bottom:6px;">
+          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(17px,1.4vw,21px);font-weight:500;line-height:1.35;color:#E9E9E9;max-width:24ch;">{{ navCta }}</p>
+          <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
+            <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ PROPOSAL A — EDITORIAL ============ -->
+
+    <section data-ob-dark="1" style="background:#131E21;color:#E9E9E9;padding:clamp(140px,18vh,200px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(50px,6vw,90px);">
+      <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid rgba(233,233,233,.22); padding-bottom: 15px; margin-bottom: clamp(36px,5vw,70px); width: 1208px; height: 7px; position: relative; top: -28px">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">({{ p.index }}) — {{ t.caseStudy }}</span>
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.tag }} · {{ p.year }}</span>
+      </div>
+      <h1 style="margin: 0; font-size: clamp(58px,14vw,240px); line-height: .82; letter-spacing: -.045em; font-weight: 800; text-transform: uppercase; width: 1203px; height: 214px; position: relative; top: -7px">{{ p.name }}<span style="color:#756CE5;">.</span></h1>
+      <p style="margin: clamp(28px,3.5vw,52px) 0 0; max-width: 34ch; font-family: 'Manrope',sans-serif; font-size: 19px; font-weight: 500; line-height: 1.3; text-wrap: pretty; width: 411px; height: 79px">{{ p.summary }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 28px; border-top: 1px solid rgba(233,233,233,.22); margin-top: clamp(50px,6vw,90px); padding-top: 26px; width: 1197px; height: 105px; justify-content: flex-start">
+        <div>
+          <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.role }}</p>
+          <p style="margin:0;font-size:16px;line-height:1.5;">{{ p.role }}</p>
+        </div>
+        <div>
+          <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.stack }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <sc-for list="{{ p.stack }}" as="s" hint-placeholder-count="4">
+              <span style="padding:7px 14px;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-family:'Courier New',monospace;font-size:13px;">{{ s }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.duration }}</p>
+          <p style="margin:0;font-size:16px;line-height:1.5;">{{ p.duration }}<br><span style="color:#9AA3A5;">{{ p.period }}</span></p>
+        </div>
+        <div>
+          <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.links }}</p>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+            <sc-for list="{{ p.links }}" as="l" hint-placeholder-count="2">
+              <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;color:#756CE5;">{{ l.label }}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="a-problem" data-ob-dark="1" style="background:#131E21;color:#E9E9E9;padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(70px,9vw,130px);">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(32px,5vw,90px);">
+        <div style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; background-color: #131E21; width: 523px; max-width: 100%; height: 411px">
+          
+        <img src="{{ p.logo }}" alt="{{ p.name }}" style="width: 348px; max-width: 70%; height: 339px; display: block"></div>
+        <div style="flex:1 1 420px;min-width:0;">
+          <div style="border-top: 1px solid rgba(233,233,233,.22); padding-top: clamp(20px,2.4vw,32px); border-style: none; width: 719px; height: 410px">
+            <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01)</span>
+            <h2 style="margin: 14px 0 clamp(20px,2.4vw,32px); font-size: clamp(28px,3.4vw,56px); line-height: .95; letter-spacing: -.03em; font-weight: 800; text-transform: uppercase; width: 619px; height: 63px">{{ t.problem }}</h2>
+            <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.35; letter-spacing: -.01em; font-weight: 300; text-wrap: pretty; width: 514px; height: 280px; font-family: Manrope">{{ p.problem }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); gap: clamp(24px,5vw,90px); border-top: 1px solid #131E21; padding-top: clamp(20px,2.4vw,32px); border-style: none">
+        <div>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(02)</span>
+          <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,56px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.built }}</h2>
+        </div>
+        <div style="grid-column:span 2;display:flex;flex-direction:column;">
+          <sc-for list="{{ p.built }}" as="b" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:baseline;border-bottom:1px solid rgba(19,30,33,.18);padding:20px 0;">
+              <span style="font-family:'Courier New',monospace;font-size:15px;color:#756CE5;">[{{ b.n }}]</span>
+              <p style="margin: 0; font-family: Manrope; font-size: 18px; line-height: 1.3; width: 717px; height: 53px">{{ b.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section data-ob-dark="1" style="margin-top:clamp(80px,10vw,150px);background:#131E21;color:#E9E9E9;padding:clamp(70px,9vw,130px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; border-top: 1px solid rgba(233,233,233,.22); padding-top: clamp(20px,2.4vw,32px); margin-bottom: clamp(36px,4vw,60px); border-style: none; width: 1320px; height: 85px">
+        <div>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(03)</span>
+          <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,56px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.interface }}</h2>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(22px,2.6vw,36px);">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <sc-for list="{{ galRoles }}" as="r" hint-placeholder-count="2">
+              <span onClick="{{ r.onClick }}" role="button" style="padding:11px 22px;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-size:13px;cursor:pointer;background:{{ r.bgD }};color:{{ r.colorD }};transition:background .3s ease,color .3s ease;">{{ r.label }}</span>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            
+            <div style="display:flex;gap:4px;padding:4px;border:1px solid rgba(233,233,233,.35);border-radius:999px;">
+              <sc-for list="{{ galDevices }}" as="d" hint-placeholder-count="2">
+                <span onClick="{{ d.onClick }}" role="button" style="padding:8px 16px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:{{ d.bg }};color:{{ d.colorD }};transition:background .3s ease,color .3s ease;">{{ d.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <sc-if value="{{ galIsDesktop }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <figure style="margin:0;display:flex;flex-direction:column;gap:12px;">
+              <p style="margin:0;display:flex;justify-content:space-between;gap:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span>{{ galFeature.cap }}</span><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:12px;color:#D8FD80;">{{ galFeature.n }}</span></p>
+              <div style="aspect-ratio:1920/910;overflow:hidden;background:#1B282B;">
+                <img src="{{ galFeature.src }}" alt="{{ galFeature.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+              </div>
+            </figure>
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;">
+              <sc-for list="{{ galRest }}" as="g" hint-placeholder-count="4">
+                <figure onClick="{{ g.onClick }}" role="button" class="ob-thumb" style="margin:0;display:flex;flex-direction:column;gap:10px;cursor:pointer;">
+                  <div style="aspect-ratio:1920/910;overflow:hidden;background:#1B282B;">
+                    <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+                  </div>
+                  <p style="margin:0;display:flex;gap:10px;align-items:baseline;min-height:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:12px;color:#D8FD80;">{{ g.capBN }}</span>{{ g.capB }}</p>
+                </figure>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ galIsTablet }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 16px;">
+            <sc-for list="{{ galTablets }}" as="g" hint-placeholder-count="3">
+              <figure style="margin:0;display:flex;flex-direction:column;gap:10px;">
+                <p style="margin:0;display:flex;gap:10px;align-items:baseline;min-height:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:12px;color:#D8FD80;">{{ g.capAN }}</span>{{ g.capA }}</p>
+                <div style="aspect-ratio:{{ galRatio }};overflow:hidden;background:#1B282B;">
+                  <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+                </div>
+                <p style="margin:0;display:flex;gap:10px;align-items:baseline;min-height:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;letter-spacing:0;font-size:12px;color:#D8FD80;">{{ g.capBN }}</span>{{ g.capB }}</p>
+              </figure>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ galNote }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(16px,1.3vw,20px);font-weight:500;line-height:1.4;max-width:52ch;">{{ galNote }}</p>
+        </sc-if>
+      </div>
+    </section>
+
+    <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); gap: clamp(24px,5vw,90px); border-top: 1px solid #131E21; padding-top: clamp(20px,2.4vw,32px); border-style: none">
+        <div>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(04)</span>
+          <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,56px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.decisions }}</h2>
+        </div>
+        <div style="grid-column:span 2;display:flex;flex-direction:column;gap:22px;">
+          <sc-for list="{{ p.decisions }}" as="d" hint-placeholder-count="4">
+            <p style="margin: 0; font-family: 'Inter',sans-serif; font-size: 16px; line-height: 1.55; max-width: 62ch; text-wrap: pretty">{{ d }}</p>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;border-top:1px solid #131E21;padding-top:clamp(20px,2.4vw,32px);margin-bottom:clamp(28px,3vw,44px);">
+        <div>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(05)</span>
+          <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,56px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.ba }}</h2>
+          <p style="margin:12px 0 0;font-family:'Inter',sans-serif;font-size:14px;color:#5A6568;">{{ t.baNote }}</p>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+          <div style="display:flex;gap:8px;">
+          <sc-for list="{{ baTabs }}" as="bt" hint-placeholder-count="2">
+            <span onClick="{{ bt.onClick }}" role="button" style="padding:11px 20px;border:1px solid #131E21;border-radius:999px;font-size:13px;cursor:pointer;background:{{ bt.bg }};color:{{ bt.color }};transition:background .3s ease,color .3s ease;">{{ bt.label }}</span>
+          </sc-for>
+          </div>
+          <div style="display:flex;gap:4px;padding:4px;border:1px solid #131E21;border-radius:999px;">
+            <sc-for list="{{ baDevices }}" as="d" hint-placeholder-count="2">
+              <span onClick="{{ d.onClick }}" role="button" style="padding:8px 16px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:{{ d.bg }};color:{{ d.color }};transition:background .3s ease,color .3s ease;">{{ d.label }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;aspect-ratio:{{ baPair.ratio }};width:100%;max-width:{{ baPair.maxW }};margin:0 auto;overflow:hidden;background:#1B282B;user-select:none;">
+        <img src="{{ baPair.after }}" alt="{{ t.v2 }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block;">
+        <img src="{{ baPair.before }}" alt="{{ t.v1 }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block;clip-path:inset(0 {{ baClip }}% 0 0);">
+        <div style="position:absolute;top:0;bottom:0;left:{{ baPos }}%;width:2px;margin-left:-1px;background:#756CE5;pointer-events:none;">
+          <span style="position:absolute;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 8px 24px rgba(0,0,0,.25);">↔</span>
+        </div>
+        <span style="position:absolute;top:16px;left:16px;padding:7px 14px;border-radius:999px;background:#131E21;color:#E9E9E9;font-size:11px;letter-spacing:.14em;text-transform:uppercase;pointer-events:none;">{{ t.v1 }}</span>
+        <span style="position:absolute;top:16px;right:16px;padding:7px 14px;border-radius:999px;background:#756CE5;color:#FFFFFF;font-size:11px;letter-spacing:.14em;text-transform:uppercase;pointer-events:none;">{{ t.v2 }}</span>
+        <input type="range" min="0" max="100" value="{{ baPos }}" onChange="{{ onBa }}" aria-label="{{ t.baNote }}" style="position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;">
+      </div>
+      <sc-if value="{{ baPair.desc }}" hint-placeholder-val="{{ false }}">
+        <p style="margin: 14px 0 0; font-family: 'Manrope',sans-serif; font-size: clamp(16px,1.3vw,20px); font-weight: 500; line-height: 1.4; text-align: center">{{ baPair.desc }}</p>
+      </sc-if>
+
+    </section>
+
+    <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(80px,10vw,150px);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); gap: clamp(24px,5vw,90px); border-top: 1px solid #131E21; padding-top: clamp(20px,2.4vw,32px); border-style: none">
+        <div>
+          <h2 style="margin:0;font-size:clamp(28px,3.4vw,56px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.learned }}</h2>
+        </div>
+        <p style="grid-column: span 2; margin: 0; font-family: Bricolage Grotesque; font-size: 20px; font-weight: 600; line-height: 1.55; max-width: 52ch; text-wrap: pretty; letter-spacing: -0.4px; width: 755px; height: 254px">{{ p.learned }}</p>
+      </div>
+    </section>
+
+  <!-- NEXT PROJECT (shared) -->
+  <a href="{{ p.next.url }}" data-ob-dark="1" class="ob-next" style="display:block;background:#131E21;color:#E9E9E9;padding:clamp(60px,8vw,120px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(40px,5vw,70px);">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid rgba(233,233,233,.22);padding-top:20px;margin-bottom:clamp(20px,3vw,40px);">
+      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;">{{ t.next }}</span>
+      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.next.tag }}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;">
+      <span style="font-size:clamp(48px,11vw,180px);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;color:#E9E9E9;">{{ p.next.name }}<span style="color:#756CE5;">.</span></span>
+      <span class="ob-next-circ" style="flex-shrink:0;width:clamp(56px,6vw,96px);height:clamp(56px,6vw,96px);border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;">
+        <svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
+      </span>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:clamp(50px,6vw,80px);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
+      <span>© 2026 Oriana Bonato</span>
+      <span>{{ t.credit }}</span>
+    </div>
+  </a>
+
+</div>
+<sc-if value="{{ isCompact }}" hint-placeholder-val="{{ false }}"><dc-import name="smartrest-responsive" device="{{ device }}" hint-size="100%,100vh"></dc-import></sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = {
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1440,
+    lang: (() => { try { return localStorage.getItem('ob-lang') || 'en'; } catch (e) { return 'en'; } })(),
+    layout: null,
+    ba: 50,
+    baKey: 'sala',
+    galRole: 'sala',
+    galDevice: 'desktop',
+    baDevice: 'desktop',
+    active: 'b-problem',
+  };
+  rootRef = React.createRef();
+
+  componentDidMount() {
+    this._onRs = () => { if (window.innerWidth !== this.state.vw) this.setState({ vw: window.innerWidth }); }; window.addEventListener('resize', this._onRs);
+    this._onKeyNav = (e) => { if (e.key === 'Escape' && this.state.nav) this.setState({ nav: false }); };
+    window.addEventListener('keydown', this._onKeyNav);
+    this._onScroll = () => {
+      const root = this.rootRef.current;
+      if (!root) return;
+      const secs = root.querySelectorAll('[data-sec]');
+      let cur = null;
+      secs.forEach((s) => { if (s.getBoundingClientRect().top < window.innerHeight * 0.4) cur = s.id; });
+      cur = cur || (secs[0] && secs[0].id);
+      if (cur && cur !== this.state.active) this.setState({ active: cur });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  componentWillUnmount() { window.removeEventListener('scroll', this._onScroll); window.removeEventListener('keydown', this._onKeyNav); }
+
+  componentDidUpdate(pp, ps) { if (ps.layout !== this.state.layout) this._onScroll(); }
+
+  _rv0() {
+    const lang = this.state.lang === 'es' ? 'es' : 'en';
+    const layout = this.state.layout ?? ((this.props.layout ?? 'A — Editorial').startsWith('B') ? 'B' : 'A');
+    const img = (f) => 'img/SMARTREST/' + f + '.webp';
+    const T = {
+      en: {
+        back: '← All work', caseStudy: 'Case study', role: 'Role', stack: 'Stack', duration: 'Duration', links: 'Links',
+        problem: 'The problem', built: 'What I built', interface: 'Interface', ba: 'Before / After',
+        decisions: 'Technical decisions', learned: 'What I learned', next: 'Next project', index: 'Contents',
+        baNote: 'Drag to compare the first version with the redesign.', v1: 'V1 · First version', v2: 'V2 · Redesign',
+        sala: 'Floor', cocina: 'Kitchen', credit: 'Designed & coded by Oriana Bonato',
+      },
+      es: {
+        back: '← Todos los proyectos', caseStudy: 'Caso de estudio', role: 'Rol', stack: 'Stack', duration: 'Duración', links: 'Enlaces',
+        problem: 'El problema', built: 'Qué construí', interface: 'Interfaz', ba: 'Antes / Después',
+        decisions: 'Decisiones técnicas', learned: 'Qué aprendí', next: 'Siguiente proyecto', index: 'Contenido',
+        baNote: 'Arrastra para comparar la primera versión con el rediseño.', v1: 'V1 · Primera versión', v2: 'V2 · Rediseño',
+        sala: 'Sala', cocina: 'Cocina', credit: 'Diseñado y programado por Oriana Bonato',
+      },
+    };
+    const t = T[lang];
+    const C = (en, es) => (lang === 'es' ? es : en);
+
+    // Project template — every project page fills these same fields.
+    const project = {
+      index: '01',
+      name: 'SmartRest',
+      logo: 'img/SMARTREST/logo-blanco.png',
+      year: '2026',
+      tag: C('App Web Frontend / Backend', 'App Web Frontend / Backend'),
+      summary: C('Restaurant management app, my final project for the HND in Web Application Development.', 'App de gestión de restaurantes, mi proyecto final del Ciclo Superior de DAW.'),
+      role: C('Full-stack developer (solo)', 'Desarrolladora full-stack (en solitario)'),
+      stack: ['Java 17', 'Spring Boot', 'MySQL', 'Angular 20'],
+      duration: C('16 weeks', '16 semanas'),
+      period: C('Nov 2025 – Feb 2026', 'nov 2025 – feb 2026'),
+      links: [
+        { label: C('Frontend repo', 'Repo frontend'), url: 'https://github.com/OrianaBonato/smartrest-frontend' },
+        { label: C('Backend repo', 'Repo backend'), url: 'https://github.com/OrianaBonato/smartrest-backend' },
+      ],
+      cover: { src: img('v2-sala-mesas-desktop'), cap: C('Floor — table overview · desktop', 'Sala — vista de mesas · desktop') },
+      problem: C(
+        "In a busy restaurant, most operational mistakes come down to fragmented communication: misrouted orders, delays, duplicated work. The floor takes the order, the kitchen and bar execute it, and the real status of each table often lives in someone's head or on a scrap of paper. SmartRest brings that flow into a single web app, so floor, kitchen and bar staff coordinate through the same order tickets.",
+        'En un restaurante con mucho movimiento, la mayoría de los errores (comandas mal dirigidas, retrasos, trabajo duplicado) vienen de una comunicación fragmentada. La sala toma el pedido, cocina y barra lo ejecutan, y el estado real de cada mesa suele estar en la cabeza de alguien o en un papel. SmartRest reúne ese flujo en una sola aplicación web, para que sala, cocina y barra se coordinen a través de las mismas comandas.'
+      ),
+      built: (lang === 'es' ? [
+        'Login y control de acceso para cuatro roles: administración, sala, cocina y barra.',
+        'Gestión de mesas y servicios, que incluye abrir y cerrar un servicio y seguir el estado de cada mesa.',
+        'Líneas de comanda que se envían automáticamente a cocina o a barra según el producto y avanzan por estados (pendiente → en preparación → lista → entregada).',
+        'Una API REST por capas en Spring Boot (controller, service, repository, DTO), consumida desde un frontend en Angular con una vista propia para cada rol.',
+        'Una interfaz responsive con Angular Material, pensada para tablets en sala y en cocina.',
+      ] : [
+        'Role-based login and access control for four roles: admin, floor, kitchen and bar.',
+        "Table and service management, including opening and closing a service and tracking each table's status.",
+        'Order lines routed automatically to kitchen or bar depending on the product, moving through a status pipeline (pending → in progress → ready → delivered).',
+        'A layered REST API in Spring Boot (controller, service, repository, DTO) consumed by an Angular frontend, with a dedicated view per role.',
+        'A responsive UI built with Angular Material and designed for tablets on the floor and in the kitchen.',
+      ]).map((text, i) => ({ n: String(i + 1).padStart(2, '0'), text })),
+      gallery: {
+        sala: {
+          label: C('Floor', 'Sala'),
+          desktop: [
+            { src: img('v2-sala-abrir-1-desktop'), cap: C('Opening a service', 'Abrir servicio') },
+            { src: img('v2-sala-abrir-2-desktop'), cap: C('Choosing a table', 'Elegir mesa') },
+            { src: img('v2-sala-abrir-3-desktop'), cap: C('Service open', 'Servicio abierto') },
+            { src: img('v2-cuenta-desktop'), cap: C('Table bill', 'Cuenta de mesa') },
+            { src: img('v2-sala-mesas-desktop'), cap: C('Tables overview', 'Vista de mesas') },
+          ],
+          tablet: [
+            { src: img('v2-sala-mesas-tablet'), cap: C('Tables', 'Mesas') },
+            { src: img('v2-sala-abrir-tablet'), cap: C('Opening a service', 'Abrir servicio') },
+            { src: img('v2-comanda-tablet'), cap: C('Taking an order', 'Tomando una comanda') },
+            { src: img('v2-sala-comanda-2-tablet'), cap: C('Order summary', 'Resumen de comanda') },
+            { src: img('v2-sala-enviada-tablet'), cap: C('Order sent', 'Comanda enviada') },
+            { src: img('v2-sala-cuenta-tablet'), cap: C('Table bill', 'Cuenta de mesa') },
+          ],
+          ratio: '900/1298',
+          note: '',
+        },
+        cocina: {
+          label: C('Kitchen & bar', 'Cocina y barra'),
+          desktop: [
+            { src: img('v2-cocina-desktop'), cap: C('Kitchen queue', 'Cola de cocina') },
+            { src: img('v2-cocina-pendiente-desktop'), cap: C('Pending → in progress', 'Pendiente → en preparación') },
+            { src: img('v2-cocina-listas-desktop'), cap: C('Ready orders', 'Comandas listas') },
+            { src: img('v2-cocina-canceladas-desktop'), cap: C('Cancelled orders', 'Comandas canceladas') },
+            { src: img('v2-barra-desktop'), cap: C('Bar queue', 'Cola de barra') },
+          ],
+          tablet: [
+            { src: img('v2-cocina-tablet'), cap: C('Kitchen queue', 'Cola de cocina') },
+            { src: img('v2-cocina-listas-tablet'), cap: C('Ready orders', 'Comandas listas') },
+            { src: img('v2-cocina-canceladas-tablet'), cap: C('Cancelled orders', 'Comandas canceladas') },
+          ],
+          ratio: '900/1203',
+          note: C('The bar uses the same screen design as the kitchen, with its own queue.', 'La barra usa el mismo diseño de pantalla que la cocina, con su propia cola.'),
+        },
+      },
+      baPairs: {
+        sala: { before: img('v1-sala-mesas-desktop'), after: img('v2-sala-mesas-desktop'), desc: '',
+          tBefore: img('v1-sala-mesas-tablet'), tAfter: img('v2-sala-mesas-tablet') },
+        cocina: { before: img('v1-cocina-desktop'), after: img('v2-cocina-desktop'), tBefore: img('v1-cocina-tablet'), tAfter: img('v2-cocina-tablet'), desc: C('The bar uses the same screen design as the kitchen.', 'La barra usa el mismo diseño de pantalla que la cocina.') },
+      },
+      decisions: lang === 'es' ? [
+        'Elegí Angular porque era uno de los frameworks más pedidos en los puestos a los que apuntaba, y quería experiencia práctica real con él, más allá de los ejercicios del ciclo.',
+        'El modelo de datos refleja las entidades reales del restaurante en lugar de un CRUD genérico. Mesas y servicios están separados: una mesa puede tener muchos servicios a lo largo del tiempo, pero solo uno abierto a la vez. Cada línea de comanda pertenece a la vez a un servicio y a un producto, y eso es lo que permite que cocina y barra tengan cada una su propia cola filtrada en lugar de una lista compartida.',
+        'Para el control de acceso tomé una decisión consciente de MVP. En vez de JWT, el rol se guarda al iniciar sesión y viaja en cada petición en una cabecera propia, X-ROL, que cada endpoint comprueba. Fue más rápido de construir y de enseñar, pero no es autenticación real, porque cualquiera podría falsificar esa cabecera. Sustituirla por autenticación con tokens es lo primero que cambiaría, y ya encabeza el roadmap del proyecto.',
+        'Construí la primera versión con apoyo de GPT-5.3-Codex. Ahora estoy rediseñando el frontend, un rediseño que planifiqué con Claude Design, y lo publicaré en el mismo repo cuando esté terminado.',
+      ] : [
+        'I chose Angular because it was one of the frameworks most requested in the roles I was aiming for, and I wanted real hands-on experience with it beyond coursework.',
+        "The data model mirrors the restaurant's real entities instead of a generic CRUD structure. Tables and services are separate: a table can have many services over time, but only one open at a time. Every order line belongs to both a service and a product, which is what lets kitchen and bar each pull their own filtered queue instead of sharing one list.",
+        "For access control I made a deliberate MVP trade-off. Instead of JWT, the role is captured at login and sent with every request in a custom X-ROL header, which each endpoint checks. It was faster to build and demo, but it isn't real authentication, because anyone could forge that header. Replacing it with token-based auth is the first change I'd make, and it's already at the top of the project's roadmap.",
+        "I built the first version with development support from GPT-5.3-Codex. I'm now redesigning the frontend, a redesign I planned with Claude Design, and it will be published in the same repo once it's finished.",
+      ],
+      learned: C(
+        "This was the project where I finally saw the whole picture I'd been curious about for years: what happens behind an interface to make it work. Designing the API and then consuming it from Angular showed me how a status on the backend becomes a queue in the UI, and how a data modeling decision shapes what the frontend can show. It's an academic MVP, not a production system, and the auth shortcut above is the clearest proof of that. But it's the project that turned curiosity into a way of working.",
+        '<< Fue el proyecto en el que por fin vi completo lo que llevaba años queriendo entender: qué pasa detrás de una interfaz para que funcione. Diseñar la API y después consumirla desde Angular me enseñó cómo un estado en el backend se convierte en una cola en la interfaz, y cómo una decisión en el modelo de datos condiciona lo que el frontend puede mostrar. Es un MVP académico, no un sistema en producción, y el atajo de autenticación es la prueba más clara. Pero es el proyecto que convirtió la curiosidad en una forma de trabajar. >>'
+      ),
+      next: { name: 'Churrería Romero', tag: 'Branding / Web · 2025', url: 'churreria-romero.html' },
+    };
+    project.baRows = [
+      { ...project.baPairs.sala, label: t.sala },
+      { ...project.baPairs.cocina, label: t.cocina },
+    ];
+
+    const toc = [
+      ['b-problem', t.problem], ['b-built', t.built], ['b-interface', t.interface],
+      ['b-ba', t.ba], ['b-decisions', t.decisions], ['b-learned', t.learned],
+    ];
+    const on = { bg: '#756CE5', color: '#FFFFFF' }, off = { bg: 'transparent', color: '#9AA3A5' };
+
+    const gset = project.gallery[this.state.galRole];
+    const dev = this.state.galDevice;
+    const nn = (i) => '[' + String(i + 1).padStart(2, '0') + ']';
+    const tabs = gset.tablet;
+    const galTablets = tabs.map((g, i) => {
+      const top = tabs.length > 3 ? i < 3 : i % 2 === 0;
+      return { ...g, capA: top ? g.cap : '', capAN: top ? nn(i) : '', capB: top ? '' : g.cap, capBN: top ? '' : nn(i) };
+    });
+    const sel = Math.min(this.state.galSel || 0, gset.desktop.length - 1);
+    const galFeature = { ...gset.desktop[sel], n: nn(sel) };
+    const galRest = gset.desktop.map((g, i) => ({ ...g, i })).filter((g) => g.i !== sel)
+      .map((g) => ({ ...g, capB: g.cap, capBN: nn(g.i), onClick: () => this.setState({ galSel: g.i }) }));
+    const count = String(dev === 'desktop' ? gset.desktop.length : tabs.length).padStart(2, '0');
+    const deviceLabels = { desktop: 'Desktop', tablet: 'Tablet' };
+    return {
+      galRoles: ['sala', 'cocina'].map((k) => {
+        const sel = this.state.galRole === k;
+        return { label: project.gallery[k].label, onClick: () => this.setState({ galRole: k, galSel: 0 }),
+          bgD: sel ? '#E9E9E9' : 'transparent', colorD: sel ? '#131E21' : '#E9E9E9',
+          bgL: sel ? '#131E21' : 'transparent', colorL: sel ? '#E9E9E9' : '#131E21' };
+      }),
+      galDevices: ['desktop', 'tablet'].map((k) => {
+        const sel = dev === k;
+        return { label: deviceLabels[k], onClick: () => this.setState({ galDevice: k }),
+          bg: sel ? '#756CE5' : 'transparent', colorD: sel ? '#FFFFFF' : '#E9E9E9', colorL: sel ? '#FFFFFF' : '#131E21' };
+      }),
+      galIsDesktop: dev === 'desktop', galIsTablet: dev === 'tablet',
+      galFeature, galRest, galTablets, galRatio: gset.ratio,
+      galCount: count, galNote: gset.note,
+      rootRef: this.rootRef,
+      t, p: project,
+      isA: layout === 'A', isB: layout === 'B',
+      swA: layout === 'A' ? on : off, swB: layout === 'B' ? on : off,
+      setA: () => this.setState({ layout: 'A' }),
+      setB: () => this.setState({ layout: 'B' }),
+      ...(() => { const es = this.state.lang === 'es'; const open = !!this.state.nav; const P = 'index.html';
+        const labels = es ? ['Proyectos', 'Sobre mí', 'Experiencia', 'Contacto'] : ['Work', 'About', 'Experience', 'Contact'];
+        return {
+          navCta: es ? '¿Tienes un proyecto en mente? Trabajemos juntos.' : "Have a project in mind? Let's work together.",
+          navOpenStr: open ? 'true' : 'false', navPlusRot: open ? '135deg' : '0deg', navPlusBg: open ? '#756CE5' : 'transparent',
+          navMenuOp: open ? 1 : 0, navMenuVis: open ? 'visible' : 'hidden', navMenuY: open ? '0px' : '-12px',
+          navToggle: () => this.setState((s) => ({ nav: !s.nav })),
+          navClose: () => { if (this.state.nav) this.setState({ nav: false }); },
+          navItems: ['#work', '#about', '#experience', '#contact'].map((hash, i) => ({ href: hash === '#contact' ? 'contacto.html' : P + hash, label: labels[i], n: String(i + 1).padStart(2, '0'),
+            op: open ? 1 : 0, y: open ? '0px' : '18px', d: open ? (0.08 + i * 0.06) + 's' : '0s' })),
+        }; })(),
+      langLabel: lang === 'en' ? 'ES' : 'EN',
+      toggleLang: () => this.setState((s) => { const next = s.lang === 'es' ? 'en' : 'es'; try { localStorage.setItem('ob-lang', next); } catch (e) {} return { lang: next }; }),
+      baPos: this.state.ba,
+      baClip: 100 - this.state.ba,
+      onBa: (e) => this.setState({ ba: Number(e.target.value) }),
+      baPair: (() => { const bp = project.baPairs[this.state.baKey]; return this.state.baDevice === 'tablet'
+        ? { ...bp, before: bp.tBefore, after: bp.tAfter, ratio: this.state.baKey === 'cocina' ? '900/1203' : '3/4', maxW: '560px' }
+        : { ...bp, ratio: '1920/912', maxW: '100%' }; })(),
+      baDevices: ['desktop', 'tablet'].map((k) => ({ label: k === 'desktop' ? 'Desktop' : 'Tablet',
+        bg: (this.state.baDevice || 'desktop') === k ? '#756CE5' : 'transparent',
+        color: (this.state.baDevice || 'desktop') === k ? '#FFFFFF' : '#131E21',
+        onClick: () => this.setState({ baDevice: k, ba: 50 }) })),
+      baTabs: ['sala', 'cocina'].map((k) => ({
+        label: t[k],
+        bg: this.state.baKey === k ? '#131E21' : 'transparent',
+        bgD: this.state.baKey === k ? '#E9E9E9' : 'transparent',
+        colorD: this.state.baKey === k ? '#131E21' : '#E9E9E9',
+        color: this.state.baKey === k ? '#E9E9E9' : '#131E21',
+        onClick: () => this.setState({ baKey: k, ba: 50 }),
+      })),
+      tocItems: toc.map(([id, label], i) => ({
+        id, label, n: String(i + 1).padStart(2, '0'),
+        color: this.state.active === id ? '#131E21' : '#9AA3A5',
+        dot: this.state.active === id ? 1 : 0,
+      })),
+    };
+  }
+  renderVals() {
+    const v = this._rv0(); const vw = this.state.vw || 1440;
+    return { ...v, deskDisplay: vw >= 1024 ? 'block' : 'none', isCompact: vw < 1024, device: vw < 700 ? 'mobile' : 'tablet' };
+  }
+}
+</script>
+</body>
+</html>

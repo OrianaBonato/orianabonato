@@ -48,7 +48,8 @@
       </div></sc-if>
       <div style="width:{{ fwM }};position:relative;overflow:hidden;background:#E9E9E9;color:#131E21;border-radius:{{ fRad }};box-shadow:{{ fSh }};">
 
-        <header style="position:relative;z-index:21;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#131E21;">
+        <div aria-hidden="true" style="height:72px;"></div>
+        <header style="position:{{ hdrPos }};top:0;left:0;right:0;height:72px;box-sizing:border-box;z-index:21;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#131E21;">
           <div style="display:flex;align-items:center;gap:12px;">
             <a href="index.html" style="display:flex;align-items:center;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:22px;width:auto;display:block;"></a>
             <span style="width:1px;height:22px;background:rgba(233,233,233,.2);"></span>
@@ -227,7 +228,7 @@
             <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.next.tag }}</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;">
-            <span style="font-size:72px;line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.next.name }}<span style="color:#756CE5;">.</span></span>
+            <span style="min-width:0;font-size:min(72px,11vw);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.next.name }}<span style="color:#756CE5;">.</span></span>
             <span style="flex-shrink:0;width:56px;height:56px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px;padding-top:48px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
@@ -246,7 +247,8 @@
       </div></sc-if>
       <div style="width:{{ fwT }};position:relative;overflow:hidden;background:#E9E9E9;color:#131E21;border-radius:{{ fRad }};box-shadow:{{ fSh }};">
 
-        <header style="position:relative;z-index:21;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:#131E21;">
+        <div aria-hidden="true" style="height:76px;"></div>
+        <header style="position:{{ hdrPos }};top:0;left:0;right:0;height:76px;box-sizing:border-box;z-index:21;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:#131E21;">
           <div style="display:flex;align-items:center;gap:12px;">
             <a href="index.html" style="display:flex;align-items:center;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:30px;width:auto;display:block;"></a>
             <span style="width:1px;height:22px;background:rgba(233,233,233,.2);"></span>
@@ -460,7 +462,7 @@
             <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.next.tag }}</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;">
-            <span style="font-size:140px;line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.next.name }}<span style="color:#756CE5;">.</span></span>
+            <span style="min-width:0;font-size:min(140px,11vw);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.next.name }}<span style="color:#756CE5;">.</span></span>
             <span style="flex-shrink:0;width:80px;height:80px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
           </div>
           <div style="display:flex;justify-content:space-between;gap:20px;padding-top:64px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">

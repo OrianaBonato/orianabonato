@@ -184,7 +184,7 @@
           "This was the project where I finally saw the whole picture I'd been curious about for years: what happens behind an interface to make it work. Designing the API and then consuming it from Angular showed me how a status on the backend becomes a queue in the UI, and how a data modeling decision shapes what the frontend can show. It's an academic MVP, not a production system, and the auth shortcut above is the clearest proof of that. But it's the project that turned curiosity into a way of working.",
           'Fue el proyecto en el que por fin vi completo lo que llevaba años queriendo entender: qué pasa detrás de una interfaz para que funcione. Diseñar la API y después consumirla desde Angular me enseñó cómo un estado en el backend se convierte en una cola en la interfaz, y cómo una decisión en el modelo de datos condiciona lo que el frontend puede mostrar. Es un MVP académico, no un sistema en producción, y el atajo de autenticación es la prueba más clara. Pero es el proyecto que convirtió la curiosidad en una forma de trabajar.'
         ),
-        next: { name: 'Gocho', tag: 'Branding / Web · 2025', url: '#' },
+        next: { name: 'Churrería Romero', tag: 'Branding / Web · 2025', url: 'churreria-romero.html' },
       },
     };
   }

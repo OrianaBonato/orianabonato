@@ -38,6 +38,16 @@
     .ob-mi:hover .ob-ico, .ob-mm:hover .ob-ico { transform: rotate(45deg); }
     .ob-mm { transition: border-color .35s ease; }
     .ob-mm:hover { border-color: #D8FD80 !important; }
+    @keyframes e96-nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+    .e96-swipe-hint { display: none; }
+    @media (max-width: 600px) { .ob-hdr-soc, .ob-hdr-div { display: none !important; } }
+    @media (max-width: 767px) {
+      .ob-menu-grid { grid-template-columns: 1fr !important; }
+      .ob-span2 { grid-column: auto !important; }
+      .e96-logos { width: 960px !important; max-width: none !important; }
+      .e96-swipe-hint { display: flex !important; }
+      .e96-swipe-hint svg { animation: e96-nudge 1.4s ease-in-out infinite; }
+    }
   </style>
 </helmet>
 
@@ -47,8 +57,8 @@
     <div style="height:80px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
       <div style="display:flex;align-items:center;gap:clamp(20px,2.4vw,36px);">
         <a href="index.html" style="display:flex;align-items:center;flex-shrink:0;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="height:34px;width:auto;display:block;"></a>
-        <span style="width:1px;height:26px;flex-shrink:0;background:rgba(233,233,233,.2);"></span>
-        <div style="display:flex;align-items:center;gap:6px;">
+        <span class="ob-hdr-div" style="width:1px;height:26px;flex-shrink:0;background:rgba(233,233,233,.2);"></span>
+        <div class="ob-hdr-soc" style="display:flex;align-items:center;gap:6px;">
           <a class="ob-soc" href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/linkedin.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
           <a class="ob-soc" href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" aria-label="Behance" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/behance.svg" alt="" style="width:24px;height:24px;display:block;filter:brightness(0) invert(1);"></a>
           <a class="ob-soc" href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;"><img src="img/icons/github.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);"></a>
@@ -62,7 +72,7 @@
       </div>
     </div>
     <div data-ob-dark="1" style="position:absolute;top:100%;left:0;right:0;background:#131E21;border-top:1px solid rgba(233,233,233,.14);box-shadow:0 40px 80px rgba(0,0,0,.35);padding:clamp(28px,4vh,48px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(32px,5vh,56px);opacity:{{ navMenuOp }};visibility:{{ navMenuVis }};transform:translateY({{ navMenuY }});transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),visibility .45s;">
-      <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(32px,6vw,110px);align-items:end;">
+      <div class="ob-menu-grid" style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(32px,6vw,110px);align-items:end;">
         <nav style="display:flex;flex-direction:column;">
           <sc-for list="{{ navItems }}" as="it" hint-placeholder-count="4">
             <a href="{{ it.href }}" onClick="{{ navClose }}" class="ob-mi" style="display:flex;align-items:baseline;gap:22px;border-top:1px solid rgba(233,233,233,.14);padding:clamp(10px,1.6vh,16px) 0;color:#E9E9E9;opacity:{{ it.op }};transform:translateY({{ it.y }});transition:color .35s ease,opacity .5s ease {{ it.d }},transform .7s cubic-bezier(.16,1,.3,1) {{ it.d }};">
@@ -132,7 +142,7 @@
       <div style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:min(1091px,100%);">
         <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01)</span>
         <h2 style="margin:14px 0 clamp(20px,2.4vw,32px);font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.context }}</h2>
-        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.5; font-weight: 300; text-wrap: pretty; width: 1098px; font-family: Manrope; height: 212px">{{ p.context }}</p>
+        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.5; font-weight: 300; text-wrap: pretty; width: 100%; font-family: Manrope">{{ p.context }}</p>
       </div>
     </div>
   </section>
@@ -145,8 +155,8 @@
         <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(02)</span>
         <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.myRole }}</h2>
       </div>
-      <div style="grid-column:span 2;display:flex;flex-direction:column;gap:clamp(24px,3vw,40px);">
-        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.35; letter-spacing: -.01em; font-weight: 500; text-wrap: pretty; font-family: Manrope; width: 801px; height: 74px; align-self: stretch">{{ p.myRole }}</p>
+      <div class="ob-span2" style="grid-column:span 2;display:flex;flex-direction:column;gap:clamp(24px,3vw,40px);">
+        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.35; letter-spacing: -.01em; font-weight: 500; text-wrap: pretty; font-family: Manrope; align-self: stretch">{{ p.myRole }}</p>
         <div style="display:flex;flex-direction:column;">
           <sc-for list="{{ p.deliverables }}" as="d" hint-placeholder-count="4">
             <div style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:baseline;border-bottom:1px solid rgba(19,30,33,.18);padding:16px 0;">
@@ -160,23 +170,23 @@
   </section>
 
   <!-- CLEAR SPACE -->
-  <section data-ob-dark="1" aria-label="{{ t.cap2 }}" style="margin-top: clamp(80px,10vw,150px); background: #131E21; color: #E9E9E9; padding: clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(70px,9vw,130px); height: 483px; position: relative">
+  <section data-ob-dark="1" aria-label="{{ t.cap2 }}" style="margin-top: clamp(80px,10vw,150px); background: #131E21; color: #E9E9E9; padding: clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(70px,9vw,130px); position: relative">
     
-  <div style="display: flex; justify-content: space-evenly; align-items: center; width: 1346px; height: 407px">
-      <div style="position:relative;width:100%;max-width:min(980px,100%);">
+  <div style="display: flex; justify-content: center; align-items: center; width: 100%">
+      <div style="position:relative;width:100%;max-width:930px;">
         
         
-      <span style="position: absolute; left: 523px; top: 359px; transform: translate(-50%,-50%); white-space: nowrap; font-family: 'Manrope',sans-serif; font-size: clamp(9px,1.25vw,15px); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: #FFFFFF">{{ t.csRef }}</span><img src="img/ESTUDIO96/estudio96-clear-space-dark.svg" alt="{{ t.cap2 }}" style="width: 808px; height: 425px; display: block; position: static; padding-left: 61px; padding-right: 61px"></div>
+      <span style="position: absolute; left: 56.24%; top: 84.47%; transform: translate(-50%,-50%); white-space: nowrap; font-family: 'Manrope',sans-serif; font-size: clamp(9px,1.25vw,15px); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: #FFFFFF">{{ t.csRef }}</span><img src="img/ESTUDIO96/estudio96-clear-space-dark.svg" alt="{{ t.cap2 }}" style="width: 100%; height: auto; box-sizing: border-box; display: block; padding-left: 6.56%; padding-right: 6.56%"></div>
     </div></section>
 
   <!-- (03) KEY DECISION -->
   <section style="padding: clamp(70px,9vw,130px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)); background-color: #F9F9F9">
-    <div style="width: 505px; height: 29px; display: grid">
+    <div style="width: 100%; height: 29px; display: grid">
           
           
         </div><div style="display: flex; flex-wrap: wrap; gap: 29px; align-items: center; flex-direction: column; justify-content: flex-end; position: relative">
-      <span style="font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #5A6568; width: 1346px; height: 25px; text-align: center">(03)</span>
-      <h2 style="margin: 14px 0 0; font-size: clamp(28px,3.4vw,52px); line-height: .95; letter-spacing: -.03em; font-weight: 800; text-transform: uppercase; text-align: center; width: 698px; height: 61px">{{ t.decision }}</h2><p style="margin: 0; font-family: Manrope; font-size: clamp(17px,1.45vw,21px); font-weight: 400; line-height: 1.4; max-width: 100ch; text-wrap: pretty; width: 1200px; height: 180px; text-align: center; align-self: center">{{ p.decision }}</p><div style="width: 100%; max-width: 1292px; margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 24px"><figcaption style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #5A6568; text-align: center">{{ t.cap4 }}</figcaption><img src="img/ESTUDIO96/logo-system-e96.png" alt="{{ t.cap4 }}" style="width: 100%; height: auto; display: block"></div>
+      <span style="font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #5A6568; text-align: center">(03)</span>
+      <h2 style="margin: 14px 0 0; font-size: clamp(28px,3.4vw,52px); line-height: .95; letter-spacing: -.03em; font-weight: 800; text-transform: uppercase; text-align: center; width: 100%; max-width: 698px">{{ t.decision }}</h2><p style="margin: 0; font-family: Manrope; font-size: clamp(17px,1.45vw,21px); font-weight: 400; line-height: 1.4; max-width: 100ch; text-wrap: pretty; width: 100%; text-align: center; align-self: center">{{ p.decision }}</p><div style="width: 100%; max-width: 1292px; margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 24px"><figcaption style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #5A6568; text-align: center">{{ t.cap4 }}</figcaption><div style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;"><img class="e96-logos" src="img/ESTUDIO96/logo-system-e96.png" alt="{{ t.cap4 }}" style="width: 100%; height: auto; display: block"></div><p class="e96-swipe-hint" style="margin: 0; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #756CE5; font-weight: 600;">{{ t.swipe }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></p></div>
     </div>
     <figure style="margin:clamp(40px,5vw,72px) 0 0;">
       <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;border-top:1px solid #131E21;padding-top:16px;margin-bottom:clamp(24px,3vw,40px);">
@@ -256,11 +266,11 @@
       <div>
         <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(05)</span>
         <h2 style="margin:14px 0 clamp(20px,2.4vw,32px);font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.result }}</h2>
-        <p style="margin: 0; font-family: Bricolage Grotesque; font-size: clamp(19px,1.6vw,24px); font-weight: 600; line-height: 1.5; max-width: 42ch; text-wrap: pretty; letter-spacing: -0.7px; width: 599px; height: 289px">{{ p.result }}</p>
+        <p style="margin: 0; font-family: Bricolage Grotesque; font-size: clamp(19px,1.6vw,24px); font-weight: 600; line-height: 1.5; max-width: 42ch; text-wrap: pretty; letter-spacing: -0.7px">{{ p.result }}</p>
       </div>
       <figure style="margin:0;">
         <div style="aspect-ratio:7/5;overflow:hidden;background:#1B282B;">
-          <img src="img/ESTUDIO96/img-06_E96.webp" alt="{{ t.cap6 }}" style="width: 606px; height: 435px; object-fit: cover; display: block">
+          <img src="img/ESTUDIO96/img-06_E96.webp" alt="{{ t.cap6 }}" style="width: 100%; height: 100%; object-fit: cover; display: block">
         </div>
         <figcaption style="margin-top:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6568;">{{ t.cap6 }}</figcaption>
       </figure>
@@ -274,7 +284,7 @@
       <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">App Web Frontend / Backend · 2026</span>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;">
-      <span style="font-size:clamp(48px,11vw,180px);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;color:#E9E9E9;">SmartRest<span style="color:#756CE5;">.</span></span>
+      <span style="min-width:0;font-size:clamp(30px,11vw,180px);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;color:#E9E9E9;">SmartRest<span style="color:#756CE5;">.</span></span>
       <span class="ob-next-circ" style="flex-shrink:0;width:clamp(56px,6vw,96px);height:clamp(56px,6vw,96px);border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;">
         <svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
       </span>
@@ -315,6 +325,7 @@ class Component extends DCLogic {
       coverTag: C('Brand identity', 'Identidad de marca'),
       palNote: C('Base tone + tints at 80 · 60 · 40 · 20%', 'Tono base + tintes al 80 · 60 · 40 · 20%'),
       cap4: C('Logo system', 'Sistema de logotipos'),
+      swipe: C('Swipe to see more', 'Desliza para ver más'),
       cap6: C('Salon window signage', 'Rótulo en el escaparate del salón'),
     };
     const p = {

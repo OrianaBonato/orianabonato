@@ -1,0 +1,35 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "orianabonato.vercel.app"
+        }
+      ],
+      "destination": "https://orianabonato.com/$1",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/inicio-responsive.dc.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/smartrest-responsive.dc.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ]
+}

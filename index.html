@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oriana Bonato</title>
+<title>Oriana Bonato — Frontend Developer &amp; UX/UI Designer in Vigo</title>
+<meta name="description" content="Portfolio of Oriana Bonato, frontend developer and UX/UI designer in Vigo, Spain. Angular, React and TypeScript with a graphic designer's eye.">
+<link rel="canonical" href="https://orianabonato.com/">
+<meta name="author" content="Oriana Bonato">
+<meta name="theme-color" content="#131E21">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oriana Bonato">
+<meta property="og:title" content="Oriana Bonato — Frontend Developer &amp; UX/UI Designer in Vigo">
+<meta property="og:description" content="Portfolio of Oriana Bonato, frontend developer and UX/UI designer in Vigo, Spain. Angular, React and TypeScript with a graphic designer's eye.">
+<meta property="og:url" content="https://orianabonato.com/">
+<meta property="og:image" content="https://orianabonato.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Oriana Bonato — Frontend Developer &amp; UX/UI Designer">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Oriana Bonato — Frontend Developer &amp; UX/UI Designer in Vigo">
+<meta name="twitter:description" content="Portfolio of Oriana Bonato, frontend developer and UX/UI designer in Vigo, Spain. Angular, React and TypeScript with a graphic designer's eye.">
+<meta name="twitter:image" content="https://orianabonato.com/assets/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orianabonato.com/#person","name":"Oriana Bonato","url":"https://orianabonato.com/","jobTitle":"Frontend Developer & UX/UI Designer","description":"Frontend developer with a graphic designer's eye. Working in graphic design since 2019, she builds with Angular, React and TypeScript, plus Java and Spring Boot.","image":"https://orianabonato.com/img/foto-perfil-oriana-2026.png","address":{"@type":"PostalAddress","addressLocality":"Vigo","addressRegion":"Galicia","addressCountry":"ES"},"sameAs":["https://www.linkedin.com/in/oriana-bonato/","https://www.behance.net/ocbonato96","https://github.com/OrianaBonato"],"knowsAbout":["Frontend development","Web design","UI/UX design","Branding","Graphic design","Angular","React","TypeScript","Java","Spring Boot"]},{"@type":"WebSite","@id":"https://orianabonato.com/#website","url":"https://orianabonato.com/","name":"Oriana Bonato","inLanguage":["en","es"],"publisher":{"@id":"https://orianabonato.com/#person"}},{"@type":"ProfilePage","@id":"https://orianabonato.com/#webpage","url":"https://orianabonato.com/","name":"Oriana Bonato — Frontend Developer & UX/UI Designer","isPartOf":{"@id":"https://orianabonato.com/#website"},"mainEntity":{"@id":"https://orianabonato.com/#person"}}]}</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -407,6 +427,7 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    document.documentElement.lang = this.state.lang;
     [150, 700, 1500].forEach((ms) => setTimeout(() => this._hashGo(), ms));
     this._onRs = () => { if (window.innerWidth !== this.state.vw) this.setState({ vw: window.innerWidth }); }; window.addEventListener('resize', this._onRs);
     const typeAt = this._introLogo();

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oriana Bonato</title>
+<title>Estudio 96 — Hair salon brand identity | Oriana Bonato</title>
+<meta name="description" content="Case study: brand identity for Estudio 96, a hair salon in Vigo, built from the ground up. Logo system, colour palette and applications.">
+<link rel="canonical" href="https://orianabonato.com/estudio-96.html">
+<meta name="author" content="Oriana Bonato">
+<meta name="theme-color" content="#131E21">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Oriana Bonato">
+<meta property="og:title" content="Estudio 96 — Hair salon brand identity | Oriana Bonato">
+<meta property="og:description" content="Case study: brand identity for Estudio 96, a hair salon in Vigo, built from the ground up. Logo system, colour palette and applications.">
+<meta property="og:url" content="https://orianabonato.com/estudio-96.html">
+<meta property="og:image" content="https://orianabonato.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Oriana Bonato — Frontend Developer &amp; UX/UI Designer">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Estudio 96 — Hair salon brand identity | Oriana Bonato">
+<meta name="twitter:description" content="Case study: brand identity for Estudio 96, a hair salon in Vigo, built from the ground up. Logo system, colour palette and applications.">
+<meta name="twitter:image" content="https://orianabonato.com/assets/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://orianabonato.com/estudio-96.html#work","name":"Estudio 96 — Hair salon brand identity","description":"Brand identity for a hair salon in Vigo, built from the ground up: logo system, colour palette and applications, designed with Illustrator and Photoshop.","url":"https://orianabonato.com/estudio-96.html","dateCreated":"2023","creator":{"@type":"Person","@id":"https://orianabonato.com/#person","name":"Oriana Bonato","url":"https://orianabonato.com/"},"inLanguage":["en","es"],"image":"https://orianabonato.com/assets/og-image.png"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://orianabonato.com/"},{"@type":"ListItem","position":2,"name":"Estudio 96 — Hair salon brand identity","item":"https://orianabonato.com/estudio-96.html"}]}]}</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -48,8 +68,14 @@
       .e96-swipe-hint { display: flex !important; }
       .e96-swipe-hint svg { animation: e96-nudge 1.4s ease-in-out infinite; }
     }
+    .ob-cur { display: block; }
+    @media (hover: none), (pointer: coarse) { .ob-cur { display: none !important; } }
+    @media (hover: hover) and (pointer: fine) { .ob-cursor, .ob-cursor * { cursor: none !important; } }
   </style>
 </helmet>
+
+<div id="ob-cur-ring" class="ob-cur" aria-hidden="true" style="position:fixed;top:0;left:0;z-index:300;pointer-events:none;width:56px;height:56px;margin:-28px 0 0 -28px;box-sizing:border-box;border:1px solid #131E21;border-radius:50%;opacity:0;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),margin .35s cubic-bezier(.16,1,.3,1),background .35s ease,border-color .35s ease,opacity .3s ease;"></div>
+<div id="ob-cur-dot" class="ob-cur" aria-hidden="true" style="position:fixed;top:0;left:0;z-index:301;pointer-events:none;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#756CE5;opacity:0;transition:opacity .3s ease;"></div>
 
 <div style="position:relative;font-family:'Bricolage Grotesque',sans-serif;background:#E9E9E9;color:#131E21;overflow-x:clip;">
 
@@ -298,13 +324,101 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
 class Component extends DCLogic {
+  // Cursor personalizado (mismo comportamiento que la portada): punto sin retardo + anillo con lerp 0.14.
+  // El estado se recalcula con lo que hay bajo el puntero, también al hacer scroll:
+  // enlace o botón → estado link (80px); píxel oscuro (fondo o foto) → borde #D8FD80. Solo con ratón.
+  _curInit() {
+    if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const r = document.getElementById("ob-cur-ring"), d = document.getElementById("ob-cur-dot");
+    if (!r || !d) return;
+    document.documentElement.classList.add("ob-cursor");
+    const c = this._cur = { x: -100, y: -100, rx: -100, ry: -100, key: null, seen: false, dirty: true, f: 0 };
+    const show = (v) => { r.style.opacity = v; d.style.opacity = v; };
+    this._onCurMove = (e) => { c.x = e.clientX; c.y = e.clientY; c.dirty = true; if (!c.seen) { c.seen = true; c.rx = c.x; c.ry = c.y; show(1); } };
+    this._onCurScroll = () => { c.dirty = true; };
+    this._onCurLeave = () => { show(0); c.seen = false; };
+    window.addEventListener("mousemove", this._onCurMove, { passive: true });
+    window.addEventListener("scroll", this._onCurScroll, { passive: true });
+    document.addEventListener("mouseleave", this._onCurLeave);
+    const loop = () => {
+      c.f++;
+      if (c.seen && (c.dirty || c.f % 4 === 0)) { c.dirty = false; this._curState(r, c); }
+      c.rx += (c.x - c.rx) * 0.14; c.ry += (c.y - c.ry) * 0.14;
+      d.style.transform = "translate3d(" + c.x + "px," + c.y + "px,0)";
+      r.style.transform = "translate3d(" + c.rx.toFixed(1) + "px," + c.ry.toFixed(1) + "px,0)";
+      this._curRaf = requestAnimationFrame(loop);
+    };
+    this._curRaf = requestAnimationFrame(loop);
+  }
+  _curState(r, c) {
+    const el = document.elementFromPoint(c.x, c.y);
+    const link = !!(el && el.closest && el.closest("a, button, [role=\"button\"], label, summary, select"));
+    const dark = !link && this._curDarkAt(el, c.x, c.y);
+    const key = link ? "l" : dark ? "d" : "";
+    if (key === c.key) return; c.key = key;
+    if (link) { r.style.width = "80px"; r.style.height = "80px"; r.style.margin = "-40px 0 0 -40px"; r.style.background = "rgba(117,108,229,.15)"; r.style.borderColor = "#756CE5"; }
+    else { r.style.width = "56px"; r.style.height = "56px"; r.style.margin = "-28px 0 0 -28px"; r.style.background = "transparent"; r.style.borderColor = dark ? "#D8FD80" : "#131E21"; }
+  }
+  // Oscuro si la luminancia del píxel bajo el puntero es < 128: en fotos se lee la imagen; si no, el primer fondo opaco.
+  _curDarkAt(el, x, y) {
+    if (el && el.tagName === "IMG") { const s = this._curImg(el, x, y); if (s !== null) return s; }
+    while (el && el !== document.documentElement) {
+      const m = getComputedStyle(el).backgroundColor.match(/rgba?\(([^)]+)\)/);
+      if (m) {
+        const [rr, g, b, a = 1] = m[1].split(/[\s,\/]+/).filter(Boolean).map(Number);
+        if (a > 0.5) return (0.2126 * rr + 0.7152 * g + 0.0722 * b) < 128;
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
+  _curImg(img, x, y) {
+    if (!img.complete || !img.naturalWidth) return null;
+    this._curImgCache = this._curImgCache || new Map();
+    const key = img.currentSrc || img.src;
+    let c = this._curImgCache.get(key);
+    if (!c) {
+      try {
+        const k = Math.min(1, 256 / Math.max(img.naturalWidth, img.naturalHeight));
+        const cv = document.createElement("canvas");
+        cv.width = Math.max(1, Math.round(img.naturalWidth * k)); cv.height = Math.max(1, Math.round(img.naturalHeight * k));
+        const ctx = cv.getContext("2d", { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, cv.width, cv.height);
+        c = { ctx, w: cv.width, h: cv.height };
+      } catch (e) { c = { bad: true }; }
+      this._curImgCache.set(key, c);
+    }
+    if (c.bad) return null;
+    const rc = img.getBoundingClientRect(), cs = getComputedStyle(img);
+    let sx = rc.width / c.w, sy = rc.height / c.h;
+    if (cs.objectFit === "cover") { sx = sy = Math.max(sx, sy); } else if (cs.objectFit === "contain" || cs.objectFit === "scale-down") { sx = sy = Math.min(sx, sy); }
+    const pos = cs.objectPosition.split(" ");
+    const pct = (v, free) => v.endsWith("%") ? free * parseFloat(v) / 100 : parseFloat(v) || 0;
+    const ox = pct(pos[0] || "50%", rc.width - c.w * sx), oy = pct(pos[1] || "50%", rc.height - c.h * sy);
+    const px = Math.floor((x - rc.left - ox) / sx), py = Math.floor((y - rc.top - oy) / sy);
+    if (px < 0 || py < 0 || px >= c.w || py >= c.h) return null;
+    try {
+      const p = c.ctx.getImageData(px, py, 1, 1).data;
+      if (p[3] < 128) return null;
+      return (0.2126 * p[0] + 0.7152 * p[1] + 0.0722 * p[2]) < 128;
+    } catch (e) { c.bad = true; return null; }
+  }
+  _curDestroy() {
+    if (this._curRaf) cancelAnimationFrame(this._curRaf);
+    if (this._onCurMove) window.removeEventListener("mousemove", this._onCurMove);
+    if (this._onCurScroll) window.removeEventListener("scroll", this._onCurScroll);
+    if (this._onCurLeave) document.removeEventListener("mouseleave", this._onCurLeave);
+    document.documentElement.classList.remove("ob-cursor");
+  }
   state = { nav: false, lang: (() => { try { return localStorage.getItem('ob-lang') || 'en'; } catch (e) { return 'en'; } })() };
 
   componentDidMount() {
+    document.documentElement.lang = this.state.lang;
+    this._curInit();
     this._onKeyNav = (e) => { if (e.key === 'Escape' && this.state.nav) this.setState({ nav: false }); };
     window.addEventListener('keydown', this._onKeyNav);
   }
-  componentWillUnmount() { window.removeEventListener('keydown', this._onKeyNav); }
+  componentWillUnmount() { this._curDestroy(); window.removeEventListener('keydown', this._onKeyNav); }
 
   renderVals() {
     const es = this.state.lang === 'es';
@@ -395,7 +509,7 @@ class Component extends DCLogic {
             op: open ? 1 : 0, y: open ? '0px' : '18px', d: open ? (0.08 + i * 0.06) + 's' : '0s' })),
         }; })(),
       langLabel: es ? 'EN' : 'ES',
-      toggleLang: () => this.setState((s) => { const next = s.lang === 'es' ? 'en' : 'es'; try { localStorage.setItem('ob-lang', next); } catch (e) {} return { lang: next }; }),
+      toggleLang: () => this.setState((s) => { const next = s.lang === 'es' ? 'en' : 'es'; try { localStorage.setItem('ob-lang', next); } catch (e) {} document.documentElement.lang = next; return { lang: next }; }),
     };
   }
 }

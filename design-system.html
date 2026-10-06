@@ -82,9 +82,43 @@
     .ob-mm:hover { border-color: #D8FD80 !important; }
     @media (max-width: 600px) { .ob-hdr-soc, .ob-hdr-div { display: none !important; } }
     @media (max-width: 767px) { .ob-menu-grid { grid-template-columns: 1fr !important; } }
+    @keyframes ds-marq { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+    .ds-marq { animation: ds-marq 32s linear infinite; }
+    .ds-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ds-swipe { display: none; }
+    @keyframes ds-nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+    .ds-cur { display: block; }
+    @media (hover: none), (pointer: coarse) { .ds-cur { display: none !important; } }
+    @media (hover: hover) and (pointer: fine) { .ds-cursor, .ds-cursor * { cursor: none !important; } }
+    @media (max-width: 900px) {
+      .ds-2col { grid-template-columns: 1fr !important; }
+      .ds-row { grid-template-columns: 1fr !important; gap: 10px !important; }
+    }
+    @media (max-width: 767px) {
+      .ds-demo { min-width: 760px; }
+      .ds-demo-cur { min-width: 1050px; }
+      .ds-swipe { display: flex !important; }
+      .ds-swipe svg { animation: ds-nudge 1.4s ease-in-out infinite; }
+      .ds-typo-demo { height: 400px !important; }
+      .ds-typo-slide { grid-template-columns: 1fr !important; gap: 18px !important; padding: 0 22px !important; align-content: center; }
+      .ds-ts-info { border-left: 0 !important; padding-left: 0 !important; border-top: 1px solid #2A383B; padding-top: 16px; }
+      .ds-ts-info p:last-child { font-size: 12px !important; }
+      .ds-ts1 { font-size: 64px !important; }
+      .ds-ts2 { font-size: 26px !important; }
+      .ds-ts3 { font-size: 60px !important; }
+      .ds-ts4 { font-size: 32px !important; }
+      .ds-typo-labels { grid-template-columns: 1fr 1fr !important; }
+      .ds-typo-labels > div { height: 30px !important; }
+      .ds-nd-soc { display: none !important; }
+      .ds-nav-panel { grid-template-columns: 1fr !important; }
+      .ds-nav-cta { display: none !important; }
+    }
+    @media (prefers-reduced-motion: reduce) { .ds-marq { animation: none; } }
   </style>
 </helmet>
 
+  <div ref="{{ curRingRef }}" class="ds-cur" aria-hidden="true" style="position:fixed;top:0;left:0;z-index:300;pointer-events:none;width:56px;height:56px;margin:-28px 0 0 -28px;box-sizing:border-box;border:1px solid #131E21;border-radius:50%;opacity:0;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),margin .35s cubic-bezier(.16,1,.3,1),background .35s ease,border-color .35s ease,opacity .3s ease;"></div>
+  <div ref="{{ curDotRef }}" class="ds-cur" aria-hidden="true" style="position:fixed;top:0;left:0;z-index:301;pointer-events:none;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#756CE5;opacity:0;transition:opacity .3s ease;"></div>
   <header data-ob-dark="1" style="font-family:'Bricolage Grotesque',sans-serif;position:fixed;top:0;left:0;right:0;z-index:100;background:#131E21;box-shadow:0 16px 40px rgba(0,0,0,.3);">
     <div style="height:80px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
       <div style="display:flex;align-items:center;gap:clamp(20px,2.4vw,36px);">
@@ -100,6 +134,7 @@
         <button type="button" class="ob-plus" onClick="{{ navToggle }}" aria-label="Menu" aria-expanded="{{ navOpenStr }}" style="width:44px;height:44px;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);background:{{ navPlusBg }};color:#E9E9E9;display:flex;align-items:center;justify-content:center;cursor:pointer;font:inherit;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="transform:rotate({{ navPlusRot }});"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg>
         </button>
+        <span onClick="{{ toggleLang }}" role="button" style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:30px;padding:0 14px;box-sizing:border-box;border-radius:999px;background:#756CE5;border:1px solid #756CE5;font-size:12px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;cursor:pointer;">{{ langBtn }}</span>
       </div>
     </div>
     <div data-ob-dark="1" style="position:absolute;top:100%;left:0;right:0;background:#131E21;border-top:1px solid rgba(233,233,233,.14);box-shadow:0 40px 80px rgba(0,0,0,.35);padding:clamp(28px,4vh,48px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(32px,5vh,56px);opacity:{{ navMenuOp }};visibility:{{ navMenuVis }};transform:translateY({{ navMenuY }});transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),visibility .45s;">
@@ -127,230 +162,214 @@
 <div style="width:100%;max-width:1600px;margin:0 auto;font-family:'Bricolage Grotesque',sans-serif;background:#E9E9E9;color:#131E21;padding:calc(80px + clamp(32px,4vw,56px)) clamp(20px,5vw,80px) 0;box-sizing:border-box;display:flow-root;">
 
   <!-- HEADER -->
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #131E21;padding-bottom:28px;margin-bottom:64px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;border-bottom:2px solid #131E21;padding-bottom:28px;margin-bottom:28px;">
     <div>
       <p style="margin:0 0 10px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#5A6568;">Oriana Bonato — Portfolio</p>
-      <h1 style="margin:0;font-size:76px;line-height:.92;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">Design System<span style="color: rgb(117, 108, 229);">.</span>&nbsp;</h1>
+      <h1 style="margin:0;font-size:clamp(44px,7vw,76px);line-height:.92;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">Design System<span style="color:#756CE5;">.</span></h1>
     </div>
     <div style="text-align:right;">
-      <p style="margin:0 0 6px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">Estado</p>
-      <p style="margin:0;font-size:22px;font-weight:700;color:#756CE5;">v1.0 — En curso</p>
+      <p style="margin:0 0 6px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ t.status }}</p>
+      <p style="margin:0;font-size:22px;font-weight:700;color:#756CE5;">{{ t.version }}</p>
     </div>
   </div>
+  <p style="margin:0 0 72px;font-family:'Manrope',sans-serif;font-size:clamp(17px,1.5vw,21px);font-weight:500;line-height:1.5;max-width:62ch;color:#131E21;"><sc-for list="{{ t.intro }}" as="s" hint-placeholder-count="3"><span style="color:{{ s.c }};">{{ s.x }}</span></sc-for></p>
 
   <!-- 00 LOGO -->
-  <div style="margin-bottom:64px;">
-    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
+  <div style="margin-bottom:96px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:18px;">
       <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(00)</span>
-      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Logo</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">{{ t.logoT }}</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <p style="margin:0 0 30px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:80ch;color:#5A6568;"><sc-for list="{{ t.logoIntro }}" as="s" hint-placeholder-count="3"><span style="color:{{ s.c }};">{{ s.x }}</span></sc-for></p>
+    <div class="ds-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
       <div style="display:flex;flex-direction:column;gap:14px;">
-        <div style="height: 340px; background: #E9E9E9; display: flex; align-items: center; justify-content: center">
-          <img src="assets/logo/logo-completo-ink-accent.svg" alt="Oriana Bonato — versión negra" style="width:52%;height:auto;display:block;">
+        <div style="height:clamp(200px,24vw,340px);background:#E9E9E9;border:1px solid rgba(19,30,33,.15);display:flex;align-items:center;justify-content:center;">
+          <img src="assets/logo/logo-completo-ink-accent.svg" alt="Oriana Bonato" style="width:52%;height:auto;display:block;">
         </div>
-        <div style="display:flex;justify-content:space-between;gap:20px;">
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#131E21;font-weight:600;">Versión negra · sobre fondo claro</span>
-          <span style="font-family:'Manrope',sans-serif;font-size:12px;color:#5A6568;">Letras #131E21 · punto #756CE5</span>
+        <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#131E21;font-weight:600;">{{ t.logoDark }}</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;color:#5A6568;">{{ t.logoDarkSpec }}</span>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:14px;">
-        <div style="height:340px;background:#131E21;display:flex;align-items:center;justify-content:center;">
-          <img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato — versión blanca" style="width:52%;height:auto;display:block;">
+        <div data-ob-dark="1" style="height:clamp(200px,24vw,340px);background:#131E21;display:flex;align-items:center;justify-content:center;">
+          <img src="assets/logo/logo-completo-blanco-morado.svg" alt="Oriana Bonato" style="width:52%;height:auto;display:block;">
         </div>
-        <div style="display:flex;justify-content:space-between;gap:20px;">
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#131E21;font-weight:600;">Versión blanca · sobre fondo oscuro</span>
-          <span style="font-family:'Manrope',sans-serif;font-size:12px;color:#5A6568;">Letras #FFFFFF · punto #756CE5</span>
+        <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#131E21;font-weight:600;">{{ t.logoLight }}</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;color:#5A6568;">{{ t.logoLightSpec }}</span>
         </div>
       </div>
     </div>
-    <div aria-hidden="true" style="height:120px;margin-top:24px;"></div>
+    <p style="margin:56px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <sc-for list="{{ t.logoWhy }}" as="w" hint-placeholder-count="3">
+        <div style="border-top:2px solid #131E21;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ w.p }}</p></div>
+      </sc-for>
+    </div>
   </div>
 
   <!-- 01 TYPOGRAPHY -->
-  <div style="margin-bottom:64px;">
-    <div style="padding: 40px calc(50vw - 50%); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background: #131E21; height: 808px; padding-top: 105px; padding-bottom: 105px">
-      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:34px;">
+  <div style="margin-bottom:96px;">
+    <div data-ob-dark="1" style="padding:clamp(70px,8vw,105px) calc(50vw - 50%);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:#131E21;">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:24px;">
         <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01)</span>
-        <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#E9E9E9;">Tipografía</h2>
+        <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#E9E9E9;">{{ t.typoT }}</h2>
       </div>
-      <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;">Cuatro familias con un papel cada una. <span style="color:#E9E9E9;">Bricolage Grotesque</span> construye titulares e interfaz, <span style="color:#E9E9E9;">Manrope</span> lleva el cuerpo y las frases editoriales, y <span style="color:#E9E9E9;">Rock Salt</span> y <span style="color:#E9E9E9;">Courier New</span> aparecen solo como highlights puntuales, nunca en párrafos.</p>
-      <div style="position:relative;height:300px;border:1px solid #2A383B;overflow:hidden;">
-        <div style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl0 12s linear infinite;">
-          <div style="color:#E9E9E9;"><span style="display:block;font-size:112px;line-height:.82;letter-spacing:-.04em;text-transform:uppercase;animation:twt 12s ease-in-out infinite;">Oriana<br>Bonato<span style="color:#756CE5;">.</span></span></div>
-          <div style="border-left:1px solid #2A383B;padding-left:32px;">
-            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Display &amp; UI</p>
+      <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;"><sc-for list="{{ t.typoIntro }}" as="s" hint-placeholder-count="5"><span style="color:{{ s.c }};">{{ s.x }}</span></sc-for></p>
+      <div>
+      <div class="ds-typo-demo" style="position:relative;height:300px;border:1px solid #2A383B;overflow:hidden;">
+        <div class="ds-typo-slide" style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl0 12s linear infinite;">
+          <div style="color:#E9E9E9;"><span class="ds-ts1" style="display:block;font-size:112px;line-height:.82;letter-spacing:-.04em;text-transform:uppercase;animation:twt 12s ease-in-out infinite;">Oriana<br>Bonato<span style="color:#756CE5;">.</span></span></div>
+          <div class="ds-ts-info" style="border-left:1px solid #2A383B;padding-left:32px;">
+            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.tf1Role }}</p>
             <p style="margin:0 0 14px;font-size:30px;font-weight:700;letter-spacing:-.02em;color:#E9E9E9;">Bricolage Grotesque</p>
-            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Variable 200–800. 800 en titulares, 700 en tarjetas y puestos, 500 en labels y navegación, 300 en el texto secundario de Approach.</p>
+            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tf1Desc }}</p>
           </div>
         </div>
-        <div style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl1 12s linear infinite;">
-          <div style="color:#E9E9E9;"><span style="display:block;font-family:'Manrope',sans-serif;font-size:46px;line-height:1.2;font-weight:500;max-width:18ch;">Every branch I explored led me to code.</span></div>
-          <div style="border-left:1px solid #2A383B;padding-left:32px;">
-            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Cuerpo &amp; editorial</p>
+        <div class="ds-typo-slide" style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl1 12s linear infinite;">
+          <div style="color:#E9E9E9;"><span class="ds-ts2" style="display:block;font-family:'Manrope',sans-serif;font-size:46px;line-height:1.2;font-weight:500;max-width:18ch;">{{ t.tf2Sample }}</span></div>
+          <div class="ds-ts-info" style="border-left:1px solid #2A383B;padding-left:32px;">
+            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.tf2Role }}</p>
             <p style="margin:0 0 14px;font-size:30px;font-weight:700;letter-spacing:-.02em;color:#E9E9E9;">Manrope</p>
-            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">400 para cuerpo (14–16px, LH 1.85, máx. 62ch), 500 para frases destacadas y CTA, 200 para subtítulos.</p>
+            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tf2Desc }}</p>
           </div>
         </div>
-        <div style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl2 12s linear infinite;">
-          <div style="color:#E9E9E9;"><span style="display:block;font-family:'Rock Salt',cursive;font-size:96px;line-height:1.1;color:#B5BCBE;">2026</span></div>
-          <div style="border-left:1px solid #2A383B;padding-left:32px;">
-            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Highlight manuscrito</p>
+        <div class="ds-typo-slide" style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl2 12s linear infinite;">
+          <div style="color:#E9E9E9;"><span class="ds-ts3" style="display:block;font-family:'Rock Salt',cursive;font-size:96px;line-height:1.1;color:#B5BCBE;">2026</span></div>
+          <div class="ds-ts-info" style="border-left:1px solid #2A383B;padding-left:32px;">
+            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.tf3Role }}</p>
             <p style="margin:0 0 14px;font-size:30px;font-weight:700;letter-spacing:-.02em;color:#E9E9E9;">Rock Salt</p>
-            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Solo años de proyecto en las tarjetas, a 13–14px en gris. Nunca en titulares ni en texto corrido.</p>
+            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tf3Desc }}</p>
           </div>
         </div>
-        <div style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl3 12s linear infinite;">
-          <div style="color:#E9E9E9;"><span style="display:block;font-family:'Courier New',monospace;font-size:clamp(30px,4vw,60px);line-height:1.2;"><span style="color:#756CE5;">[01]</span> [Figma]<br>→ [React]</span></div>
-          <div style="border-left:1px solid #2A383B;padding-left:32px;">
-            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Highlight técnico</p>
+        <div class="ds-typo-slide" style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:60px;align-items:center;padding:0 56px;opacity:0;animation:tl3 12s linear infinite;">
+          <div style="color:#E9E9E9;"><span class="ds-ts4" style="display:block;font-family:'Courier New',monospace;font-size:60px;line-height:1.2;"><span style="color:#756CE5;">[01]</span> [Figma]<br>→ [React]</span></div>
+          <div class="ds-ts-info" style="border-left:1px solid #2A383B;padding-left:32px;">
+            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.tf4Role }}</p>
             <p style="margin:0 0 14px;font-size:30px;font-weight:700;letter-spacing:-.02em;color:#E9E9E9;">Courier New</p>
-            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Palabras entre corchetes, numeración [01] y píldoras de stack, a 13–15px. Hover en morado sobre los corchetes del Approach.</p>
+            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tf4Desc }}</p>
           </div>
         </div>
         <span style="position:absolute;left:0;bottom:0;height:2px;background:#756CE5;animation:tbar 3s linear infinite;"></span>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);margin:14px 0 40px;">
-        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Bricolage · Display &amp; UI</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl0 12s linear infinite;">Bricolage · Display &amp; UI</p></div>
-        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Manrope · Cuerpo</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl1 12s linear infinite;">Manrope · Cuerpo</p></div>
-        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Rock Salt · Años</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl2 12s linear infinite;">Rock Salt · Años</p></div>
-        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Courier New · [Código]</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl3 12s linear infinite;">Courier New · [Código]</p></div>
+      <div class="ds-typo-labels" style="display:grid;grid-template-columns:repeat(4,1fr);margin:14px 0 0;">
+        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.tl1 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl0 12s linear infinite;">{{ t.tl1 }}</p></div>
+        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.tl2 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl1 12s linear infinite;">{{ t.tl2 }}</p></div>
+        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.tl3 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl2 12s linear infinite;">{{ t.tl3 }}</p></div>
+        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.tl4 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:tl3 12s linear infinite;">{{ t.tl4 }}</p></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;">
-      <div style="border:1px solid #2A383B;padding:40px 34px;display:flex;flex-direction:column;gap:30px;">
-        <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-size:72px;line-height:1;font-weight:800;letter-spacing:-.03em;">Aa</span></div>
-        <div>
-          <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Bricolage Grotesque</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Display, titulares y UI · 800 / 700 / 500 / 300</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px;margin-top:26px;">
+        <div style="border:1px solid #2A383B;padding:34px 30px;display:flex;flex-direction:column;gap:26px;">
+          <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-size:72px;line-height:1;font-weight:800;letter-spacing:-.03em;">Aa</span></div>
+          <div><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Bricolage Grotesque</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tc1 }}</p></div>
+        </div>
+        <div style="border:1px solid #2A383B;padding:34px 30px;display:flex;flex-direction:column;gap:26px;">
+          <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-family:'Manrope',sans-serif;font-size:72px;line-height:1;font-weight:500;">Aa</span></div>
+          <div><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Manrope</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tc2 }}</p></div>
+        </div>
+        <div style="border:1px solid #2A383B;padding:34px 30px;display:flex;flex-direction:column;gap:26px;">
+          <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-family:'Rock Salt',cursive;font-size:48px;line-height:1;">Aa</span></div>
+          <div><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Rock Salt</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tc3 }}</p></div>
+        </div>
+        <div style="border:1px solid #2A383B;padding:34px 30px;display:flex;flex-direction:column;gap:26px;">
+          <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-family:'Courier New',monospace;font-size:66px;line-height:1;">Aa</span></div>
+          <div><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Courier New</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ t.tc4 }}</p></div>
         </div>
       </div>
-      <div style="border:1px solid #2A383B;padding:40px 34px;display:flex;flex-direction:column;gap:30px;">
-        <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-family:'Manrope',sans-serif;font-size:72px;line-height:1;font-weight:500;">Aa</span></div>
-        <div>
-          <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Manrope</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Cuerpo y editorial · 400 cuerpo, 500 frases destacadas, 200 subtítulos</p>
-        </div>
-      </div>
-      <div style="border:1px solid #2A383B;padding:40px 34px;display:flex;flex-direction:column;gap:30px;">
-        <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-family:'Rock Salt',cursive;font-size:48px;line-height:1;">Aa</span></div>
-        <div>
-          <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Rock Salt</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Highlight puntual · años de proyecto</p>
-        </div>
-      </div>
-      <div style="border:1px solid #2A383B;padding:40px 34px;display:flex;flex-direction:column;gap:30px;">
-        <div style="height:72px;display:flex;align-items:flex-end;color:#E9E9E9;"><span style="font-family:'Courier New',monospace;font-size:66px;line-height:1;">Aa</span></div>
-        <div>
-          <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">Courier New</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Highlight puntual · [Figma] [React], numeración [01], píldoras de stack</p>
-        </div>
-      </div>
+      <p style="margin:56px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;font-weight:700;">{{ t.why }}</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+        <sc-for list="{{ t.typoWhy }}" as="w" hint-placeholder-count="3">
+          <div style="border-top:2px solid #E9E9E9;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#9AA3A5;">{{ w.p }}</p></div>
+        </sc-for>
       </div>
     </div>
-    <div style="margin-top:56px;">
-      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:10px;">
+
+    <div style="margin-top:72px;">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:18px;">
         <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(01.1)</span>
-        <h3 style="margin:0;font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Jerarquía</h3>
+        <h3 style="margin:0;font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">{{ t.hierT }}</h3>
       </div>
+      <p style="margin:0 0 26px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:80ch;color:#5A6568;">{{ t.hierIntro }}</p>
       <div style="display:flex;flex-direction:column;">
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-size:96px;line-height:.82;letter-spacing:-.035em;font-weight:800;text-transform:uppercase;">Oriana Bonato</span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Display XL</b> — hero, «Let's talk.» · Bricolage 800 · clamp(58px, 15.2vw, 200px) · LH .82 · LS −.035em · mayúsculas</span>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-size:clamp(44px,7vw,96px);line-height:.82;letter-spacing:-.035em;font-weight:800;text-transform:uppercase;">Oriana Bonato</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Display XL</b> — {{ t.h1 }} · Bricolage 800 · clamp(58px, 15.2vw, 200px) · LH .82 · LS −.035em</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-size:clamp(36px,5vw,64px);line-height:.85;letter-spacing:-.04em;font-weight:800;text-transform:uppercase;">{{ t.h2s }}<span style="color:#756CE5;">.</span></span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Display L</b> — {{ t.h2 }} · Bricolage 800 · clamp(52px, 11vw, 150px) · LH .85 · LS −.04em</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-size:clamp(30px,3.6vw,44px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.h3s }}</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Heading M</b> — {{ t.h3 }} · Bricolage 800 · clamp(28px, 3.4vw, 52px) · LH .95 · LS −.03em</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-size:clamp(22px,2.6vw,30px);line-height:1.05;letter-spacing:-.025em;font-weight:700;text-transform:uppercase;">Web Designer &amp; Developer</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Heading S</b> — {{ t.h4 }} · Bricolage 700 · clamp(20px, 2.4vw, 36px) · LH 1.05 · LS −.025em</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-size:clamp(26px,3vw,40px);line-height:1.1;letter-spacing:-.02em;font-weight:700;">{{ t.h5s }}<span style="color:#756CE5;">.</span></span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Statement</b> — {{ t.h5 }} · Bricolage 700 · clamp(28px, 3.6vw, 56px) · LH 1.1</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-family:'Manrope',sans-serif;font-size:clamp(20px,2.2vw,28px);line-height:1.25;font-weight:500;">{{ t.tf2Sample }}</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Lead</b> — {{ t.h6 }} · Manrope 500 · clamp(20px, 2vw, 32px) · LH 1.25</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-family:'Manrope',sans-serif;font-size:16px;line-height:1.85;font-weight:400;">{{ t.h7s }}</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Body</b> — Manrope 400 · 14–16px · LH 1.85 · {{ t.h7 }}</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(01) — {{ t.h8s }}</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Label</b> — Bricolage 500 · 11px · LS .16em · {{ t.h8 }}</span>
+        </div>
+        <div class="ds-row" style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);border-bottom:1px solid rgba(19,30,33,.2);padding:30px 0;">
+          <span><span style="font-family:'Courier New',monospace;font-size:15px;color:#756CE5;">[01]</span> <span style="font-family:'Courier New',monospace;font-size:15px;">[Figma]</span> <span style="font-family:'Rock Salt',cursive;font-size:14px;color:#5A6568;">2026</span></span>
+          <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Highlight</b> — {{ t.h9 }}</span>
+        </div>
       </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-size:64px;line-height:.85;letter-spacing:-.04em;font-weight:800;text-transform:uppercase;">Selected work<span style="color:#756CE5;">.</span></span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Display L</b> — Selected Work, título de proyecto · Bricolage 800 · clamp(52px, 11vw, 150px) · LH .85 · LS −.04em</span>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-size:44px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">The problem</span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Heading M</b> — títulos de sección · Bricolage 800 · clamp(28px, 3.4vw, 52px) · LH .95 · LS −.03em</span>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-size:30px;line-height:1.05;letter-spacing:-.025em;font-weight:700;text-transform:uppercase;">Web Designer &amp; Developer</span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Heading S</b> — tarjetas y puestos · Bricolage 700 · clamp(20px, 2.4vw, 36px) · LH 1.05 · LS −.025em</span>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-size:40px;line-height:1.1;letter-spacing:-.02em;font-weight:700;">I think in systems before screens<span style="color:#756CE5;">.</span></span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Statement</b> — bloque Approach · Bricolage 700 · clamp(28px, 3.6vw, 56px) · LH 1.1 · texto 2 en 300, ⅔ del tamaño</span>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-family:'Manrope',sans-serif;font-size:28px;line-height:1.25;font-weight:500;">Every branch I explored led me to code.</span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Lead</b> — frases destacadas, CTA · Manrope 500 · clamp(20px, 2vw, 32px) · LH 1.25</span>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-family:'Manrope',sans-serif;font-size:16px;line-height:1.85;font-weight:400;">Empecé en diseño gráfico en 2019 y pasé los años siguientes probando un poco de todo.</span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Body</b> — Manrope 400 · 14–16px · LH 1.85 · máx. 62ch</span>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(01) — Approach</span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Label</b> — Bricolage 500 · 11px · LS .16em · mayúsculas · #5A6568 / #9AA3A5</span>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:30px;align-items:baseline;border-top:1px solid rgba(19,30,33,.2);padding:30px 0;">
-        <span style=""><span style="font-family:'Courier New',monospace;font-size:15px;color:#756CE5;">[01]</span> <span style="font-family:'Courier New',monospace;font-size:15px;">[Figma]</span> <span style="font-family:'Rock Salt',cursive;font-size:14px;color:#5A6568;">2026</span></span>
-        <span style="font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#5A6568;"><b style="color:#131E21;">Highlight</b> — Courier New 13–15px para corchetes y numeración · Rock Salt 14px para años</span>
+      <p style="margin:40px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+        <sc-for list="{{ t.hierWhy }}" as="w" hint-placeholder-count="3">
+          <div style="border-top:2px solid #131E21;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ w.p }}</p></div>
+        </sc-for>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- 02 COLOR -->
-  <div style="margin-bottom: 64px; width: 100%;">
-    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
+  <div style="margin-bottom:96px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:18px;">
       <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(02)</span>
-      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Paleta de color</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">{{ t.colorT }}</h2>
     </div>
+    <p style="margin:0 0 30px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:80ch;color:#5A6568;">{{ t.colorIntro }}</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;">
-      <div>
-        <div style="height:110px;background:#E9E9E9;border:1px solid #131E21;"></div>
-        <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">Bone</p>
-        <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">#E9E9E9</p>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:11px;line-height:1.5;color:#5A6568;">Fondo de página claro; texto sobre fondo oscuro</p>
-      </div>
-      <div>
-        <div style="height:110px;background:#131E21;"></div>
-        <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">Ink</p>
-        <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">#131E21</p>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:11px;line-height:1.5;color:#5A6568;">Texto, reglas de 1px, secciones oscuras y cabecera fija</p>
-      </div>
-      <div>
-        <div style="height:110px;background:#1B282B;"></div>
-        <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">Ink 800</p>
-        <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">#1B282B</p>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:11px;line-height:1.5;color:#5A6568;">Fondo de imágenes, capturas y tarjetas de proyecto</p>
-      </div>
-      <div>
-        <div style="height:110px;background:#756CE5;"></div>
-        <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">Accent</p>
-        <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">#756CE5</p>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:11px;line-height:1.5;color:#5A6568;">Punto del logo y de titulares, círculo de flecha, botón de idioma, enlaces inline, cursor</p>
-      </div>
-      <div>
-        <div style="height:110px;background:#5A6568;"></div>
-        <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">Grey ink</p>
-        <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">#5A6568</p>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:11px;line-height:1.5;color:#5A6568;">Labels y texto secundario sobre bone</p>
-      </div>
-      <div>
-        <div style="height:110px;background:#9AA3A5;"></div>
-        <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">Grey bone</p>
-        <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">#9AA3A5</p>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:11px;line-height:1.5;color:#5A6568;">Labels y texto secundario sobre ink</p>
-      </div>
-      <div>
-        <div style="height:110px;background:#D8FD80;border:1px solid #131E21;"></div>
-        <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">Highlight</p>
-        <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">#D8FD80</p>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:11px;line-height:1.5;color:#5A6568;">Anillo del cursor sobre píxel oscuro, hover de enlaces y bordes en oscuro, numeración [01], «Next project»</p>
-      </div>
+      <sc-for list="{{ swatches }}" as="c" hint-placeholder-count="7">
+        <div>
+          <div style="height:110px;background:{{ c.hex }};border:{{ c.border }};box-sizing:border-box;"></div>
+          <p style="margin:10px 0 2px;font-size:13px;font-weight:700;">{{ c.name }}</p>
+          <p style="margin:0 0 6px;font-size:12px;color:#5A6568;">{{ c.hex }}</p>
+          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.5;color:#5A6568;">{{ c.use }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:56px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
+      <sc-for list="{{ t.colorWhy }}" as="w" hint-placeholder-count="4">
+        <div style="border-top:2px solid #131E21;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ w.p }}</p></div>
+      </sc-for>
     </div>
   </div>
 
-  <!-- 03 SPACING + MOTION -->
-  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:56px;margin-bottom:64px;">
+  <!-- 03 SPACING + 04 MOTION -->
+  <div class="ds-2col" style="display:grid;grid-template-columns:1fr 1.4fr;gap:56px;margin-bottom:96px;">
     <div>
       <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
         <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(03)</span>
-        <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Espaciado</h2>
+        <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">{{ t.spaceT }}</h2>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:22px;">
         <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;font-size:12px;color:#5A6568;">4px</span><span style="height:14px;width:4px;background:#756CE5;"></span></div>
@@ -359,316 +378,291 @@
         <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;font-size:12px;color:#5A6568;">24px</span><span style="height:14px;width:24px;background:#756CE5;"></span></div>
         <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;font-size:12px;color:#5A6568;">56px</span><span style="height:14px;width:56px;background:#756CE5;"></span></div>
         <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;font-size:12px;color:#5A6568;">112px</span><span style="height:14px;width:112px;background:#756CE5;"></span></div>
-        <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;font-size:12px;color:#5A6568;">190px</span><span style="height:14px;width:190px;background:#756CE5;"></span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;font-size:12px;color:#5A6568;">190px</span><span style="height:14px;width:min(190px,60vw);background:#756CE5;"></span></div>
       </div>
-      <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.75;color:#5A6568;">Escala base 4px. Grid de 12 columnas, gap 24px, margen lateral clamp(20–56px) idéntico en header, secciones y footer.</p>
+      <p style="margin:0 0 20px;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.spaceDesc }}</p>
+      <div style="border-top:2px solid #131E21;padding-top:16px;"><p style="margin:0 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.spaceWhy }}</p></div>
     </div>
     <div>
       <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
         <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(04)</span>
         <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Motion</h2>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-        <div style="border:1px solid #131E21;padding:24px;">
-          <p style="margin:0 0 8px;font-size:14px;font-weight:700;">Reveal</p>
-          <p style="margin:0 0 12px;font-size:12px;color:#756CE5;">.9s cubic-bezier(.16,1,.3,1)</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#5A6568;">Entrada de bloques al scroll: opacidad 0→1 y +28px.</p>
-        </div>
-        <div style="border:1px solid #131E21;padding:24px;">
-          <p style="margin:0 0 8px;font-size:14px;font-weight:700;">Line mask</p>
-          <p style="margin:0 0 12px;font-size:12px;color:#756CE5;">1.05s · delay .15s</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#5A6568;">Titulares: cada línea sube desde una máscara, escalonada.</p>
-        </div>
-        <div style="border:1px solid #131E21;padding:24px;">
-          <p style="margin:0 0 8px;font-size:14px;font-weight:700;">Horizontal pin</p>
-          <p style="margin:0 0 12px;font-size:12px;color:#756CE5;">scroll-linked · 420vh</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#5A6568;">Work anclado: el scroll vertical traduce la pista en X con barra de progreso.</p>
-        </div>
-        <div style="border:1px solid #131E21;padding:24px;">
-          <p style="margin:0 0 8px;font-size:14px;font-weight:700;">Cursor lerp</p>
-          <p style="margin:0 0 12px;font-size:12px;color:#756CE5;">0.14 / frame · rAF</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#5A6568;">Punto sin retardo, anillo interpolado. Oculto en táctil.</p>
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:20px;">
+        <sc-for list="{{ t.motion }}" as="m" hint-placeholder-count="4">
+          <div style="border:1px solid #131E21;padding:24px;">
+            <p style="margin:0 0 8px;font-size:14px;font-weight:700;">{{ m.h }}</p>
+            <p style="margin:0 0 12px;font-size:12px;color:#756CE5;">{{ m.spec }}</p>
+            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#5A6568;">{{ m.p }}</p>
+          </div>
+        </sc-for>
       </div>
+      <div style="border-top:2px solid #131E21;padding-top:16px;margin-top:28px;"><p style="margin:0 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.motionWhy }}</p></div>
     </div>
   </div>
 
   <!-- 05 CURSOR -->
-  <div style="margin-bottom: 0; padding: 40px calc(50vw - 50%); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background: #131E21; height: 916px; align-items: center; padding-top: 109px; padding-bottom: 109px">
-    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:34px;">
+  <div data-ob-dark="1" style="padding:clamp(70px,8vw,109px) calc(50vw - 50%);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:#131E21;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:24px;">
       <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(05)</span>
-      <h2 style="margin: 0; font-size: 34px; font-weight: 800; text-transform: uppercase; letter-spacing: -.02em; color: #E9E9E9; height: 63px; align-self: center">Cursor personalizado</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#E9E9E9;">{{ t.curT }}</h2>
     </div>
-    <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;">El cursor del sistema se oculta (<span style="color:#E9E9E9;">cursor: none</span>) y se sustituye por dos piezas: un <span style="color:#E9E9E9;">punto de 8px</span> que sigue al puntero sin retardo y un <span style="color:#E9E9E9;">anillo</span> que lo persigue con interpolación lerp 0.14 por frame. El color del anillo se decide leyendo la luminancia del píxel bajo el puntero, así que reacciona igual a fondos, fotos, iconos y botones en estado oscuro. Tres estados, todos con transición 0.35s cubic-bezier(.16,1,.3,1). Se oculta por completo en dispositivos táctiles.</p>
+    <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;"><sc-for list="{{ t.curIntro }}" as="s" hint-placeholder-count="7"><span style="color:{{ s.c }};">{{ s.x }}</span></sc-for></p>
+    <p class="ds-swipe" style="margin:0 0 12px;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;font-weight:600;">{{ t.swipe }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></p><div class="ds-scroll"><div class="ds-demo ds-demo-cur">
     <div style="position:relative;height:300px;margin-bottom:14px;display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden;border:1px solid #2A383B;">
       <div style="background:#E9E9E9;display:flex;align-items:center;justify-content:center;"><span style="font-size:72px;font-weight:800;letter-spacing:-.04em;color:#131E21;">Aa<span style="color:#756CE5;">.</span></span></div>
       <div style="background:#131E21;display:flex;align-items:center;justify-content:center;"><span style="font-size:72px;font-weight:800;letter-spacing:-.04em;color:#E9E9E9;">Aa<span style="color:#756CE5;">.</span></span></div>
       <div style="background:#1B282B;overflow:hidden;"><img src="img/ESTUDIO96/img-01_E96.webp" alt="" style="width:100%;height:100%;object-fit:cover;object-position:30% 70%;display:block;filter:brightness(.7);"></div>
       <div style="background:#E9E9E9;display:flex;align-items:center;justify-content:center;">
         <span style="display:inline-flex;align-items:center;gap:14px;padding:5px 5px 5px 18px;border:1px solid #131E21;border-radius:999px;animation:btnh 12s linear infinite;">
-          <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;animation:btnt 12s linear infinite;">Download CV</span>
+          <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;animation:btnt 12s linear infinite;">{{ t.dlcv }}</span>
           <span style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:arr 12s linear infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
         </span>
       </div>
-      <div style="background:#131E21;display:flex;align-items:center;justify-content:center;padding:28px 40px;">
-        <div style="width: 100%; height: 100%; background: #1B282B; display: flex; align-items: center; justify-content: center"><img src="img/cards-projects/P00_SMARTREST.png" alt="" style="max-width:60%;max-height:40%;object-fit:contain;"></div>
+      <div style="background:#131E21;display:flex;align-items:center;justify-content:center;padding:28px 20px;min-width:0;">
+        <div style="height:100%;max-width:100%;aspect-ratio:4/5;background:#1B282B;display:flex;align-items:center;justify-content:center;"><img src="img/cards-projects/P00_SMARTREST.png" alt="" style="max-width:66%;max-height:52%;object-fit:contain;"></div>
       </div>
-      <span style="position:absolute;top:50%;left:136px;width:56px;height:56px;box-sizing:border-box;border:1px solid #131E21;border-radius:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:cx 12s cubic-bezier(.16,1,.3,1) infinite .12s, ring 12s linear infinite;">
+      <span style="position:absolute;top:50%;left:10%;width:56px;height:56px;box-sizing:border-box;border:1px solid #131E21;border-radius:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:cx 12s cubic-bezier(.16,1,.3,1) infinite .12s, ring 12s linear infinite;">
         <span style="font-size:10px;font-weight:700;letter-spacing:.16em;color:#FFFFFF;opacity:0;animation:viewl 12s linear infinite;">VIEW</span>
       </span>
-      <span style="position:absolute;top:50%;left:136px;width:8px;height:8px;border-radius:50%;background:#756CE5;transform:translate(-50%,-50%);pointer-events:none;animation:cx 12s cubic-bezier(.16,1,.3,1) infinite, dotc 12s linear infinite;"></span>
+      <span style="position:absolute;top:50%;left:10%;width:8px;height:8px;border-radius:50%;background:#756CE5;transform:translate(-50%,-50%);pointer-events:none;animation:cx 12s cubic-bezier(.16,1,.3,1) infinite, dotc 12s linear infinite;"></span>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);margin-bottom:34px;">
-      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Fondo claro · borde ink</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl 12s linear infinite;">Fondo claro · borde ink</p></div>
-      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Fondo oscuro · borde #D8FD80</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl1 12s linear infinite;">Fondo oscuro · borde #D8FD80</p></div>
-      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Píxel oscuro de foto · #D8FD80</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl2 12s linear infinite;">Píxel oscuro de foto · #D8FD80</p></div>
-      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Botón · Link 80px</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl3 12s linear infinite;">Botón · Link 80px</p></div>
-      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Tarjeta · View 104px</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl4 12s linear infinite;">Tarjeta · View 104px</p></div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);">
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.cl1 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl 12s linear infinite;">{{ t.cl1 }}</p></div>
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.cl2 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl1 12s linear infinite;">{{ t.cl2 }}</p></div>
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.cl3 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl2 12s linear infinite;">{{ t.cl3 }}</p></div>
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.cl4 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl3 12s linear infinite;">{{ t.cl4 }}</p></div>
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.cl5 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:hl4 12s linear infinite;">{{ t.cl5 }}</p></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+    </div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px;margin-top:26px;">
       <div style="border:1px solid #2A383B;padding:30px;display:flex;flex-direction:column;align-items:center;gap:20px;">
-        <div style="height:120px;display:flex;align-items:center;justify-content:center;">
-          <div style="position:relative;width:56px;height:56px;border:1px solid #131E21;border-radius:50%;background:#E9E9E9;box-shadow:0 0 0 20px #E9E9E9;">
-            <span style="position:absolute;top:24px;left:24px;width:8px;height:8px;border-radius:50%;background:#756CE5;"></span>
-          </div>
-        </div>
-        <div style="text-align:center;">
-          <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">Default — fondo claro</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">Anillo 56px borde #131E21 · punto #756CE5</p>
-        </div>
+        <div style="height:120px;display:flex;align-items:center;justify-content:center;"><div style="position:relative;width:56px;height:56px;border:1px solid #131E21;border-radius:50%;background:#E9E9E9;box-shadow:0 0 0 20px #E9E9E9;"><span style="position:absolute;top:24px;left:24px;width:8px;height:8px;border-radius:50%;background:#756CE5;"></span></div></div>
+        <div style="text-align:center;"><p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">{{ t.cs1 }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">{{ t.cs1d }}</p></div>
       </div>
       <div style="border:1px solid #2A383B;padding:30px;display:flex;flex-direction:column;align-items:center;gap:20px;">
-        <div style="height:120px;display:flex;align-items:center;justify-content:center;">
-          <div style="position:relative;width:56px;height:56px;border:1px solid #D8FD80;border-radius:50%;">
-            <span style="position:absolute;top:24px;left:24px;width:8px;height:8px;border-radius:50%;background:#756CE5;"></span>
-          </div>
-        </div>
-        <div style="text-align:center;">
-          <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">Default — fondo oscuro</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">El borde cambia a #D8FD80 cuando el píxel bajo el puntero es oscuro: secciones, fotos, iconos y botones en hover</p>
-        </div>
+        <div style="height:120px;display:flex;align-items:center;justify-content:center;"><div style="position:relative;width:56px;height:56px;border:1px solid #D8FD80;border-radius:50%;"><span style="position:absolute;top:24px;left:24px;width:8px;height:8px;border-radius:50%;background:#756CE5;"></span></div></div>
+        <div style="text-align:center;"><p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">{{ t.cs2 }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">{{ t.cs2d }}</p></div>
       </div>
       <div style="border:1px solid #2A383B;padding:30px;display:flex;flex-direction:column;align-items:center;gap:20px;">
-        <div style="height:120px;display:flex;align-items:center;justify-content:center;">
-          <div style="position:relative;width:80px;height:80px;border:1px solid #756CE5;border-radius:50%;background:rgba(117,108,229,.15);">
-            <span style="position:absolute;top:36px;left:36px;width:8px;height:8px;border-radius:50%;background:#756CE5;"></span>
-          </div>
-        </div>
-        <div style="text-align:center;">
-          <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">Link — 80px</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">Relleno accent al 15%, borde #756CE5. Sobre enlaces y botones</p>
-        </div>
+        <div style="height:120px;display:flex;align-items:center;justify-content:center;"><div style="position:relative;width:80px;height:80px;border:1px solid #756CE5;border-radius:50%;background:rgba(117,108,229,.15);"><span style="position:absolute;top:36px;left:36px;width:8px;height:8px;border-radius:50%;background:#756CE5;"></span></div></div>
+        <div style="text-align:center;"><p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">{{ t.cs3 }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">{{ t.cs3d }}</p></div>
       </div>
       <div style="border:1px solid #2A383B;padding:30px;display:flex;flex-direction:column;align-items:center;gap:20px;">
-        <div style="height:120px;display:flex;align-items:center;justify-content:center;">
-          <div style="position:relative;width:104px;height:104px;border-radius:50%;background:#756CE5;display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:10px;font-weight:700;letter-spacing:.16em;color:#E9E9E9;">VIEW</span>
-            <span style="position:absolute;top:48px;left:48px;width:8px;height:8px;border-radius:50%;background:#D8FD80;"></span>
-          </div>
-        </div>
-        <div style="text-align:center;">
-          <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">View — 104px</p>
-          <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">Círculo accent sólido con etiqueta VIEW; el punto pasa a #D8FD80. Sobre tarjetas de proyecto</p>
-        </div>
+        <div style="height:120px;display:flex;align-items:center;justify-content:center;"><div style="position:relative;width:104px;height:104px;border-radius:50%;background:#756CE5;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-weight:700;letter-spacing:.16em;color:#E9E9E9;">VIEW</span><span style="position:absolute;top:48px;left:48px;width:8px;height:8px;border-radius:50%;background:#D8FD80;"></span></div></div>
+        <div style="text-align:center;"><p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#E9E9E9;">{{ t.cs4 }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;line-height:1.6;color:#9AA3A5;">{{ t.cs4d }}</p></div>
       </div>
+    </div>
+    <p style="margin:56px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;font-weight:700;">{{ t.why }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <sc-for list="{{ t.curWhy }}" as="w" hint-placeholder-count="3">
+        <div style="border-top:2px solid #E9E9E9;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#9AA3A5;">{{ w.p }}</p></div>
+      </sc-for>
     </div>
   </div>
 
   <!-- 06 BUTTONS -->
-  <div style="margin-bottom:64px;">
-    <div style="padding: 40px calc(50vw - 50%); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background: #131E21; height: 645px; padding-top: 90px; padding-bottom: 90px">
-      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:34px;">
-        <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(06)</span>
-        <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#E9E9E9;">Botones &amp; enlaces</h2>
-      </div>
-      <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;">Todas las acciones comparten la misma pieza: <span style="color:#E9E9E9;">texto en mayúsculas + círculo de 44px con flecha diagonal</span>. En hover la flecha gira 45° hasta quedar horizontal y el cursor pasa a estado link (80px). Transición 0.35s / 0.4s cubic-bezier(.16,1,.3,1).</p>
-      <div style="position:relative;height:300px;display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden;border:1px solid #2A383B;">
-        <div style="background:#E9E9E9;display:flex;align-items:center;justify-content:center;">
-          <span style="display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #131E21;border-radius:999px;animation:b0bg 12s linear infinite;">
-            <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;animation:b0tx 12s linear infinite;">Download CV</span>
-            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;animation:b0ci 12s linear infinite;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:b0ar 12s linear infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
-          </span>
-        </div>
-        <div style="background:#131E21;display:flex;align-items:center;justify-content:center;border-left:1px solid #2A383B;">
-          <span style="display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;animation:b1bd 12s linear infinite;">
-            <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#E9E9E9;">Get in touch</span>
-            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:b1ar 12s linear infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
-          </span>
-        </div>
-        <div style="background:#131E21;display:flex;align-items:center;justify-content:center;border-left:1px solid #2A383B;">
-          <span style="display:inline-flex;align-items:center;gap:8px;font-size:18px;animation:b3cl 12s linear infinite;">Frontend repo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:b3ar 12s linear infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
-        </div>
-        <span style="position:absolute;top:50%;left:227px;width:56px;height:56px;box-sizing:border-box;border:1px solid #131E21;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;animation:bx 12s cubic-bezier(.16,1,.3,1) infinite .12s, bring 12s linear infinite;"></span>
-        <span style="position:absolute;top:50%;left:227px;width:8px;height:8px;border-radius:50%;background:#756CE5;transform:translate(-50%,-50%);pointer-events:none;animation:bx 12s cubic-bezier(.16,1,.3,1) infinite;"></span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);margin:14px 0 40px;">
-        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Primario · fondo pasa a ink</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:bl0 12s linear infinite;">Primario · fondo pasa a ink</p></div>
-        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">En oscuro · borde #D8FD80</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:bl1 12s linear infinite;">En oscuro · borde #D8FD80</p></div>
-        <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">Inline · #D8FD80 + flecha</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:bl2 12s linear infinite;">Inline · #D8FD80 + flecha</p></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;">
-        <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">Primario</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Download CV, Send message. Reposo: borde ink y círculo accent. Hover: fondo ink, texto y flecha en accent.</p></div>
-        <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">Sobre fondo oscuro</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Get in touch y el email del footer. Borde bone que pasa a #D8FD80 en hover; el círculo se mantiene accent.</p></div>
-        <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">Enlace inline</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Repos, Instagram. Texto accent con flecha; en hover pasa a #D8FD80 y la flecha queda horizontal.</p></div>
-      </div>
+  <div data-ob-dark="1" style="margin-bottom:96px;padding:clamp(70px,7vw,90px) calc(50vw - 50%);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:#131E21;border-top:1px solid #2A383B;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:24px;">
+      <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(06)</span>
+      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#E9E9E9;">{{ t.btnT }}</h2>
     </div>
-    <div style="margin-top:40px;">
-      
-  </div>
+    <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;"><sc-for list="{{ t.btnIntro }}" as="s" hint-placeholder-count="3"><span style="color:{{ s.c }};">{{ s.x }}</span></sc-for></p>
+    <p class="ds-swipe" style="margin:0 0 12px;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;font-weight:600;">{{ t.swipe }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></p><div class="ds-scroll"><div class="ds-demo">
+    <div style="position:relative;height:300px;display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden;border:1px solid #2A383B;">
+      <div style="background:#E9E9E9;display:flex;align-items:center;justify-content:center;">
+        <span style="display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #131E21;border-radius:999px;animation:b0bg 12s linear infinite;">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;animation:b0tx 12s linear infinite;">{{ t.dlcv }}</span>
+          <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;animation:b0ci 12s linear infinite;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:b0ar 12s linear infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+        </span>
+      </div>
+      <div style="background:#131E21;display:flex;align-items:center;justify-content:center;border-left:1px solid #2A383B;">
+        <span style="display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;animation:b1bd 12s linear infinite;">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:#E9E9E9;">{{ t.git }}</span>
+          <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:b1ar 12s linear infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+        </span>
+      </div>
+      <div style="background:#131E21;display:flex;align-items:center;justify-content:center;border-left:1px solid #2A383B;">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:18px;animation:b3cl 12s linear infinite;">Frontend repo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:b3ar 12s linear infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+      </div>
+      <span style="position:absolute;top:50%;left:16.667%;width:56px;height:56px;box-sizing:border-box;border:1px solid #131E21;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;animation:bx 12s cubic-bezier(.16,1,.3,1) infinite .12s, bring 12s linear infinite;"></span>
+      <span style="position:absolute;top:50%;left:16.667%;width:8px;height:8px;border-radius:50%;background:#756CE5;transform:translate(-50%,-50%);pointer-events:none;animation:bx 12s cubic-bezier(.16,1,.3,1) infinite;"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);margin:14px 0 0;">
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.bl1 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:bl0 12s linear infinite;">{{ t.bl1 }}</p></div>
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.bl2 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:bl1 12s linear infinite;">{{ t.bl2 }}</p></div>
+      <div style="position:relative;height:40px;"><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;text-align:center;">{{ t.bl3 }}</p><p style="position:absolute;inset:0;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8FD80;text-align:center;animation:bl2 12s linear infinite;">{{ t.bl3 }}</p></div>
+    </div>
+    </div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:40px;margin-top:26px;">
+      <sc-for list="{{ t.btnTypes }}" as="b" hint-placeholder-count="3">
+        <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">{{ b.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ b.p }}</p></div>
+      </sc-for>
+    </div>
+    <p style="margin:56px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;font-weight:700;">{{ t.why }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <sc-for list="{{ t.btnWhy }}" as="w" hint-placeholder-count="3">
+        <div style="border-top:2px solid #E9E9E9;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#9AA3A5;">{{ w.p }}</p></div>
+      </sc-for>
+    </div>
   </div>
 
   <!-- 07 FORMS -->
-  <div style="margin-bottom:64px;">
+  <div style="margin-bottom:96px;">
     <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
       <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(07)</span>
-      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Formulario</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">{{ t.formT }}</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;border:1px solid #131E21;padding:40px;">
+    <div class="ds-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;border:1px solid #131E21;padding:clamp(24px,3vw,40px);">
       <div style="display:flex;flex-direction:column;gap:30px;">
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">Name</span>
-          <div style="border-bottom:1px solid #131E21;padding:12px 0;font-size:16px;color:#9AA3A5;">Your name</div>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ t.fName }}</span>
+          <div style="border-bottom:1px solid #131E21;padding:12px 0;font-size:16px;color:#9AA3A5;">{{ t.fNamePh }}</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">Email — foco / error</span>
-          <div style="border-bottom:1px solid #756CE5;padding:12px 0;font-size:16px;">hello@studio.com</div>
-          <span style="font-size:12px;color:#756CE5;">Introduce un email válido</span>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ t.fEmail }}</span>
+          <div style="border-bottom:1px solid #756CE5;padding:12px 0;font-size:16px;">hello@studio</div>
+          <span style="font-size:12px;color:#756CE5;">{{ t.fErr }}</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">Message</span>
-          <div style="border-bottom:1px solid #131E21;padding:12px 0 46px;font-size:16px;color:#9AA3A5;">Tell me about the project</div>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ t.fMsg }}</span>
+          <div style="border-bottom:1px solid #131E21;padding:12px 0 46px;font-size:16px;color:#9AA3A5;">{{ t.fMsgPh }}</div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:28px;">
         <div>
-          <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">Budget — chips</p>
+          <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ t.fBudget }}</p>
           <div style="display:flex;flex-wrap:wrap;gap:10px;">
             <span style="padding:11px 20px;border:1px solid #131E21;border-radius:999px;font-size:13px;">&lt; 3K</span>
             <span style="padding:11px 20px;border:1px solid #131E21;border-radius:999px;background:#131E21;color:#E9E9E9;font-size:13px;">3K — 8K</span>
             <span style="padding:11px 20px;border:1px solid #131E21;border-radius:999px;font-size:13px;">8K +</span>
           </div>
-          <p style="margin:12px 0 0;font-family:'Manrope',sans-serif;font-size:12px;color:#5A6568;">Chip seleccionado en ink sólido.</p>
+          <p style="margin:12px 0 0;font-family:'Manrope',sans-serif;font-size:12px;color:#5A6568;">{{ t.fChip }}</p>
         </div>
         <div style="display:flex;align-items:flex-start;gap:12px;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.7;color:#5A6568;">
           <span style="width:18px;height:18px;flex-shrink:0;margin-top:2px;border:1px solid #131E21;background:#756CE5;"></span>
-          Acepto la política de privacidad. Checkbox cuadrado, relleno accent al marcar.
+          {{ t.fCheck }}
         </div>
         <span style="width:fit-content;display:inline-flex;align-items:center;gap:20px;padding:6px 6px 6px 24px;border:1px solid #131E21;border-radius:999px;">
-          <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">Send message</span>
-          <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
-          </span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ t.fSend }}</span>
+          <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
         </span>
-        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#5A6568;">Campos sin caja: solo línea inferior de 1px. Etiqueta siempre visible arriba en mayúsculas; el placeholder es ejemplo, nunca etiqueta.</p>
       </div>
+    </div>
+    <p style="margin:40px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <sc-for list="{{ t.formWhy }}" as="w" hint-placeholder-count="3">
+        <div style="border-top:2px solid #131E21;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ w.p }}</p></div>
+      </sc-for>
     </div>
   </div>
 
-  <!-- 08 CARDS + MARQUEE -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:64px;">
-    <div>
+  <!-- 08 CARD + 09 MARQUEE -->
+  <div class="ds-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:96px;">
+    <div style="min-width:0;">
       <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
         <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(08)</span>
-        <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Tarjeta de proyecto</h2>
+        <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">{{ t.cardT }}</h2>
       </div>
-      <div style="background: #131E21; padding: 26px; width: 427px; height: 311px">
+      <div data-ob-dark="1" style="background:#131E21;padding:26px;max-width:360px;box-sizing:border-box;">
         <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(233,233,233,.25);padding:10px 0 14px;color:#E9E9E9;">
           <span style="font-size:11px;letter-spacing:.16em;">01</span>
-          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Branding / Web</span>
+          <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">App Web Frontend / Backend</span>
         </div>
-        <div style="height: 229px; background: #1B282B; width: 424px"></div>
+        <div style="aspect-ratio:4/5;background:#1B282B;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img src="img/cards-projects/P00_SMARTREST.png" alt="" style="max-width:66%;max-height:52%;object-fit:contain;"></div>
         <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-top:16px;color:#E9E9E9;">
-          <span style="font-size:28px;line-height:1;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;">Gocho</span>
-          <span style="font-family:'Rock Salt',cursive;font-size:14px;color:#B5BCBE;">2025</span>
+          <span style="font-size:28px;line-height:1;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;">SmartRest</span>
+          <span style="font-family:'Rock Salt',cursive;font-size:14px;color:#B5BCBE;">2026</span>
         </div>
       </div>
-      <p style="margin:18px 0 0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.75;color:#5A6568;">Anatomía fija: regla superior con índice y categoría, imagen 4:5 sobre #1B282B, nombre en display y año en Rock Salt. En hover la imagen escala a 1.04 y el cursor pasa a VIEW.</p>
+      <p style="margin:18px 0 20px;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.cardDesc }}</p>
+      <div style="border-top:2px solid #131E21;padding-top:16px;"><p style="margin:0 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.cardWhy }}</p></div>
     </div>
-    <div>
+    <div style="min-width:0;">
       <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
         <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(09)</span>
         <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Marquee</h2>
       </div>
-      <div style="border: 1px solid #131E21; padding: 20px 0; overflow: hidden; margin-bottom: 22px; border-width: 0px; background-color: #D9D8D8; width: 794px; height: 45px">
-        <div style="display:flex;gap:40px;align-items:center;white-space:nowrap;font-size:40px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;padding-left:20px;">
-          <span>Branding</span><span style="color:#756CE5;">✳</span><span>Web Design</span><span style="color:#756CE5;">✳</span><span>Front-End</span>
+      <div style="padding:20px 0;overflow:hidden;margin-bottom:16px;background:#D9D8D8;">
+        <div class="ds-marq" style="display:flex;width:max-content;white-space:nowrap;font-size:40px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">
+          <span style="display:flex;gap:40px;padding-right:40px;align-items:center;"><span>Branding</span><span style="color:#756CE5;">✳</span><span>Web Design</span><span style="color:#756CE5;">✳</span><span>Front-End</span><span style="color:#756CE5;">✳</span></span>
+          <span aria-hidden="true" style="display:flex;gap:40px;padding-right:40px;align-items:center;"><span>Branding</span><span style="color:#756CE5;">✳</span><span>Web Design</span><span style="color:#756CE5;">✳</span><span>Front-End</span><span style="color:#756CE5;">✳</span></span>
         </div>
       </div>
-      <p style="margin:0 0 26px;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.75;color:#5A6568;">Banda perfilada con relleno del fondo de página y letras en ink, bucle lineal 30–34s sin pausa.</p>
-      <div style="padding: 22px 24px; overflow: hidden; margin-bottom: 14px; background-color: #E9E9E9">
-        <div style="display:flex;gap:40px;align-items:center;">
-          <img src="img/icons/figma.svg" alt="Figma" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/photoshop.svg" alt="Photoshop" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/illustrator.svg" alt="Illustrator" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/after-effects.svg" alt="After Effects" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/html5.svg" alt="HTML5" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/css3.svg" alt="CSS3" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/javascript.svg" alt="JavaScript" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/angular.svg" alt="Angular" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/git.svg" alt="Git" style="height:30px;width:auto;display:block;">
-          <img src="img/icons/github.svg" alt="GitHub" style="height:30px;width:auto;display:block;">
+      <p style="margin:0 0 26px;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.marq1 }}</p>
+      <div style="padding:22px 0;overflow:hidden;margin-bottom:16px;">
+        <div class="ds-marq" style="display:flex;width:max-content;">
+          <span style="display:flex;gap:40px;padding-right:40px;align-items:center;"><img src="img/icons/figma.svg" alt="Figma" style="height:30px;width:auto;display:block;"><img src="img/icons/photoshop.svg" alt="Photoshop" style="height:30px;width:auto;display:block;"><img src="img/icons/illustrator.svg" alt="Illustrator" style="height:30px;width:auto;display:block;"><img src="img/icons/after-effects.svg" alt="After Effects" style="height:30px;width:auto;display:block;"><img src="img/icons/html5.svg" alt="HTML5" style="height:30px;width:auto;display:block;"><img src="img/icons/css3.svg" alt="CSS3" style="height:30px;width:auto;display:block;"><img src="img/icons/javascript.svg" alt="JavaScript" style="height:30px;width:auto;display:block;"><img src="img/icons/angular.svg" alt="Angular" style="height:30px;width:auto;display:block;"><img src="img/icons/git.svg" alt="Git" style="height:30px;width:auto;display:block;"><img src="img/icons/github.svg" alt="GitHub" style="height:30px;width:auto;display:block;"></span>
+          <span aria-hidden="true" style="display:flex;gap:40px;padding-right:40px;align-items:center;"><img src="img/icons/figma.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/photoshop.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/illustrator.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/after-effects.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/html5.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/css3.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/javascript.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/angular.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/git.svg" alt="" style="height:30px;width:auto;display:block;"><img src="img/icons/github.svg" alt="" style="height:30px;width:auto;display:block;"></span>
         </div>
       </div>
-      <p style="margin:0 0 26px;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.75;color:#5A6568;">Marquesina de tools: logos de herramientas en banda ink, mismo bucle lineal sin pausa.</p>
-    
+      <p style="margin:0 0 20px;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.marq2 }}</p>
+      <div style="border-top:2px solid #131E21;padding-top:16px;"><p style="margin:0 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.marqWhy }}</p></div>
     </div>
   </div>
 
   <!-- 10 NAVIGATION -->
-  <div style="margin-bottom: 64px; padding: 40px calc(50vw - 50%); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background: #131E21; padding-top: 123px; padding-bottom: 123px">
-    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:34px;">
+  <div data-ob-dark="1" style="margin-bottom:96px;padding:clamp(70px,8vw,123px) calc(50vw - 50%);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:#131E21;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:24px;">
       <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(10)</span>
-      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#E9E9E9;">Navegación</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#E9E9E9;">{{ t.navT }}</h2>
     </div>
-    <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;">Barra fija de 80px con cuatro piezas de izquierda a derecha: <span style="color:#E9E9E9;">logo · iconos de LinkedIn, Behance y GitHub · botón + · badge de idioma</span>. Tiene dos estados según el scroll y un menú desplegable que sustituye a los enlaces en línea.</p>
-    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;align-items:start;">
-        <div style="display:flex;flex-direction:column;gap:28px;">
+    <p style="margin:0 0 34px;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.8;max-width:100ch;color:#9AA3A5;"><sc-for list="{{ t.navIntro }}" as="s" hint-placeholder-count="3"><span style="color:{{ s.c }};">{{ s.x }}</span></sc-for></p>
+    <div class="ds-2col" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:28px;min-width:0;">
         <div>
-          <p style="margin:0 0 8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">A · Sobre el hero — transparente, sin logo</p>
+          <p style="margin:0 0 8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.navA }}</p>
           <div style="background:#1B282B;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;">
             <div style="display:flex;align-items:center;gap:18px;"><img src="img/icons/linkedin.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"><img src="img/icons/behance.svg" alt="" style="width:20px;height:20px;display:block;filter:brightness(0) invert(1);"><img src="img/icons/github.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"></div>
-            <div style="display:flex;align-items:center;gap:10px;"><span style="width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);display:flex;align-items:center;justify-content:center;color:#E9E9E9;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:26px;padding:0 11px;box-sizing:border-box;border-radius:999px;background:transparent;border:1px solid rgba(233,233,233,.35);font-size:11px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;">ES</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);display:flex;align-items:center;justify-content:center;color:#E9E9E9;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:26px;padding:0 11px;box-sizing:border-box;border-radius:999px;border:1px solid rgba(233,233,233,.35);font-size:11px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;">{{ langBtn }}</span></div>
           </div>
         </div>
         <div>
-          <p style="margin:0 0 8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">B · Pasado el 50% del hero — barra ink con logo</p>
-          <div style="background:#131E21;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 16px 40px rgba(0,0,0,.3);">
-            <div style="display:flex;align-items:center;gap:18px;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="" style="height:24px;width:auto;display:block;"><span style="width:1px;height:20px;background:rgba(233,233,233,.2);"></span><img src="img/icons/linkedin.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"><img src="img/icons/behance.svg" alt="" style="width:20px;height:20px;display:block;filter:brightness(0) invert(1);"><img src="img/icons/github.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"></div>
-            <div style="display:flex;align-items:center;gap:10px;"><span style="width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);display:flex;align-items:center;justify-content:center;color:#E9E9E9;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:26px;padding:0 11px;box-sizing:border-box;border-radius:999px;background:#756CE5;border:1px solid #756CE5;font-size:11px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;">ES</span></div>
-          </div>
-        </div>
-        </div>
-        <div>
-          <p style="margin:0 0 8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">C · Menú desplegable</p>
-          <div style="position:relative;height:360px;overflow:hidden;background:#1B282B;border:1px solid #2A383B;">
-            <div style="position:absolute;top:0;left:0;right:0;height:56px;box-sizing:border-box;background:#131E21;padding:0 20px;display:flex;align-items:center;justify-content:space-between;z-index:2;">
-              <div style="display:flex;align-items:center;gap:18px;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="" style="height:22px;width:auto;display:block;"><span style="width:1px;height:20px;background:rgba(233,233,233,.2);"></span><img src="img/icons/linkedin.svg" alt="" style="width:16px;height:16px;display:block;filter:brightness(0) invert(1);"><img src="img/icons/behance.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"><img src="img/icons/github.svg" alt="" style="width:16px;height:16px;display:block;filter:brightness(0) invert(1);"></div>
-              <div style="display:flex;align-items:center;gap:10px;">
-                <span style="width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);display:flex;align-items:center;justify-content:center;color:#E9E9E9;animation:dmPlusBg 8s linear infinite;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="animation:dmPlus 8s cubic-bezier(.16,1,.3,1) infinite;"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></span>
-                <span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:26px;padding:0 11px;box-sizing:border-box;border-radius:999px;background:#756CE5;border:1px solid #756CE5;font-size:11px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;">ES</span>
-              </div>
-            </div>
-            <div style="position:absolute;top:56px;left:0;right:0;z-index:1;background:#131E21;border-top:1px solid rgba(233,233,233,.14);box-shadow:0 30px 60px rgba(0,0,0,.35);padding:16px 20px 20px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:end;animation:dmPanel 8s cubic-bezier(.16,1,.3,1) infinite;">
-              <div style="display:flex;flex-direction:column;">
-                <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite 0.00s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[01]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">Work</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
-                <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite 0.12s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[02]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;animation:dmHovC 8s linear infinite;">About</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;animation:dmHovAc 8s linear infinite;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:dmHovR 8s cubic-bezier(.16,1,.3,1) infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
-                <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite 0.24s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[03]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">Experience</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
-                <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite 0.36s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[04]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">Contact</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:10px;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite .5s;">
-                <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;line-height:1.35;color:#E9E9E9;">Have a project in mind? Let's work together.</p>
-                <span style="width:fit-content;display:inline-flex;align-items:center;gap:8px;padding:3px 3px 3px 10px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;font-size:9px;">hello@orianabonato.com<span style="width:20px;height:20px;border-radius:50%;background:#756CE5;display:flex;align-items:center;justify-content:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#E9E9E9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></span>
-              </div>
-            </div>
-            <span style="position:absolute;z-index:3;width:28px;height:28px;box-sizing:border-box;border:1px solid #D8FD80;border-radius:50%;pointer-events:none;animation:dmCur 8s cubic-bezier(.16,1,.3,1) infinite, dmRing 8s linear infinite;"></span>
+          <p style="margin:0 0 8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.navB }}</p>
+          <div style="background:#131E21;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 16px 40px rgba(0,0,0,.3);border:1px solid #2A383B;">
+            <div style="display:flex;align-items:center;gap:18px;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="" style="height:24px;width:auto;display:block;"><span style="width:1px;height:20px;background:rgba(233,233,233,.2);"></span><img src="img/icons/linkedin.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"><img src="img/icons/github.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);display:flex;align-items:center;justify-content:center;color:#E9E9E9;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:26px;padding:0 11px;box-sizing:border-box;border-radius:999px;background:#756CE5;border:1px solid #756CE5;font-size:11px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;">{{ langBtn }}</span></div>
           </div>
         </div>
       </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:40px;">
-      <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">Estado hero</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Fondo transparente, sin logo ni sombra. Iconos de LinkedIn, Behance y GitHub en blanco y badge de idioma solo con borde claro.</p></div>
-      <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">Estado scroll</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Al pasar el 50% del hero la barra se rellena de #131E21 con sombra al 30%, el logo entra deslizándose y el badge pasa a morado.</p></div>
-      <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">Botón +</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Círculo de 44px con borde claro. Al abrir gira 135° hasta × y se rellena de morado; en hover el borde pasa a #D8FD80.</p></div>
-      <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">Panel</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">Baja desde la barra con las secciones en Bricolage 800, numeradas en Courier New y escalonadas 0.06s. Cada sección lleva la flecha del enlace inline: en hover texto y flecha pasan a #D8FD80 y la flecha gira a horizontal. A la derecha, CTA y correo.</p></div>
+      <div style="min-width:0;">
+        <p style="margin:0 0 8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.navC }}</p>
+        <div>
+        <div style="position:relative;height:360px;overflow:hidden;background:#1B282B;border:1px solid #2A383B;">
+          <div style="position:absolute;top:0;left:0;right:0;height:56px;box-sizing:border-box;background:#131E21;padding:0 20px;display:flex;align-items:center;justify-content:space-between;z-index:2;">
+            <div style="display:flex;align-items:center;gap:18px;"><img src="assets/logo/logo-completo-blanco-morado.svg" alt="" style="height:22px;width:auto;display:block;"><span style="width:1px;height:20px;background:rgba(233,233,233,.2);"></span><img class="ds-nd-soc" src="img/icons/linkedin.svg" alt="" style="width:16px;height:16px;display:block;filter:brightness(0) invert(1);"><img class="ds-nd-soc" src="img/icons/behance.svg" alt="" style="width:18px;height:18px;display:block;filter:brightness(0) invert(1);"><img class="ds-nd-soc" src="img/icons/github.svg" alt="" style="width:16px;height:16px;display:block;filter:brightness(0) invert(1);"></div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(233,233,233,.35);display:flex;align-items:center;justify-content:center;color:#E9E9E9;animation:dmPlusBg 8s linear infinite;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="animation:dmPlus 8s cubic-bezier(.16,1,.3,1) infinite;"><path d="M12 4v16"></path><path d="M4 12h16"></path></svg></span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:26px;padding:0 11px;box-sizing:border-box;border-radius:999px;background:#756CE5;border:1px solid #756CE5;font-size:11px;font-weight:700;letter-spacing:.14em;color:#FFFFFF;">{{ langBtn }}</span>
+            </div>
+          </div>
+          <div class="ds-nav-panel" style="position:absolute;top:56px;left:0;right:0;z-index:1;background:#131E21;border-top:1px solid rgba(233,233,233,.14);box-shadow:0 30px 60px rgba(0,0,0,.35);padding:16px 20px 20px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:end;animation:dmPanel 8s cubic-bezier(.16,1,.3,1) infinite;">
+            <div style="display:flex;flex-direction:column;">
+              <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite 0s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[01]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.m1 }}</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
+              <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite .12s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[02]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;animation:dmHovC 8s linear infinite;">{{ t.m2 }}</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;animation:dmHovAc 8s linear infinite;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:dmHovR 8s cubic-bezier(.16,1,.3,1) infinite;"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
+              <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite .24s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[03]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.m3 }}</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
+              <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(233,233,233,.14);padding:7px 0;color:#E9E9E9;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite .36s;"><span style="font-family:'Courier New',monospace;font-size:10px;color:#D8FD80;">[04]</span><span style="font-size:24px;line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.m4 }}</span><span style="margin-left:auto;align-self:center;display:inline-flex;color:#756CE5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></div>
+            </div>
+            <div class="ds-nav-cta" style="display:flex;flex-direction:column;gap:10px;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite .5s;">
+              <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;line-height:1.35;color:#E9E9E9;">{{ navCta }}</p>
+              <span style="width:fit-content;display:inline-flex;align-items:center;gap:8px;padding:3px 3px 3px 10px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;font-size:9px;">hello@orianabonato.com<span style="width:20px;height:20px;border-radius:50%;background:#756CE5;display:flex;align-items:center;justify-content:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#E9E9E9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></span>
+            </div>
+          </div>
+          <span style="position:absolute;z-index:3;width:28px;height:28px;box-sizing:border-box;border:1px solid #D8FD80;border-radius:50%;pointer-events:none;animation:dmCur 8s cubic-bezier(.16,1,.3,1) infinite, dmRing 8s linear infinite;"></span>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:40px;margin-top:40px;">
+      <sc-for list="{{ t.navParts }}" as="b" hint-placeholder-count="4">
+        <div style="border-top:1px solid #2A383B;padding-top:18px;"><p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#E9E9E9;">{{ b.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.7;color:#9AA3A5;">{{ b.p }}</p></div>
+      </sc-for>
+    </div>
+    <p style="margin:56px 0 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;font-weight:700;">{{ t.why }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;">
+      <sc-for list="{{ t.navWhy }}" as="w" hint-placeholder-count="3">
+        <div style="border-top:2px solid #E9E9E9;padding-top:16px;"><p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#E9E9E9;">{{ w.h }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#9AA3A5;">{{ w.p }}</p></div>
+      </sc-for>
     </div>
   </div>
 
@@ -676,60 +670,25 @@
   <div style="padding-bottom:clamp(40px,5vw,72px);">
     <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
       <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(11)</span>
-      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Iconografía</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">{{ t.iconT }}</h2>
     </div>
-    <div style="display:flex;gap:30px;align-items:center;">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:110px;">
-        <span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
-        <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;">Arrow out</span>
+    <div style="display:flex;gap:30px;align-items:center;flex-wrap:wrap;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:96px;"><span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;text-align:center;">{{ t.i1 }}</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:96px;"><span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg></span><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;text-align:center;">{{ t.i2 }}</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:96px;"><span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;text-align:center;">{{ t.i3 }}</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:96px;"><span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></span><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;text-align:center;">{{ t.i4 }}</span></div>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:110px;">
-        <span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg></span>
-        <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;">Arrow down</span>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:110px;">
-        <span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
-        <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;">Arrow right</span>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:110px;">
-        <span style="width:56px;height:56px;border:1px solid #131E21;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#131E21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></span>
-        <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5A6568;">Close</span>
-      </div>
-      <p style="margin:0;flex:1;font-family:'Manrope',sans-serif;font-size:13px;line-height:1.75;color:#5A6568;">Trazo 1.6px, extremos redondeados, viewBox 24, siempre en currentColor. La flecha diagonal es el único indicador de acción; no se mezclan iconos rellenos con lineales. Los logos de herramientas viven en una banda marquee aparte.</p>
+      <p style="margin:0;flex:1 1 320px;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.iconDesc }}</p>
     </div>
-  </div>
-
-  <!-- 12 STATUS -->
-  <div>
-    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:26px;">
-      <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(12)</span>
-      <h2 style="margin:0;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;">Estado por pantalla</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
-      <div style="border:1px solid #131E21;padding:22px;">
-        <p style="margin:0 0 10px;font-size:14px;font-weight:700;">Portfolio Desktop</p>
-        <p style="margin:0;font-size:13px;color:#756CE5;font-weight:600;">✓ Sincronizado</p>
-      </div>
-      <div style="border:1px solid #131E21;padding:22px;">
-        <p style="margin:0 0 10px;font-size:14px;font-weight:700;">Design System</p>
-        <p style="margin:0;font-size:13px;color:#756CE5;font-weight:600;">✓ Sincronizado</p>
-      </div>
-      <div style="border:1px solid #9AA3A5;padding:22px;">
-        <p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#5A6568;">Portfolio Mobile</p>
-        <p style="margin:0;font-size:13px;color:#9AA3A5;font-weight:600;">Pendiente de sincronizar</p>
-      </div>
-      <div style="border:1px solid #9AA3A5;padding:22px;">
-        <p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#5A6568;">Project Detail Mobile</p>
-        <p style="margin:0;font-size:13px;color:#9AA3A5;font-weight:600;">Pendiente de sincronizar</p>
-      </div>
-    </div>
+    <div style="border-top:2px solid #131E21;padding-top:16px;margin-top:36px;max-width:80ch;"><p style="margin:0 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756CE5;font-weight:700;">{{ t.why }}</p><p style="margin:0;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.75;color:#5A6568;">{{ t.iconWhy }}</p></div>
   </div>
 
 </div>
   <!-- FOOTER -->
   <footer data-ob-dark="1" style="font-family:'Bricolage Grotesque',sans-serif;background:#131E21;color:#E9E9E9;padding:clamp(70px,9vw,130px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 28px;margin-top:clamp(64px,8vw,120px);">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:clamp(50px,7vw,100px);">
-      <p style="margin:0;font-family:'Manrope',sans-serif;font-weight:500;font-size:clamp(20px,2vw,32px);line-height:1.25;max-width:22ch;">¿Tienes un proyecto en mente? Trabajemos juntos.</p>
+      <p style="margin:0;font-family:'Manrope',sans-serif;font-weight:500;font-size:clamp(20px,2vw,32px);line-height:1.25;max-width:22ch;">{{ t.fCta }}</p>
       <a href="contacto.html" class="ob-btn ob-btn-touch" style="width:fit-content;display:inline-flex;align-items:center;gap:20px;padding:6px 6px 6px 24px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
         <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">hello@orianabonato.com</span>
         <span class="ob-circ" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;">
@@ -737,59 +696,339 @@
         </span>
       </a>
     </div>
-    <h2 style="margin:0;font-size:clamp(40px,13.5vw,250px);line-height:.82;letter-spacing:-.04em;font-weight:800;text-transform:uppercase;">Hablemos<span style="color:#756CE5;">.</span></h2>
+    <h2 style="margin:0;font-size:clamp(40px,13.5vw,250px);line-height:.82;letter-spacing:-.04em;font-weight:800;text-transform:uppercase;">{{ t.fTalk }}<span style="color:#756CE5;">.</span></h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px;border-top:1px solid rgba(233,233,233,.22);margin-top:clamp(40px,5vw,70px);padding-top:26px;">
       <div>
-        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Redes</p>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.fSocial }}</p>
         <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
           <a href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">LinkedIn</a>
           <a href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Behance</a>
         </div>
       </div>
       <div>
-        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Menú</p>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.fMenu }}</p>
         <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-          <a href="index.html#work" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Proyectos</a>
-          <a href="index.html#about" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Sobre mí</a>
-          <a href="index.html#experience" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Experiencia</a>
+          <a href="index.html#work" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.m1 }}</a>
+          <a href="index.html#about" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.m2 }}</a>
+          <a href="index.html#experience" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.m3 }}</a>
           <a href="design-system.html" style="color:#E9E9E9;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Design System</a>
         </div>
       </div>
       <div>
-        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Hora local</p>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.fTime }}</p>
         <p style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ clock }}</p>
       </div>
       <div>
-        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">Ubicación</p>
-        <p style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">Vigo, España — en remoto (CET)</p>
+        <p style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.fBased }}</p>
+        <p style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;">{{ t.fBasedVal }}</p>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:60px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
       <span>© 2026 Oriana Bonato</span>
-      <span>Diseñado y programado por Oriana Bonato</span>
+      <span>{{ t.fCredit }}</span>
     </div>
   </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600}}">
 class Component extends DCLogic {
-  state = { clock: "", nav: false };
+  state = { clock: "", nav: false, lang: (() => { try { return localStorage.getItem("ob-lang") || "en"; } catch (e) { return "en"; } })() };
+  curRingRef = React.createRef(); curDotRef = React.createRef();
+
   componentDidMount() {
     this._clock();
+    this._clockId = setInterval(() => this._clock(), 30000);
     this._onKeyNav = (e) => { if (e.key === "Escape" && this.state.nav) this.setState({ nav: false }); };
     window.addEventListener("keydown", this._onKeyNav);
-    this._clockId = setInterval(() => this._clock(), 30000);
+    this._curInit();
   }
-  componentWillUnmount() { clearInterval(this._clockId); window.removeEventListener("keydown", this._onKeyNav); }
+  componentWillUnmount() {
+    clearInterval(this._clockId);
+    window.removeEventListener("keydown", this._onKeyNav);
+    if (this._curRaf) cancelAnimationFrame(this._curRaf);
+    if (this._onCurMove) window.removeEventListener("mousemove", this._onCurMove);
+    if (this._onCurLeave) document.removeEventListener("mouseleave", this._onCurLeave);
+    document.documentElement.classList.remove("ds-cursor");
+  }
   _clock() {
     const t = new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Madrid", hour: "2-digit", minute: "2-digit" });
     this.setState({ clock: t + " CET" });
   }
+
+  // Cursor personalizado: punto sin retardo + anillo con lerp 0.14. Solo con ratón.
+  _curInit() {
+    if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    document.documentElement.classList.add("ds-cursor");
+    this._cur = { x: -100, y: -100, rx: -100, ry: -100, key: null, seen: false };
+    this._onCurMove = (e) => {
+      const c = this._cur; c.x = e.clientX; c.y = e.clientY;
+      if (!c.seen) { c.seen = true; c.rx = c.x; c.ry = c.y; this._curShow(1); }
+      this._curDetect(e.target);
+    };
+    this._onCurLeave = () => { this._curShow(0); this._cur.seen = false; };
+    window.addEventListener("mousemove", this._onCurMove, { passive: true });
+    document.addEventListener("mouseleave", this._onCurLeave);
+    const loop = () => {
+      const c = this._cur, r = this.curRingRef.current, d = this.curDotRef.current;
+      if (r && d) {
+        c.rx += (c.x - c.rx) * 0.14; c.ry += (c.y - c.ry) * 0.14;
+        d.style.transform = "translate3d(" + c.x + "px," + c.y + "px,0)";
+        r.style.transform = "translate3d(" + c.rx.toFixed(1) + "px," + c.ry.toFixed(1) + "px,0)";
+      }
+      this._curRaf = requestAnimationFrame(loop);
+    };
+    this._curRaf = requestAnimationFrame(loop);
+  }
+  _curShow(v) { [this.curRingRef.current, this.curDotRef.current].forEach((el) => { if (el) el.style.opacity = v; }); }
+  _curDetect(t) {
+    const r = this.curRingRef.current; if (!r || !t || !t.closest) return;
+    const link = !!t.closest("a, button, [role=\"button\"], label, summary, select");
+    const dark = !!t.closest("[data-ob-dark]");
+    const key = (link ? "l" : "") + (dark ? "d" : "");
+    if (key === this._cur.key) return; this._cur.key = key;
+    if (link) { r.style.width = "80px"; r.style.height = "80px"; r.style.margin = "-40px 0 0 -40px"; r.style.background = "rgba(117,108,229,.15)"; r.style.borderColor = "#756CE5"; }
+    else { r.style.width = "56px"; r.style.height = "56px"; r.style.margin = "-28px 0 0 -28px"; r.style.background = "transparent"; r.style.borderColor = dark ? "#D8FD80" : "#131E21"; }
+  }
+
   renderVals() {
+    const es = this.state.lang === "es";
+    const C = (en, s) => (es ? s : en);
+    // Texto con fragmentos resaltados: **así** → color de resalte
+    const R = (str, hl) => str.split(/\*\*(.+?)\*\*/).map((x, i) => ({ x, c: i % 2 ? hl : "inherit" }));
+    const W = (arr) => arr.map(([h, p]) => ({ h, p }));
+    const DARK = "#E9E9E9", LIGHT = "#131E21";
     const open = !!this.state.nav;
-    const labels = ["Proyectos", "Sobre mí", "Experiencia", "Contacto"];
+    const labels = es ? ["Proyectos", "Sobre mí", "Experiencia", "Contacto"] : ["Work", "About", "Experience", "Contact"];
+
+    const t = {
+      status: C("Status", "Estado"), version: C("v1.1 — In progress", "v1.1 — En curso"),
+      why: C("Why", "Por qué"),
+      intro: R(C(
+        "This document gathers the visual decisions behind the portfolio: which pieces it is made of, how they are used and **why**. The whole system starts from one idea: a sober two-tone base (ink and bone) where **a single purple accent** points to what matters.",
+        "Este documento recoge las decisiones visuales del portfolio: qué piezas lo forman, cómo se usan y **por qué**. Todo el sistema parte de una idea: una base sobria en dos tonos (ink y bone) donde **un único acento morado** señala lo importante."), "#756CE5"),
+
+      logoT: "Logo",
+      logoIntro: R(C(
+        "A wordmark: the name set in **Bricolage Grotesque** on two lines, closed by the **purple full stop** of the accent colour.",
+        "Logotipo tipográfico: el nombre en **Bricolage Grotesque** en dos líneas, cerrado con el **punto morado** del color de acento."), LIGHT),
+      logoDark: C("Black version · on light backgrounds", "Versión negra · sobre fondo claro"),
+      logoDarkSpec: C("Letters #131E21 · dot #756CE5", "Letras #131E21 · punto #756CE5"),
+      logoLight: C("White version · on dark backgrounds", "Versión blanca · sobre fondo oscuro"),
+      logoLightSpec: C("Letters #FFFFFF · dot #756CE5", "Letras #FFFFFF · punto #756CE5"),
+      logoWhy: W(es ? [
+        ["El nombre es la marca", "En un portfolio personal lo que se tiene que recordar es el nombre, así que el logo es tipográfico y no un símbolo. Usa la misma familia que los titulares: logo y web hablan con la misma voz."],
+        ["El punto como firma", "El punto es el único elemento de color y se repite al final de los titulares (Hablemos., Selected work.). Así cualquier título del sitio «firma» igual que el logo y el sistema se reconoce sin necesidad del logo completo."],
+        ["Solo dos versiones", "Negra sobre claro y blanca sobre oscuro, siempre con el punto en #756CE5. Pocas variantes significan menos decisiones al aplicarlo y más reconocimiento. Nunca se coloca sobre el morado ni sobre degradados."],
+      ] : [
+        ["The name is the brand", "In a personal portfolio, the name is what people need to remember, so the logo is a wordmark rather than a symbol. It uses the same family as the headings: logo and site speak with one voice."],
+        ["The full stop as a signature", "The dot is the only element in colour and it repeats at the end of headings (Let's talk., Selected work.). Every title on the site 'signs' like the logo, so the system is recognisable even without the full logo."],
+        ["Only two versions", "Black on light and white on dark, always with the dot in #756CE5. Fewer variants mean fewer decisions when applying it and stronger recognition. It never sits on the purple or on gradients."],
+      ]),
+
+      typoT: C("Typography", "Tipografía"),
+      typoIntro: R(C(
+        "Four families, each with one job. **Bricolage Grotesque** builds headings and interface, **Manrope** carries body copy and editorial lines, and **Rock Salt** and **Courier New** appear only as occasional highlights, never in paragraphs.",
+        "Cuatro familias con un papel cada una. **Bricolage Grotesque** construye titulares e interfaz, **Manrope** lleva el cuerpo y las frases editoriales, y **Rock Salt** y **Courier New** aparecen solo como highlights puntuales, nunca en párrafos."), DARK),
+      tf1Role: C("Display & UI", "Display e interfaz"),
+      tf1Desc: C("Variable 200–800. 800 for headings, 700 for cards and job titles, 500 for labels and navigation, 300 for secondary text.", "Variable 200–800. 800 en titulares, 700 en tarjetas y puestos, 500 en labels y navegación, 300 en texto secundario."),
+      tf2Sample: C("Every branch I explored led me to code.", "Cada camino que exploré me llevó al código."),
+      tf2Role: C("Body & editorial", "Cuerpo y editorial"),
+      tf2Desc: C("400 for body (14–16px, LH 1.85, max. 62ch), 500 for highlighted lines and CTAs, 200 for subtitles.", "400 para cuerpo (14–16px, LH 1.85, máx. 62ch), 500 para frases destacadas y CTA, 200 para subtítulos."),
+      tf3Role: C("Handwritten highlight", "Highlight manuscrito"),
+      tf3Desc: C("Only project years on the cards, at 13–14px in grey. Never in headings or running text.", "Solo años de proyecto en las tarjetas, a 13–14px en gris. Nunca en titulares ni en texto corrido."),
+      tf4Role: C("Technical highlight", "Highlight técnico"),
+      tf4Desc: C("Words in brackets, [01] numbering and stack pills, at 13–15px.", "Palabras entre corchetes, numeración [01] y píldoras de stack, a 13–15px."),
+      tl1: C("Bricolage · Display & UI", "Bricolage · Display e UI"), tl2: C("Manrope · Body", "Manrope · Cuerpo"),
+      tl3: C("Rock Salt · Years", "Rock Salt · Años"), tl4: C("Courier New · [Code]", "Courier New · [Código]"),
+      tc1: C("Display, headings and UI · 800 / 700 / 500 / 300", "Display, titulares y UI · 800 / 700 / 500 / 300"),
+      tc2: C("Body and editorial · 400 body, 500 highlighted lines, 200 subtitles", "Cuerpo y editorial · 400 cuerpo, 500 frases destacadas, 200 subtítulos"),
+      tc3: C("Occasional highlight · project years", "Highlight puntual · años de proyecto"),
+      tc4: C("Occasional highlight · [Figma] [React], [01] numbering, stack pills", "Highlight puntual · [Figma] [React], numeración [01], píldoras de stack"),
+      typoWhy: W(es ? [
+        ["Una familia flexible para mandar", "Bricolage Grotesque es variable en peso y anchura: permite titulares muy compactos en 800 y una interfaz ligera sin cargar otra fuente. Su carácter algo irregular aporta personalidad sin perder legibilidad."],
+        ["Otra distinta para leer", "Manrope es más abierta y redonda. Contrasta con la densidad de los titulares y mantiene los párrafos cómodos a 14–16px, que es donde el visitante pasa más tiempo leyendo."],
+        ["Acentos de voz, no de texto", "Rock Salt aporta lo personal y Courier New lo técnico: las dos caras del perfil, diseño y código. Se reservan para detalles porque, si aparecieran en todas partes, dejarían de destacar."],
+      ] : [
+        ["A flexible family to lead", "Bricolage Grotesque is variable in weight and width: it allows very compact 800 headings and a light interface without loading another font. Its slightly irregular character adds personality without losing legibility."],
+        ["A different one to read", "Manrope is more open and rounded. It contrasts with the density of the headings and keeps paragraphs comfortable at 14–16px, which is where visitors spend most of their reading time."],
+        ["Accents of voice, not of text", "Rock Salt brings the personal side and Courier New the technical one: the two sides of the profile, design and code. They are kept for details because, if they appeared everywhere, they would stop standing out."],
+      ]),
+      hierT: C("Hierarchy", "Jerarquía"),
+      hierIntro: C("Nine levels, from the hero to the smallest label. Large sizes scale with the screen using clamp(); small ones stay fixed so they always remain readable.", "Nueve niveles, del hero a la etiqueta más pequeña. Los tamaños grandes escalan con la pantalla mediante clamp(); los pequeños son fijos para que siempre se lean bien."),
+      h1: C("hero, «Let's talk.»", "hero, «Hablemos.»"), h2s: "Selected work", h2: C("Selected Work, project title", "Selected Work, título de proyecto"),
+      h3s: C("The problem", "El problema"), h3: C("section titles", "títulos de sección"), h4: C("cards and job titles", "tarjetas y puestos"),
+      h5s: C("I think in systems before screens", "Pienso en sistemas antes que en pantallas"), h5: C("Approach block", "bloque Approach"),
+      h6: C("highlighted lines, CTA", "frases destacadas, CTA"),
+      h7s: C("I started in graphic design in 2019 and spent the following years trying a bit of everything.", "Empecé en diseño gráfico en 2019 y pasé los años siguientes probando un poco de todo."),
+      h7: C("max. 62ch", "máx. 62ch"), h8s: "Approach", h8: C("uppercase · #5A6568 / #9AA3A5", "mayúsculas · #5A6568 / #9AA3A5"),
+      h9: C("Courier New 13–15px for brackets and numbering · Rock Salt 14px for years", "Courier New 13–15px para corchetes y numeración · Rock Salt 14px para años"),
+      hierWhy: W(es ? [
+        ["Saltos grandes entre niveles", "La escala pasa de golpe de 200px a 52px y de 52px a 16px. Con saltos tan claros, la jerarquía se entiende de un vistazo y no hace falta recurrir al color para ordenar la información."],
+        ["Interlineado según el tamaño", "Apretado (.82) en display, para que los titulares se lean como un bloque compacto, y amplio (1.85) en el cuerpo, para que los párrafos respiren."],
+        ["Mayúsculas solo arriba", "Titulares y labels en mayúsculas; el texto de lectura nunca. Así las mayúsculas funcionan como señal de «esto es estructura» y no cansan al leer."],
+      ] : [
+        ["Big jumps between levels", "The scale drops sharply from 200px to 52px and from 52px to 16px. With such clear steps, the hierarchy reads at a glance and colour isn't needed to organise information."],
+        ["Line height by size", "Tight (.82) for display, so headings read as a compact block, and loose (1.85) for body text, so paragraphs can breathe."],
+        ["Uppercase only at the top", "Headings and labels in uppercase; reading text never. Uppercase becomes a signal for 'this is structure' and doesn't tire the eye."],
+      ]),
+
+      colorT: C("Colour palette", "Paleta de color"),
+      colorIntro: C("Seven colours: two bases, one darker ink for images, two greys for secondary text and two accents with very defined roles.", "Siete colores: dos bases, un ink más oscuro para imágenes, dos grises para texto secundario y dos acentos con funciones muy definidas."),
+      colorWhy: W(es ? [
+        ["Ink y bone, no negro y blanco", "#131E21 y #E9E9E9 son más suaves a la vista que el negro y el blanco puros, y el matiz verdoso del ink da carácter a toda la web sin necesidad de más color."],
+        ["Un solo acento", "El morado #756CE5 se reserva para lo que importa: el punto, las flechas de acción y el cursor. Si todo fuera morado, nada destacaría."],
+        ["Lima solo en oscuro", "#D8FD80 es el color de la interacción en las secciones ink: hover, numeración y bordes activos. Sobre fondo claro no se usa porque perdería contraste."],
+        ["Grises según el fondo", "#5A6568 sobre bone y #9AA3A5 sobre ink. El texto secundario mantiene un contraste AA en ambos fondos sin competir con el principal."],
+      ] : [
+        ["Ink and bone, not black and white", "#131E21 and #E9E9E9 are easier on the eye than pure black and white, and the greenish tint of the ink gives the whole site character without needing more colour."],
+        ["A single accent", "Purple #756CE5 is kept for what matters: the dot, action arrows and the cursor. If everything were purple, nothing would stand out."],
+        ["Lime only on dark", "#D8FD80 is the colour of interaction in ink sections: hover, numbering and active borders. It isn't used on light backgrounds because it would lose contrast."],
+        ["Greys by background", "#5A6568 on bone and #9AA3A5 on ink. Secondary text keeps AA contrast on both backgrounds without competing with the main text."],
+      ]),
+
+      spaceT: C("Spacing", "Espaciado"),
+      spaceDesc: C("4px base scale. 12-column grid, 24px gap, side margin clamp(20–56px) identical in header, sections and footer.", "Escala base 4px. Grid de 12 columnas, gap 24px, margen lateral clamp(20–56px) idéntico en header, secciones y footer."),
+      spaceWhy: C("Every space is a multiple of 4, so vertical rhythms fit together without exceptions. Using the same side margin everywhere aligns all content to one invisible edge, which is what makes the site feel tidy.", "Todos los espacios son múltiplos de 4, así los ritmos verticales encajan sin excepciones. Usar el mismo margen lateral en todas partes alinea el contenido a un único borde invisible, que es lo que hace que la web se sienta ordenada."),
+      motion: es ? [
+        { h: "Reveal", spec: ".9s cubic-bezier(.16,1,.3,1)", p: "Entrada de bloques al hacer scroll: opacidad 0→1 y +28px." },
+        { h: "Line mask", spec: "1.05s · delay .15s", p: "Titulares: cada línea sube desde una máscara, escalonada." },
+        { h: "Horizontal pin", spec: "scroll-linked", p: "Sección anclada: el scroll vertical desplaza la pista en horizontal, con barra de progreso." },
+        { h: "Cursor lerp", spec: "0.14 / frame · rAF", p: "Punto sin retardo, anillo interpolado. Oculto en táctil." },
+      ] : [
+        { h: "Reveal", spec: ".9s cubic-bezier(.16,1,.3,1)", p: "Blocks enter on scroll: opacity 0→1 and +28px." },
+        { h: "Line mask", spec: "1.05s · delay .15s", p: "Headings: each line rises from a mask, staggered." },
+        { h: "Horizontal pin", spec: "scroll-linked", p: "Pinned section: vertical scroll moves the track horizontally, with a progress bar." },
+        { h: "Cursor lerp", spec: "0.14 / frame · rAF", p: "Dot with no delay, interpolated ring. Hidden on touch." },
+      ],
+      motionWhy: C("One curve for almost everything, cubic-bezier(.16,1,.3,1): it starts fast and eases out softly, so animations feel quick but never abrupt. Motion follows scroll and interaction; it never blocks reading or makes the visitor wait.", "Una sola curva para casi todo, cubic-bezier(.16,1,.3,1): arranca rápido y frena suave, así las animaciones se sienten ágiles pero nunca bruscas. El movimiento acompaña al scroll y a la interacción; nunca bloquea la lectura ni hace esperar."),
+
+      curT: C("Custom cursor", "Cursor personalizado"),
+      curIntro: R(C(
+        "The system cursor is hidden and replaced by two pieces: an **8px dot** that follows the pointer with no delay and a **ring** that chases it with lerp interpolation. The ring changes colour over dark areas and grows over anything clickable. **Try it on this page.** It is fully hidden on touch devices.",
+        "El cursor del sistema se oculta y se sustituye por dos piezas: un **punto de 8px** que sigue al puntero sin retardo y un **anillo** que lo persigue con interpolación lerp. El anillo cambia de color sobre zonas oscuras y crece sobre cualquier elemento clicable. **Pruébalo en esta página.** Se oculta por completo en dispositivos táctiles."), DARK),
+      dlcv: C("Download CV", "Descargar CV"),
+      cl1: C("Light bg · ink border", "Fondo claro · borde ink"), cl2: C("Dark bg · #D8FD80 border", "Fondo oscuro · borde #D8FD80"),
+      cl3: C("Dark photo pixel · #D8FD80", "Píxel oscuro de foto · #D8FD80"), cl4: C("Button · Link 80px", "Botón · Link 80px"), cl5: C("Card · View 104px", "Tarjeta · View 104px"),
+      cs1: C("Default — light background", "Default — fondo claro"), cs1d: C("56px ring, #131E21 border · #756CE5 dot", "Anillo 56px borde #131E21 · punto #756CE5"),
+      cs2: C("Default — dark background", "Default — fondo oscuro"), cs2d: C("The border switches to #D8FD80 when the area under the pointer is dark: sections, photos and buttons on hover", "El borde cambia a #D8FD80 cuando la zona bajo el puntero es oscura: secciones, fotos y botones en hover"),
+      cs3: "Link — 80px", cs3d: C("Accent fill at 15%, #756CE5 border. Over any link or button", "Relleno accent al 15%, borde #756CE5. Sobre cualquier enlace o botón"),
+      cs4: "View — 104px", cs4d: C("Solid accent circle with a VIEW label; the dot turns #D8FD80. Over project cards", "Círculo accent sólido con etiqueta VIEW; el punto pasa a #D8FD80. Sobre tarjetas de proyecto"),
+      curWhy: W(es ? [
+        ["Anuncia lo que hará el clic", "El anillo cambia de tamaño antes de hacer clic: crece sobre enlaces y se convierte en VIEW sobre los proyectos. El visitante sabe qué va a pasar sin leer nada."],
+        ["Fluidez y precisión a la vez", "El anillo con retardo da sensación de movimiento suave; el punto sin retardo mantiene la precisión para apuntar. Separar las dos funciones evita que el cursor se sienta lento."],
+        ["Siempre visible", "Cambia a lima sobre zonas oscuras para no perderse nunca sobre fondos ink o fotos. En táctil se oculta, porque no hay puntero que seguir."],
+      ] : [
+        ["It announces what the click will do", "The ring changes size before you click: it grows over links and becomes VIEW over projects. Visitors know what will happen without reading anything."],
+        ["Fluidity and precision together", "The delayed ring gives a sense of smooth motion; the instant dot keeps aiming precise. Splitting the two jobs stops the cursor from feeling slow."],
+        ["Always visible", "It turns lime over dark areas so it never gets lost on ink backgrounds or photos. On touch it is hidden, since there is no pointer to follow."],
+      ]),
+
+      btnT: C("Buttons & links", "Botones y enlaces"),
+      btnIntro: R(C(
+        "Every action shares the same piece: **uppercase text + a 44px circle with a diagonal arrow**. On hover the arrow rotates 45° until it is horizontal and the cursor switches to its link state (80px).",
+        "Todas las acciones comparten la misma pieza: **texto en mayúsculas + círculo de 44px con flecha diagonal**. En hover la flecha gira 45° hasta quedar horizontal y el cursor pasa a estado link (80px)."), DARK),
+      git: C("Get in touch", "Contacta"),
+      bl1: C("Primary · background turns ink", "Primario · fondo pasa a ink"), bl2: C("On dark · #D8FD80 border", "En oscuro · borde #D8FD80"), bl3: C("Inline · #D8FD80 + arrow", "Inline · #D8FD80 + flecha"),
+      btnTypes: W(es ? [
+        ["Primario", "Descargar CV, Enviar mensaje. Reposo: borde ink y círculo accent. Hover: fondo ink, texto y flecha en accent."],
+        ["Sobre fondo oscuro", "Contacta y el correo del footer. Borde bone que pasa a #D8FD80 en hover; el círculo se mantiene accent."],
+        ["Enlace inline", "Repos, Instagram. Texto accent con flecha; en hover pasa a #D8FD80 y la flecha queda horizontal."],
+      ] : [
+        ["Primary", "Download CV, Send message. Rest: ink border and accent circle. Hover: ink background, text and arrow in accent."],
+        ["On dark background", "Get in touch and the footer email. Bone border that turns #D8FD80 on hover; the circle stays accent."],
+        ["Inline link", "Repos, Instagram. Accent text with an arrow; on hover it turns #D8FD80 and the arrow goes horizontal."],
+      ]),
+      btnWhy: W(es ? [
+        ["Una sola forma de botón", "Todo lo clicable se parece: el visitante aprende una vez qué es una acción y lo reconoce en cualquier página."],
+        ["La flecha como promesa", "La flecha diagonal significa «ir a». Al girar a horizontal en hover confirma que el elemento responde y que el clic llevará a otro sitio."],
+        ["Dos niveles de peso", "El botón en píldora es para acciones principales; el enlace inline, para secundarias dentro del texto. Así la jerarquía de las acciones se ve sin leerlas."],
+      ] : [
+        ["A single button shape", "Everything clickable looks alike: visitors learn once what an action looks like and recognise it on every page."],
+        ["The arrow as a promise", "The diagonal arrow means 'go to'. Rotating to horizontal on hover confirms the element responds and that the click leads somewhere."],
+        ["Two levels of weight", "The pill button is for main actions; the inline link for secondary ones inside text. The hierarchy of actions is visible without reading them."],
+      ]),
+
+      formT: C("Form", "Formulario"),
+      fName: C("Name", "Nombre"), fNamePh: C("Your name", "Tu nombre"),
+      fEmail: C("Email — focus / error", "Email — foco / error"), fErr: C("Enter a valid email", "Introduce un email válido"),
+      fMsg: C("Message", "Mensaje"), fMsgPh: C("Tell me about the project", "Cuéntame el proyecto"),
+      fBudget: C("Budget — chips", "Presupuesto — chips"), fChip: C("Selected chip in solid ink.", "Chip seleccionado en ink sólido."),
+      fCheck: C("I accept the privacy policy. Square checkbox, accent fill when checked.", "Acepto la política de privacidad. Checkbox cuadrado, relleno accent al marcar."),
+      fSend: C("Send message", "Enviar mensaje"),
+      formWhy: W(es ? [
+        ["Sin cajas", "Los campos son solo una línea inferior de 1px. El formulario se lee como parte de la página y no como un trámite, lo que invita a escribir."],
+        ["Etiqueta siempre visible", "La etiqueta va arriba y no desaparece al escribir; el placeholder es solo un ejemplo. Así nunca se olvida qué se está rellenando."],
+        ["Errores en el color de acento", "El foco y los errores usan el morado, no un rojo nuevo. El aviso se ve, pero el formulario sigue perteneciendo al sistema."],
+      ] : [
+        ["No boxes", "Fields are just a 1px bottom line. The form reads as part of the page rather than paperwork, which invites people to write."],
+        ["Label always visible", "The label sits on top and doesn't disappear while typing; the placeholder is only an example. You never forget what you're filling in."],
+        ["Errors in the accent colour", "Focus and errors use the purple, not a new red. The warning is visible, but the form still belongs to the system."],
+      ]),
+
+      cardT: C("Project card", "Tarjeta de proyecto"),
+      cardDesc: C("Fixed anatomy: top rule with index and category, 4:5 image over #1B282B with the project logo, name in display and year in Rock Salt. On hover the cursor switches to VIEW.", "Anatomía fija: regla superior con índice y categoría, imagen 4:5 sobre #1B282B con el logo del proyecto, nombre en display y año en Rock Salt. En hover el cursor pasa a VIEW."),
+      cardWhy: C("All cards share exactly the same structure, so projects can be compared at a glance and the visual differences come only from each project's identity. Showing the logo instead of a screenshot keeps the grid clean and lets the case study do the detailed work.", "Todas las tarjetas comparten exactamente la misma estructura: los proyectos se comparan de un vistazo y las diferencias visuales vienen solo de la identidad de cada uno. Mostrar el logo en lugar de una captura mantiene la rejilla limpia y deja el detalle para el caso de estudio."),
+      marq1: C("Outlined band with the page background colour and ink letters, continuous linear loop with no pause.", "Banda perfilada con el color del fondo de página y letras en ink, bucle lineal continuo sin pausa."),
+      marq2: C("Tools marquee: tool logos in their original colours, same continuous loop.", "Marquesina de herramientas: logos en sus colores originales, mismo bucle continuo."),
+      marqWhy: C("Linear motion with no easing and no pauses, so it reads as background texture rather than something demanding attention. It summarises disciplines and tools in a single line without adding another block of text.", "Movimiento lineal, sin easing ni pausas, para que se lea como una textura de fondo y no como algo que reclama atención. Resume disciplinas y herramientas en una sola línea sin añadir otro bloque de texto."),
+
+      navT: C("Navigation", "Navegación"),
+      navIntro: R(C(
+        "Fixed 80px bar with four pieces from left to right: **logo · LinkedIn, Behance and GitHub icons · + button · language badge**. It has two states depending on scroll and a drop-down menu that replaces inline links.",
+        "Barra fija de 80px con cuatro piezas de izquierda a derecha: **logo · iconos de LinkedIn, Behance y GitHub · botón + · badge de idioma**. Tiene dos estados según el scroll y un menú desplegable que sustituye a los enlaces en línea."), DARK),
+      navA: C("A · Over the hero — transparent, no logo", "A · Sobre el hero — transparente, sin logo"),
+      navB: C("B · Past 50% of the hero — ink bar with logo", "B · Pasado el 50% del hero — barra ink con logo"),
+      navC: C("C · Drop-down menu", "C · Menú desplegable"),
+      m1: labels[0], m2: labels[1], m3: labels[2], m4: labels[3],
+      navParts: W(es ? [
+        ["Estado hero", "Solo en la portada de escritorio: fondo transparente, sin logo ni sombra. Iconos en blanco y badge de idioma solo con borde claro."],
+        ["Estado scroll", "Al pasar el 50% del hero la barra se rellena de #131E21 con sombra, el logo entra y el badge pasa a morado. En móvil y en el resto de páginas la barra es sólida desde el principio."],
+        ["Botón +", "Círculo de 44px con borde claro. Al abrir gira 135° hasta formar una × y se rellena de morado; en hover el borde pasa a #D8FD80."],
+        ["Panel", "Baja desde la barra con las secciones en Bricolage 800, numeradas en Courier New y escalonadas. A la derecha, CTA y correo. En móvil pasa a una sola columna."],
+      ] : [
+        ["Hero state", "Desktop home page only: transparent background, no logo or shadow. White icons and a language badge with just a light border."],
+        ["Scroll state", "Past 50% of the hero the bar fills with #131E21 and a shadow, the logo slides in and the badge turns purple. On mobile and on the other pages the bar is solid from the start."],
+        ["+ button", "44px circle with a light border. When opened it rotates 135° into an × and fills with purple; on hover the border turns #D8FD80."],
+        ["Panel", "Drops from the bar with sections in Bricolage 800, numbered in Courier New and staggered. On the right, CTA and email. On mobile it becomes a single column."],
+      ]),
+      navWhy: W(es ? [
+        ["El hero respira", "En la portada la barra empieza transparente para que la primera impresión sea el contenido, no la interfaz. Se vuelve sólida cuando hace falta orientarse."],
+        ["Solo lo esencial a la vista", "La barra muestra marca, redes e idioma; las secciones se agrupan tras el botón +. Menos elementos fijos significa más espacio para los proyectos."],
+        ["Legible en cualquier pantalla", "En móvil la barra es sólida desde el principio: sobre fotos y textos variados, un fondo transparente no garantizaría que se lea."],
+      ] : [
+        ["Let the hero breathe", "On the home page the bar starts transparent so the first impression is the content, not the interface. It turns solid when people need to orient themselves."],
+        ["Only the essentials in view", "The bar shows brand, social links and language; sections are grouped behind the + button. Fewer fixed elements means more room for the projects."],
+        ["Readable on any screen", "On mobile the bar is solid from the start: over varied photos and text, a transparent background couldn't guarantee legibility."],
+      ]),
+
+      iconT: C("Iconography", "Iconografía"),
+      i1: C("Arrow out", "Flecha salida"), i2: C("Arrow down", "Flecha abajo"), i3: C("Arrow right", "Flecha derecha"), i4: C("Close", "Cerrar"),
+      iconDesc: C("1.6px stroke, rounded ends, 24 viewBox, always in currentColor. Tool logos live in a separate marquee band.", "Trazo 1.6px, extremos redondeados, viewBox 24, siempre en currentColor. Los logos de herramientas viven en una banda marquee aparte."),
+      iconWhy: C("A very small set of line icons: the diagonal arrow is the only action indicator, so it never has to compete with other symbols. Filled and line icons are never mixed, and using currentColor means every icon automatically takes the colour of its context.", "Un set muy reducido de iconos lineales: la flecha diagonal es el único indicador de acción, así que nunca compite con otros símbolos. No se mezclan iconos rellenos con lineales, y usar currentColor hace que cada icono tome automáticamente el color de su contexto."),
+
+      fCta: C("Have a project in mind? Let's work together.", "¿Tienes un proyecto en mente? Trabajemos juntos."),
+      fTalk: C("Let's talk", "Hablemos"), fSocial: C("Social", "Redes"), fMenu: C("Menu", "Menú"),
+      fTime: C("Local time", "Hora local"), fBased: C("Based in", "Ubicación"), fBasedVal: C("Vigo, Spain — remote (CET)", "Vigo, España — en remoto (CET)"),
+      swipe: C("Swipe to see more", "Desliza para ver más"),
+      fCredit: C("Designed & coded by Oriana Bonato", "Diseñado y programado por Oriana Bonato"),
+    };
+
+    const swatches = [
+      { name: "Bone", hex: "#E9E9E9", border: "1px solid #131E21", use: C("Light page background; text on dark backgrounds", "Fondo de página claro; texto sobre fondo oscuro") },
+      { name: "Ink", hex: "#131E21", border: "0", use: C("Text, 1px rules, dark sections and the fixed header", "Texto, reglas de 1px, secciones oscuras y cabecera fija") },
+      { name: "Ink 800", hex: "#1B282B", border: "0", use: C("Background for images, screenshots and project cards", "Fondo de imágenes, capturas y tarjetas de proyecto") },
+      { name: "Accent", hex: "#756CE5", border: "0", use: C("Logo and heading dot, arrow circle, language button, inline links, cursor", "Punto del logo y de titulares, círculo de flecha, botón de idioma, enlaces inline, cursor") },
+      { name: "Grey ink", hex: "#5A6568", border: "0", use: C("Labels and secondary text on bone", "Labels y texto secundario sobre bone") },
+      { name: "Grey bone", hex: "#9AA3A5", border: "0", use: C("Labels and secondary text on ink", "Labels y texto secundario sobre ink") },
+      { name: "Highlight", hex: "#D8FD80", border: "1px solid #131E21", use: C("Cursor ring on dark areas, link hover and borders on dark, [01] numbering, «Next project»", "Anillo del cursor sobre zona oscura, hover de enlaces y bordes en oscuro, numeración [01], «Siguiente proyecto»") },
+    ];
+
     return {
+      t, swatches,
       clock: this.state.clock,
-      navCta: "¿Tienes un proyecto en mente? Trabajemos juntos.",
+      curRingRef: this.curRingRef, curDotRef: this.curDotRef,
+      langLabel: es ? "ES" : "EN", langBtn: es ? "EN" : "ES",
+      toggleLang: () => this.setState((s) => { const next = s.lang === "es" ? "en" : "es"; try { localStorage.setItem("ob-lang", next); } catch (e) {} return { lang: next }; }),
+      navCta: t.fCta,
       navOpenStr: open ? "true" : "false", navPlusRot: open ? "135deg" : "0deg", navPlusBg: open ? "#756CE5" : "transparent",
       navMenuOp: open ? 1 : 0, navMenuVis: open ? "visible" : "hidden", navMenuY: open ? "0px" : "-12px",
       navToggle: () => this.setState((s) => ({ nav: !s.nav })),

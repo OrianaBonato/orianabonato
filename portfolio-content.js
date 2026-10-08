@@ -7,7 +7,7 @@
       location: 'Based in Vigo, Spain. Looking for a frontend role on a product team where design and code work side by side — remote, hybrid or on-site.',
       heroWork: 'Selected work 2019 — 2026',
       lblApproach: '(01) — Approach',
-      approachBody: 'I think in systems before screens: every spacing and button state is a decision that comes alive in code. So I follow each one all the way, from the Figma prototype to the Angular or React component that makes it work.',
+      approachBody: 'I see the whole product, from the first sketch to the last line of code, so every decision fits. A spacing in Figma becomes a reusable Angular or React component. I look after brand, animation and on-page SEO together, because a change in one shapes the others.',
       lblWork: '(02) — Selected work', swipe: 'Swipe →', work1: 'Selected', work2: 'Work',
       more: 'More projects on request.', getInTouch: 'Get in touch',
       lblAbout: '(03) — About me', hello1: 'Hello,', hello2: "I'm Oriana", cv: 'Download CV',
@@ -36,7 +36,7 @@
       location: 'Vivo en Vigo. Busco un puesto frontend en un equipo de producto donde diseño y código trabajen juntos: en remoto, híbrido o presencial.',
       heroWork: 'Proyectos 2019 — 2026',
       lblApproach: '(01) — Enfoque',
-      approachBody: 'Pienso en sistemas antes que en pantallas: cada espaciado y cada estado de un botón es una decisión que cobra vida en el código. Por eso acompaño cada una de principio a fin, desde el prototipo en Figma hasta el componente en Angular o React que la hace funcionar.',
+      approachBody: 'Veo el producto entero, del primer boceto a la última línea de código, para que cada decisión encaje. Un espaciado en Figma se convierte en un componente de Angular o React listo para reutilizar. Cuido marca, animación y SEO on-page a la vez, porque un cambio en una afecta a las demás.',
       lblWork: '(02) — Proyectos', swipe: 'Desliza →', work1: 'Proyectos', work2: 'destacados',
       more: 'Más proyectos bajo petición.', getInTouch: 'Hablemos',
       lblAbout: '(03) — Sobre mí', hello1: 'Hola,', hello2: 'soy Oriana', cv: 'Descargar CV',
@@ -78,7 +78,7 @@
   // Splits the approach text into two paint blocks; [Figma]/[Angular]/[React] in Courier, sentence-end dots in purple.
   function approach(lang) {
     const words = home[lang].approachBody.split(' ');
-    const cut = words.findIndex((w) => w === 'code.' || w === 'código.') + 1;
+    const cut = words.findIndex((w) => w.endsWith('.')) + 1;
     const tok = (w, fw, last) => {
       const m = w.match(/^(Figma|Angular|React)([.,:;]?)$/);
       if (m) return { t: '[' + m[1] + ']' + m[2], dot: '', ff: "'Courier New',monospace", fw: 400 };

@@ -68,7 +68,8 @@
   const projects = [
     { index: '01', name: 'SmartRest', tag: 'App Web Frontend / Backend', year: '2026', img: 'img/cards-projects/P00_SMARTREST.png', url: 'smartrest.html' },
     { index: '02', name: 'Churrería Romero', tag: 'Web Design', year: '2025', img: 'img/CHURRERIA/logo-blanco.png', url: 'churreria-romero.html' },
-    { index: '03', name: 'Estudio 96', tag: 'Brand identity', year: '2023', img: 'img/ESTUDIO96/logo-e96-blanco.svg', url: 'estudio-96.html' },
+    { index: '03', name: 'Natalia Prio Platz', tag: 'Web Design', year: '2025', img: 'img/NATALIA/logo-blanco.png', url: 'natalia-prio-platz.html' },
+    { index: '04', name: 'Estudio 96', tag: 'Brand identity', year: '2023', img: 'img/ESTUDIO96/logo-e96-blanco.svg', url: 'estudio-96.html' },
   ];
   const capItems = ['Branding, Art direction, Editorial, UI design', 'HTML, CSS, JavaScript, Angular, Webflow', 'Figma, Photoshop, Illustrator, After Effects'];
   const tools = ['figma', 'photoshop', 'illustrator', 'after-effects', 'html5', 'css3', 'javascript', 'angular', 'github', 'git'].map((n) => 'img/icons/' + n + '.svg');

@@ -128,13 +128,15 @@
     <div style="width:100%;max-width:760px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(22px,3vw,34px);">
       <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01) — {{ ct.t.label }}</span>
       <h1 style="margin:0;font-size:clamp(48px,13.5vw,140px);line-height:.84;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ ct.t.title }}<span style="color:#756CE5;">.</span></h1>
-      <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(19px,1.7vw,24px);font-weight:500;line-height:1.4;max-width:26ch;text-wrap:balance;">{{ ct.t.lead }}</p>
+      <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(19px,1.7vw,24px);font-weight:500;line-height:1.4;"><span style="display:block;">{{ ct.t.leadQ }}</span><span style="display:block;">{{ ct.t.leadA }}</span></p>
       <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:32px;border-top:1px solid rgba(233,233,233,.22);padding-top:32px;margin-top:8px;">
         <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
           <p style="margin:0 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ ct.t.social }}</p>
-          <a href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" class="ob-repo ob-ct-soc" style="display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:17px;color:#E9E9E9;"><img src="img/icons/linkedin.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);">LinkedIn<svg class="ob-inl-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
-          <a href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" class="ob-repo ob-ct-soc" style="display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:17px;color:#E9E9E9;"><img src="img/icons/behance.svg" alt="" style="width:24px;height:24px;display:block;filter:brightness(0) invert(1);">Behance<svg class="ob-inl-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
-          <a href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" class="ob-repo ob-ct-soc" style="display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:17px;color:#E9E9E9;"><img src="img/icons/github.svg" alt="" style="width:22px;height:22px;display:block;filter:brightness(0) invert(1);">GitHub<svg class="ob-inl-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
+          <div style="display:flex;justify-content:center;align-items:center;gap:16px;">
+            <a href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" class="ob-soc" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;"><img src="img/icons/linkedin.svg" alt="" style="width:28px;height:28px;display:block;filter:brightness(0) invert(1);"></a>
+            <a href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" aria-label="Behance" title="Behance" class="ob-soc" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;"><img src="img/icons/behance.svg" alt="" style="width:28px;height:28px;display:block;filter:brightness(0) invert(1);"></a>
+            <a href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" class="ob-soc" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;"><img src="img/icons/github.svg" alt="" style="width:28px;height:28px;display:block;filter:brightness(0) invert(1);"></a>
+          </div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
           <p style="margin:0 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ ct.t.based }}</p>
@@ -320,6 +322,7 @@ class Component extends DCLogic {
       t: {
         label: C('Contact', 'Contacto'), title: C("Let's talk", 'Hablemos'),
         lead: C("Have a project in mind? Let's work together.", '¿Tienes un proyecto en mente? Trabajemos juntos.'),
+        leadQ: C('Have a project in mind?', '¿Tienes un proyecto en mente?'), leadA: C("Let's work together.", 'Trabajemos juntos.'),
         social: C('Social', 'Redes'), based: C('Based in', 'Ubicación'), basedVal: C('Vigo, Spain — remote (CET)', 'Vigo, España — en remoto (CET)'),
         name: C('Name', 'Nombre'), namePh: C('Your name', 'Tu nombre'), nameErr: C('Tell me your name', 'Indica tu nombre'),
         email: 'Email', emailPh: 'hello@studio.com', emailErr: C('Enter a valid email', 'Introduce un email válido'),

@@ -171,7 +171,7 @@
         <div style="display:flex;flex-direction:column;gap:22px;padding-bottom:6px;">
           <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(17px,1.4vw,21px);font-weight:500;line-height:1.35;color:#E9E9E9;max-width:24ch;">{{ navCta }}</p>
           <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
-            <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
+            <span style="font-size:15px;font-weight:500;">{{ navMail }}</span>
             <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
           </a>
         </div>
@@ -665,7 +665,7 @@
             </div>
             <div class="ds-nav-cta" style="display:flex;flex-direction:column;gap:10px;animation:dmI 8s cubic-bezier(.16,1,.3,1) infinite .5s;">
               <p style="margin:0;font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;line-height:1.35;color:#E9E9E9;">{{ navCta }}</p>
-              <span style="width:fit-content;display:inline-flex;align-items:center;gap:8px;padding:3px 3px 3px 10px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;font-size:9px;">hello@orianabonato.com<span style="width:20px;height:20px;border-radius:50%;background:#756CE5;display:flex;align-items:center;justify-content:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#E9E9E9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></span>
+              <span style="width:fit-content;display:inline-flex;align-items:center;gap:8px;padding:3px 3px 3px 10px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;font-size:9px;">{{ navMail }}<span style="width:20px;height:20px;border-radius:50%;background:#756CE5;display:flex;align-items:center;justify-content:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#E9E9E9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span></span>
             </div>
           </div>
           <span style="position:absolute;z-index:3;width:28px;height:28px;box-sizing:border-box;border:1px solid #D8FD80;border-radius:50%;pointer-events:none;animation:dmCur 8s cubic-bezier(.16,1,.3,1) infinite, dmRing 8s linear infinite;"></span>
@@ -710,7 +710,7 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:clamp(50px,7vw,100px);">
       <p style="margin:0;font-family:'Manrope',sans-serif;font-weight:500;font-size:clamp(20px,2vw,32px);line-height:1.25;max-width:22ch;">{{ t.fCta }}</p>
       <a href="contacto.html" class="ob-btn ob-btn-touch" style="width:fit-content;display:inline-flex;align-items:center;gap:20px;padding:6px 6px 6px 24px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
-        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">hello@orianabonato.com</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ navMail }}</span>
         <span class="ob-circ" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;">
           <svg class="ob-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
         </span>
@@ -999,11 +999,11 @@ class Component extends DCLogic {
       bl1: C("Primary · background turns ink", "Primario · fondo pasa a ink"), bl2: C("On dark · #D8FD80 border", "En oscuro · borde #D8FD80"), bl3: C("Inline · #D8FD80 + arrow", "Inline · #D8FD80 + flecha"),
       btnTypes: W(es ? [
         ["Primario", "Descargar CV, Enviar mensaje. Reposo: borde ink y círculo accent. Hover: fondo ink, texto y flecha en accent."],
-        ["Sobre fondo oscuro", "Contacta y el correo del footer. Borde bone que pasa a #D8FD80 en hover; el círculo se mantiene accent."],
+        ["Sobre fondo oscuro", "Contacta y el botón de contacto del footer. Borde bone que pasa a #D8FD80 en hover; el círculo se mantiene accent."],
         ["Enlace inline", "Repos, Instagram. Texto accent con flecha; en hover pasa a #D8FD80 y la flecha queda horizontal."],
       ] : [
         ["Primary", "Download CV, Send message. Rest: ink border and accent circle. Hover: ink background, text and arrow in accent."],
-        ["On dark background", "Get in touch and the footer email. Bone border that turns #D8FD80 on hover; the circle stays accent."],
+        ["On dark background", "Get in touch and the footer contact button. Bone border that turns #D8FD80 on hover; the circle stays accent."],
         ["Inline link", "Repos, Instagram. Accent text with an arrow; on hover it turns #D8FD80 and the arrow goes horizontal."],
       ]),
       btnWhy: W(es ? [
@@ -1052,12 +1052,12 @@ class Component extends DCLogic {
         ["Estado hero", "Solo en la portada de escritorio: fondo transparente, sin logo ni sombra. Iconos en blanco y badge de idioma solo con borde claro."],
         ["Estado scroll", "Al pasar el 50% del hero la barra se rellena de #131E21 con sombra, el logo entra y el badge pasa a morado. En móvil y en el resto de páginas la barra es sólida desde el principio."],
         ["Botón +", "Círculo de 44px con borde claro. Al abrir gira 135° hasta formar una × y se rellena de morado; en hover el borde pasa a #D8FD80."],
-        ["Panel", "Baja desde la barra con las secciones en Bricolage 800, numeradas en Courier New y escalonadas. A la derecha, CTA y correo. En móvil pasa a una sola columna."],
+        ["Panel", "Baja desde la barra con las secciones en Bricolage 800, numeradas en Courier New y escalonadas. A la derecha, CTA y botón de contacto. En móvil pasa a una sola columna."],
       ] : [
         ["Hero state", "Desktop home page only: transparent background, no logo or shadow. White icons and a language badge with just a light border."],
         ["Scroll state", "Past 50% of the hero the bar fills with #131E21 and a shadow, the logo slides in and the badge turns purple. On mobile and on the other pages the bar is solid from the start."],
         ["+ button", "44px circle with a light border. When opened it rotates 135° into an × and fills with purple; on hover the border turns #D8FD80."],
-        ["Panel", "Drops from the bar with sections in Bricolage 800, numbered in Courier New and staggered. On the right, CTA and email. On mobile it becomes a single column."],
+        ["Panel", "Drops from the bar with sections in Bricolage 800, numbered in Courier New and staggered. On the right, CTA and contact button. On mobile it becomes a single column."],
       ]),
       navWhy: W(es ? [
         ["El hero respira", "En la portada la barra empieza transparente para que la primera impresión sea el contenido, no la interfaz. Se vuelve sólida cuando hace falta orientarse."],
@@ -1097,6 +1097,7 @@ class Component extends DCLogic {
       langLabel: es ? "ES" : "EN", langBtn: es ? "EN" : "ES",
       toggleLang: () => this.setState((s) => { const next = s.lang === "es" ? "en" : "es"; try { localStorage.setItem("ob-lang", next); } catch (e) {} document.documentElement.lang = next; return { lang: next }; }),
       navCta: t.fCta,
+      navMail: es ? "Contacta" : "Get in touch",
       navOpenStr: open ? "true" : "false", navPlusRot: open ? "135deg" : "0deg", navPlusBg: open ? "#756CE5" : "transparent",
       navMenuOp: open ? 1 : 0, navMenuVis: open ? "visible" : "hidden", navMenuY: open ? "0px" : "-12px",
       navToggle: () => this.setState((s) => ({ nav: !s.nav })),

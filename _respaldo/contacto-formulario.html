@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Estudio 96 — Hair salon brand identity | Oriana Bonato</title>
-<meta name="description" content="Case study: brand identity for Estudio 96, a hair salon in Vigo, built from the ground up. Logo system, colour palette and applications.">
-<link rel="canonical" href="https://www.orianabonato.com/estudio-96.html">
+<title>Contact — Oriana Bonato</title>
+<meta name="description" content="Get in touch with Oriana Bonato about frontend development, UX/UI and web design projects. Based in Vigo, Spain, working remotely.">
+<link rel="canonical" href="https://www.orianabonato.com/contacto.html">
 <meta name="author" content="Oriana Bonato">
 <meta name="theme-color" content="#131E21">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Oriana Bonato">
-<meta property="og:title" content="Estudio 96 — Hair salon brand identity | Oriana Bonato">
-<meta property="og:description" content="Case study: brand identity for Estudio 96, a hair salon in Vigo, built from the ground up. Logo system, colour palette and applications.">
-<meta property="og:url" content="https://www.orianabonato.com/estudio-96.html">
+<meta property="og:title" content="Contact — Oriana Bonato">
+<meta property="og:description" content="Get in touch with Oriana Bonato about frontend development, UX/UI and web design projects. Based in Vigo, Spain, working remotely.">
+<meta property="og:url" content="https://www.orianabonato.com/contacto.html">
 <meta property="og:image" content="https://www.orianabonato.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,10 +21,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Estudio 96 — Hair salon brand identity | Oriana Bonato">
-<meta name="twitter:description" content="Case study: brand identity for Estudio 96, a hair salon in Vigo, built from the ground up. Logo system, colour palette and applications.">
+<meta name="twitter:title" content="Contact — Oriana Bonato">
+<meta name="twitter:description" content="Get in touch with Oriana Bonato about frontend development, UX/UI and web design projects. Based in Vigo, Spain, working remotely.">
 <meta name="twitter:image" content="https://www.orianabonato.com/assets/og-image.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://www.orianabonato.com/estudio-96.html#work","name":"Estudio 96 — Hair salon brand identity","description":"Brand identity for a hair salon in Vigo, built from the ground up: logo system, colour palette and applications, designed with Illustrator and Photoshop.","url":"https://www.orianabonato.com/estudio-96.html","dateCreated":"2023","creator":{"@type":"Person","@id":"https://www.orianabonato.com/#person","name":"Oriana Bonato","url":"https://www.orianabonato.com/"},"inLanguage":["en","es"],"image":"https://www.orianabonato.com/assets/og-image.png"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.orianabonato.com/"},{"@type":"ListItem","position":2,"name":"Estudio 96 — Hair salon brand identity","item":"https://www.orianabonato.com/estudio-96.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ContactPage","@id":"https://www.orianabonato.com/contacto.html#webpage","url":"https://www.orianabonato.com/contacto.html","name":"Contact — Oriana Bonato","isPartOf":{"@id":"https://www.orianabonato.com/#website"},"about":{"@id":"https://www.orianabonato.com/#person"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.orianabonato.com/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.orianabonato.com/contacto.html"}]}]}</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -58,16 +58,20 @@
     .ob-mi:hover .ob-ico, .ob-mm:hover .ob-ico { transform: rotate(45deg); }
     .ob-mm { transition: border-color .35s ease; }
     .ob-mm:hover { border-color: #D8FD80 !important; }
-    @keyframes e96-nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
-    .e96-swipe-hint { display: none; }
+    .ob-in::placeholder { color: #9AA3A5; }
+    .ob-in:focus { outline: none; border-bottom-color: #756CE5 !important; }
+    .ob-btn { transition: background .35s ease; }
+    .ob-btn .ob-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-btn .ob-circ { transition: background .35s ease, color .35s ease; }
+    .ob-btn span:first-child { transition: color .35s ease; }
+    .ob-btn:hover { background: #131E21 !important; }
+    .ob-btn:hover .ob-ico { transform: rotate(45deg); }
+    .ob-btn:hover .ob-circ { background: #131E21; color: #756CE5; }
+    .ob-btn:hover span:first-child { color: #756CE5; }
+    .ob-repo .ob-inl-ico { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .ob-repo:hover .ob-inl-ico { transform: rotate(45deg); }
     @media (max-width: 600px) { .ob-hdr-soc, .ob-hdr-div { display: none !important; } }
-    @media (max-width: 767px) {
-      .ob-menu-grid { grid-template-columns: 1fr !important; }
-      .ob-span2 { grid-column: auto !important; }
-      .e96-logos { width: 960px !important; max-width: none !important; }
-      .e96-swipe-hint { display: flex !important; }
-      .e96-swipe-hint svg { animation: e96-nudge 1.4s ease-in-out infinite; }
-    }
+    @media (max-width: 767px) { .ob-menu-grid { grid-template-columns: 1fr !important; } }
     .ob-cur { display: block; }
     @media (hover: none), (pointer: coarse) { .ob-cur { display: none !important; } }
     @media (hover: hover) and (pointer: fine) { .ob-cursor, .ob-cursor * { cursor: none !important; } }
@@ -111,7 +115,7 @@
         <div style="display:flex;flex-direction:column;gap:22px;padding-bottom:6px;">
           <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(17px,1.4vw,21px);font-weight:500;line-height:1.35;color:#E9E9E9;max-width:24ch;">{{ navCta }}</p>
           <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
-            <span style="font-size:15px;font-weight:500;">{{ navMail }}</span>
+            <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
             <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
           </a>
         </div>
@@ -119,207 +123,85 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section data-ob-dark="1" style="background:#131E21;color:#E9E9E9;padding:clamp(130px,17vh,190px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(50px,6vw,90px);">
-    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid rgba(233,233,233,.22);padding-bottom:15px;margin-bottom:clamp(36px,5vw,70px);">
-      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">({{ p.index }}) — {{ t.caseStudy }}</span>
-      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ p.tag }} · {{ p.year }}</span>
-    </div>
-    <h1 style="margin:0;font-size:clamp(58px,13vw,210px);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;">{{ p.name }}<span style="color:#756CE5;">.</span></h1>
-    <p style="margin:clamp(28px,3.5vw,52px) 0 0;max-width:34ch;font-family:'Manrope',sans-serif;font-size:clamp(18px,1.6vw,24px);font-weight:500;line-height:1.3;text-wrap:pretty;">{{ p.summary }}</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:28px;border-top:1px solid rgba(233,233,233,.22);margin-top:clamp(50px,6vw,90px);padding-top:26px;">
-      <div>
-        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.role }}</p>
-        <p style="margin:0;font-size:16px;line-height:1.5;max-width:30ch;">{{ p.role }}</p>
-      </div>
-      <div>
-        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.tools }}</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <sc-for list="{{ p.tools }}" as="s" hint-placeholder-count="2">
-            <span style="padding:7px 14px;border:1px solid rgba(233,233,233,.35);border-radius:999px;font-family:'Courier New',monospace;font-size:13px;">{{ s }}</span>
-          </sc-for>
-        </div>
-      </div>
-      <div>
-        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.yearL }}</p>
-        <p style="margin:0;font-size:16px;line-height:1.5;">{{ p.year }}</p>
-      </div>
-      <div>
-        <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ t.links }}</p>
-        <a href="https://www.instagram.com/estudio96_salon/" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;color:#756CE5;">Instagram @estudio96_salon
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- COVER -->
-  <div style="position:relative;">
-    <div data-ob-dark="1" style="position:sticky;top:0;height:100vh;min-height:520px;overflow:hidden;background:#131E21;">
-      <img src="img/ESTUDIO96/portada-e96-foto.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;display:block;opacity:.8;">
-      <div style="position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,2.4vh,28px);padding:0 24px;filter:drop-shadow(0 6px 24px rgba(0,0,0,.1));">
-        <img src="img/ESTUDIO96/logo-e96-blanco.svg" alt="Estudio 96" style="width:min(56vw,720px);height:auto;display:block;">
-        <span style="font-family:'Manrope',sans-serif;font-size:clamp(13px,1.3vw,18px);font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#FFFFFF;">{{ t.coverTag }}</span>
-      </div>
-    </div>
-  <!-- (01) CONTEXT -->
-  <section data-ob-dark="1" style="background: #131E21; color: #E9E9E9; position: relative; z-index: 1; padding: clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(70px,9vw,130px)">
-    <div style="display:flex;justify-content:center;">
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:min(1091px,100%);">
-        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01)</span>
-        <h2 style="margin:14px 0 clamp(20px,2.4vw,32px);font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.context }}</h2>
-        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.5; font-weight: 300; text-wrap: pretty; width: 100%; font-family: Manrope">{{ p.context }}</p>
-      </div>
-    </div>
-  </section>
-  </div>
-
-  <!-- (02) MY ROLE -->
-  <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) 0;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,5vw,90px);">
-      <div>
-        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(02)</span>
-        <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.myRole }}</h2>
-      </div>
-      <div class="ob-span2" style="grid-column:span 2;display:flex;flex-direction:column;gap:clamp(24px,3vw,40px);">
-        <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); line-height: 1.35; letter-spacing: -.01em; font-weight: 500; text-wrap: pretty; font-family: Manrope; align-self: stretch">{{ p.myRole }}</p>
-        <div style="display:flex;flex-direction:column;">
-          <sc-for list="{{ p.deliverables }}" as="d" hint-placeholder-count="4">
-            <div style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:baseline;border-bottom:1px solid rgba(19,30,33,.18);padding:16px 0;">
-              <span style="font-family:'Courier New',monospace;font-size:15px;color:#756CE5;">[{{ d.n }}]</span>
-              <p style="margin: 0; font-size: clamp(17px,1.45vw,21px); font-weight: 500; font-family: Manrope">{{ d.label }}</p>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLEAR SPACE -->
-  <section data-ob-dark="1" aria-label="{{ t.cap2 }}" style="margin-top: clamp(80px,10vw,150px); background: #131E21; color: #E9E9E9; padding: clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(70px,9vw,130px); position: relative">
-    
-  <div style="display: flex; justify-content: center; align-items: center; width: 100%">
-      <div style="position:relative;width:100%;max-width:930px;">
-        
-        
-      <span style="position: absolute; left: 56.24%; top: 84.47%; transform: translate(-50%,-50%); white-space: nowrap; font-family: 'Manrope',sans-serif; font-size: clamp(9px,1.25vw,15px); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: #FFFFFF">{{ t.csRef }}</span><img src="img/ESTUDIO96/estudio96-clear-space-dark.svg" alt="{{ t.cap2 }}" style="width: 100%; height: auto; box-sizing: border-box; display: block; padding-left: 6.56%; padding-right: 6.56%"></div>
-    </div></section>
-
-  <!-- (03) KEY DECISION -->
-  <section style="padding: clamp(70px,9vw,130px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)); background-color: #F9F9F9">
-    <div style="width: 100%; height: 29px; display: grid">
-          
-          
-        </div><div style="display: flex; flex-wrap: wrap; gap: 29px; align-items: center; flex-direction: column; justify-content: flex-end; position: relative">
-      <span style="font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #5A6568; text-align: center">(03)</span>
-      <h2 style="margin: 14px 0 0; font-size: clamp(28px,3.4vw,52px); line-height: .95; letter-spacing: -.03em; font-weight: 800; text-transform: uppercase; text-align: center; width: 100%; max-width: 698px">{{ t.decision }}</h2><p style="margin: 0; font-family: Manrope; font-size: clamp(17px,1.45vw,21px); font-weight: 400; line-height: 1.4; max-width: 100ch; text-wrap: pretty; width: 100%; text-align: center; align-self: center">{{ p.decision }}</p><div style="width: 100%; max-width: 1292px; margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 24px"><figcaption style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #5A6568; text-align: center">{{ t.cap4 }}</figcaption><div style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;"><img class="e96-logos" src="img/ESTUDIO96/logo-system-e96.png" alt="{{ t.cap4 }}" style="width: 100%; height: auto; display: block"></div><p class="e96-swipe-hint" style="margin: 0; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #756CE5; font-weight: 600;">{{ t.swipe }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></p></div>
-    </div>
-    <figure style="margin:clamp(40px,5vw,72px) 0 0;">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;border-top:1px solid #131E21;padding-top:16px;margin-bottom:clamp(24px,3vw,40px);">
-        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ t.cap3 }}</span>
-        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ t.palNote }}</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(20px,2.4vw,32px);">
-        <sc-for list="{{ palPairs }}" as="pair" hint-placeholder-count="2">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr));gap:clamp(20px,2.4vw,32px);min-width:0;">
-        <sc-for list="{{ pair }}" as="c" hint-placeholder-count="2">
-          <div style="display:flex;flex-direction:column;min-width:0;">
-            <div style="aspect-ratio:4/3;background:{{ c.base }};border-radius:14px;display:flex;flex-direction:column;justify-content:space-between;padding:16px 18px;box-sizing:border-box;color:{{ c.ink }};">
-              <span style="font-family:'Courier New',monospace;font-size:13px;">[{{ c.n }}]</span>
-              <span style="font-family:'Manrope',sans-serif;font-size:clamp(20px,1.8vw,26px);font-weight:600;letter-spacing:-.01em;">{{ c.name }}</span>
-            </div>
-            <div style="display:flex;flex-direction:column;margin-top:14px;">
-              <div style="display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;align-items:baseline;border-top:1px solid rgba(19,30,33,.16);padding:8px 0;">
-                <span style="font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #5A6568; font-family: Manrope">HEX</span>
-                <span style="font-family: Manrope; font-size: 13px; color: #131E21; white-space: nowrap">{{ c.base }}</span>
-              </div>
-              <div style="display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;align-items:baseline;border-top:1px solid rgba(19,30,33,.16);padding:8px 0;">
-                <span style="font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #5A6568; font-family: Manrope">RGB</span>
-                <span style="font-family: Manrope; font-size: 13px; color: #131E21; white-space: nowrap">{{ c.rgb }}</span>
-              </div>
-              <div style="display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;align-items:baseline;border-top:1px solid rgba(19,30,33,.16);border-bottom:1px solid rgba(19,30,33,.16);padding:8px 0;">
-                <span style="font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #5A6568; font-family: Manrope">CMYK</span>
-                <span style="font-family: Manrope; font-size: 13px; color: #131E21; white-space: nowrap">{{ c.cmyk }}</span>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:4px;margin-top:16px;">
-              <sc-for list="{{ c.tints }}" as="tn" hint-placeholder-count="4">
-                <div style="height:40px;border-radius:8px;background:{{ tn.hex }};display:flex;align-items:center;justify-content:space-between;padding:0 12px;box-sizing:border-box;color:{{ tn.ink }};">
-                  <span style="font-size: 11px; font-weight: 600; letter-spacing: .06em; font-family: Manrope">{{ tn.pct }}</span>
-                  <span style="font-family: Manrope; font-size: 12px">{{ tn.hex }}</span>
-                </div>
-              </sc-for>
+  <!-- CONTACT -->
+  <section data-ob-dark="1" style="min-height:100vh;box-sizing:border-box;background:#131E21;color:#E9E9E9;padding:clamp(120px,16vh,170px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(60px,8vw,110px);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,110px);align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);min-width:0;">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(01) — {{ ct.t.label }}</span>
+        <h1 style="margin: 0; font-size: clamp(40px,13.5vw,121px); line-height: .84; letter-spacing: -.045em; font-weight: 800; text-transform: uppercase">{{ ct.t.title }}<span style="color:#756CE5;">.</span></h1>
+        <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(19px,1.7vw,24px);font-weight:500;line-height:1.4;max-width:24ch;text-wrap:pretty;">{{ ct.t.lead }}</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;border-top:1px solid rgba(233,233,233,.22);padding-top:24px;margin-top:8px;">
+          <div>
+            <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ ct.t.social }}</p>
+            <div style="display:flex;flex-direction:column;align-items:flex-start;">
+              <a href="https://www.linkedin.com/in/oriana-bonato/" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:8px;min-height:36px;font-size:16px;color:#756CE5;">LinkedIn<svg class="ob-inl-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
+              <a href="https://www.behance.net/ocbonato96" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:8px;min-height:36px;font-size:16px;color:#756CE5;">Behance<svg class="ob-inl-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
+              <a href="https://github.com/OrianaBonato" target="_blank" rel="noopener noreferrer" class="ob-repo" style="display:inline-flex;align-items:center;gap:8px;min-height:36px;font-size:16px;color:#756CE5;">GitHub<svg class="ob-inl-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></a>
             </div>
           </div>
-        </sc-for>
-        </div>
-        </sc-for>
-      </div>
-    </figure>
-  </section>
-
-  <!-- (04) APPLICATIONS -->
-  <section data-ob-dark="1" style="margin-top:0;background:#131E21;color:#E9E9E9;padding:clamp(70px,9vw,130px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
-    <div style="margin-bottom:clamp(36px,4vw,60px);">
-      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">(04)</span>
-      <h2 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.apps }}</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;">
-      <sc-for list="{{ appsRow1 }}" as="g" hint-placeholder-count="3">
-        <figure style="margin:0;">
-          <figcaption style="margin-bottom:12px;display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;color:#D8FD80;">[{{ g.n }}]</span><span>{{ g.cap }}</span></figcaption>
-          <div style="aspect-ratio:4/5;overflow:hidden;background:#1B282B;">
-            <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div>
+            <p style="margin:0 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">{{ ct.t.based }}</p>
+            <p style="margin:0;font-size:16px;line-height:1.5;">{{ ct.t.basedVal }}</p>
           </div>
-        </figure>
-      </sc-for>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:16px;">
-      <sc-for list="{{ appsRow2 }}" as="g" hint-placeholder-count="2">
-        <figure style="margin:0;">
-          <div style="aspect-ratio:5/4;overflow:hidden;background:#1B282B;">
-            <img src="{{ g.src }}" alt="{{ g.cap }}" style="width:100%;height:100%;object-fit:cover;display:block;">
-          </div>
-          <figcaption style="margin-top:12px;display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;"><span style="font-family:'Courier New',monospace;color:#D8FD80;">[{{ g.n }}]</span><span>{{ g.cap }}</span></figcaption>
-        </figure>
-      </sc-for>
-    </div>
-  </section>
-
-  <!-- (05) RESULT -->
-  <section style="padding:clamp(80px,10vw,150px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,6vw,110px);align-items:center;">
-      <div>
-        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">(05)</span>
-        <h2 style="margin:14px 0 clamp(20px,2.4vw,32px);font-size:clamp(28px,3.4vw,52px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ t.result }}</h2>
-        <p style="margin: 0; font-family: Bricolage Grotesque; font-size: clamp(19px,1.6vw,24px); font-weight: 600; line-height: 1.5; max-width: 42ch; text-wrap: pretty; letter-spacing: -0.7px">{{ p.result }}</p>
-      </div>
-      <figure style="margin:0;">
-        <div style="aspect-ratio:7/5;overflow:hidden;background:#1B282B;">
-          <img src="img/ESTUDIO96/img-06_E96.webp" alt="{{ t.cap6 }}" style="width: 100%; height: 100%; object-fit: cover; display: block">
         </div>
-        <figcaption style="margin-top:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6568;">{{ t.cap6 }}</figcaption>
-      </figure>
+      </div><div style="color: #131E21; padding: clamp(24px,4vw,56px); min-width: 0">
+        <sc-if value="{{ ct.sent }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:20px;padding:clamp(20px,4vw,48px) 0;">
+            <span style="width:44px;height:44px;border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg></span>
+            <h2 style="margin:0;font-size:clamp(28px,3.4vw,44px);line-height:.95;letter-spacing:-.03em;font-weight:800;text-transform:uppercase;">{{ ct.t.thanks }}</h2>
+            <p style="margin:0;font-family:'Manrope',sans-serif;font-size:16px;line-height:1.7;color:#5A6568;max-width:40ch;">{{ ct.t.thanksBody }}</p>
+            <span onClick="{{ ct.reset }}" role="button" style="width:fit-content;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #131E21;padding-bottom:3px;cursor:pointer;">{{ ct.t.again }}</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ ct.notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ ct.submit }}" noValidate="" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,32px);">
+            
+            <label style="display:flex;flex-direction:column;gap:8px;">
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ ct.t.name }}</span>
+              <input type="text" class="ob-in" name="name" value="{{ ct.v.name }}" onChange="{{ ct.on.name }}" placeholder="{{ ct.t.namePh }}" style="width: 100%; box-sizing: border-box; border: 0; border-bottom: 1px solid {{ ct.bd.name }}; padding: 10px 0; font-family: 'Manrope',sans-serif; font-size: 16px; color: #131E21; border-radius: 0; background-color: #00000000; border-color: #E9E9E9">
+              <sc-if value="{{ ct.err.name }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#756CE5;">{{ ct.t.nameErr }}</span></sc-if>
+            </label>
+            
+            <label style="display:flex;flex-direction:column;gap:8px;">
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ ct.t.email }}</span>
+              <input type="email" class="ob-in" name="email" value="{{ ct.v.email }}" onChange="{{ ct.on.email }}" placeholder="{{ ct.t.emailPh }}" style="width: 100%; box-sizing: border-box; border: 0; border-bottom: 1px solid {{ ct.bd.email }}; background: transparent; padding: 10px 0; font-family: 'Manrope',sans-serif; font-size: 16px; color: #131E21; border-radius: 0; border-color: #E9E9E9">
+              <sc-if value="{{ ct.err.email }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#756CE5;">{{ ct.t.emailErr }}</span></sc-if>
+            </label>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ ct.t.reason }}</span>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                <sc-for list="{{ ct.chips }}" as="c" hint-placeholder-count="3">
+                  <span onClick="{{ c.onClick }}" role="button" aria-pressed="{{ c.pressed }}" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; box-sizing: border-box; border: 1px solid #131E21; border-radius: 999px; font-size: 13px; cursor: pointer; background: {{ c.bg }}; color: #E9E9E9; transition: background .3s ease,color .3s ease; border-color: #E9E9E9">{{ c.label }}</span>
+                </sc-for>
+              </div>
+            </div>
+            
+            <label style="display:flex;flex-direction:column;gap:8px;">
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6568;">{{ ct.t.message }}</span>
+              <textarea rows="4" class="ob-in" name="message" value="{{ ct.v.message }}" onChange="{{ ct.on.message }}" placeholder="{{ ct.t.messagePh }}" style="width: 100%; box-sizing: border-box; border: 0; border-bottom: 1px solid {{ ct.bd.message }}; background: transparent; padding: 10px 0; font-family: 'Manrope',sans-serif; font-size: 16px; color: #131E21; border-radius: 0; resize: vertical; min-height: 110px; border-color: #E9E9E9"></textarea>
+              <sc-if value="{{ ct.err.message }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#756CE5;">{{ ct.t.messageErr }}</span></sc-if>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
+              <input type="checkbox" checked="{{ ct.v.privacy }}" onChange="{{ ct.on.privacy }}" style="position:absolute;opacity:0;width:1px;height:1px;">
+              <span style="width:18px;height:18px;flex-shrink:0;margin-top:2px;box-sizing:border-box;border:1px solid #131E21;background:{{ ct.boxBg }};display:flex;align-items:center;justify-content:center;color:#FFFFFF;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="opacity:{{ ct.tickOp }};"><path d="M5 12l5 5L19 7"></path></svg></span>
+              <span style="font-family:'Manrope',sans-serif;font-size:14px;line-height:1.6;color:#5A6568;">{{ ct.t.privacy }}<sc-if value="{{ ct.err.privacy }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:4px;font-size:12px;color:#756CE5;">{{ ct.t.privacyErr }}</span></sc-if></span>
+            </label>
+            <button type="submit" class="ob-btn" style="width: fit-content; display: inline-flex; align-items: center; gap: 20px; padding: 6px 6px 6px 24px; border: 1px solid #131E21; border-radius: 999px; background: transparent; color: #E9E9E9; cursor: pointer; font-family: 'Bricolage Grotesque',sans-serif; border-color: #E9E9E9">
+              <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ ct.t.send }}</span>
+              <span class="ob-circ" style="width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
+            </button>
+          </form>
+        </sc-if>
+      </div>
+
+      
     </div>
   </section>
 
-  <!-- NEXT PROJECT -->
-  <a href="smartrest.html" data-ob-dark="1" class="ob-next" style="display:block;background:#131E21;color:#E9E9E9;padding:clamp(60px,8vw,120px) max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2)) clamp(40px,5vw,70px);">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid rgba(233,233,233,.22);padding-top:20px;margin-bottom:clamp(20px,3vw,40px);">
-      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#D8FD80;">{{ t.next }}</span>
-      <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA3A5;">App Web Frontend / Backend · 2026</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;">
-      <span style="min-width:0;font-size:clamp(30px,11vw,180px);line-height:.82;letter-spacing:-.045em;font-weight:800;text-transform:uppercase;color:#E9E9E9;">SmartRest<span style="color:#756CE5;">.</span></span>
-      <span class="ob-next-circ" style="flex-shrink:0;width:clamp(56px,6vw,96px);height:clamp(56px,6vw,96px);border-radius:50%;background:#756CE5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;">
-        <svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg>
-      </span>
-    </div>
-    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:clamp(50px,6vw,80px);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3A5;">
-      <span>© 2026 Oriana Bonato</span>
-      <span>{{ t.credit }}</span>
-    </div>
-  </a>
+  <footer data-ob-dark="1" style="background:#131E21;color:#9AA3A5;border-top:1px solid rgba(233,233,233,.12);padding:24px max(clamp(20px,3.5vw,56px),calc((100% - 1320px) / 2));display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:.16em;text-transform:uppercase;">
+    <span>© 2026 Oriana Bonato</span><span>{{ ct.t.credit }}</span>
+  </footer>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
@@ -439,11 +321,10 @@ class Component extends DCLogic {
       coverTag: C('Brand identity', 'Identidad de marca'),
       palNote: C('Base tone + tints at 80 · 60 · 40 · 20%', 'Tono base + tintes al 80 · 60 · 40 · 20%'),
       cap4: C('Logo system', 'Sistema de logotipos'),
-      swipe: C('Swipe to see more', 'Desliza para ver más'),
       cap6: C('Salon window signage', 'Rótulo en el escaparate del salón'),
     };
     const p = {
-      index: '04',
+      index: '02',
       name: 'Estudio 96',
       year: '2023',
       tag: C('Brand identity', 'Identidad de marca'),
@@ -452,7 +333,7 @@ class Component extends DCLogic {
       tools: ['Illustrator', 'Photoshop'],
       context: C(
         "Nerea was clear about what she didn't want: the cool, minimalist black-and-white look so many salons default to. Estudio 96 had to feel like her, warm and personal, a place where clients feel good not just walking out but the whole time they're in the chair. To build it from scratch, she brought in two specialists: me for the brand and an interior designer for the space. We both worked from the same moodboard so the two sides matched her vision. The palette was clear from the start, but narrowing it down wasn't: several colour combinations had to be dropped from the application set before the system held together.",
-        'Nerea tenía claro lo que no quería: el minimalismo frío en blanco y negro al que recurren tantas peluquerías. \n\nEstudio 96 tenía que parecerse a ella, cálido y cercano, un lugar donde las clientas se sientan bien no solo al salir, sino durante todo el rato que están en el sillón. Para construirlo desde cero contó con dos especialistas: conmigo para la marca y una interiorista para el diseño de interiores. Las dos trabajamos a partir del mismo moodboard, aprobado por la clienta, para que ambas partes respondieran a su visión. La paleta estuvo clara desde el principio, pero acotarla no fue tan sencillo: tuvimos que descartar varias combinaciones de color antes de que el sistema funcionara en conjunto.'
+        'Nerea tenía claro lo que no quería: el minimalismo frío en blanco y negro al que recurren tantas peluquerías. Estudio 96 tenía que parecerse a ella, cálido y cercano, un lugar donde las clientas se sientan bien no solo al salir, sino durante todo el rato que están en el sillón. Para construirlo desde cero contó con dos especialistas: yo para la marca y una interiorista para el espacio. Las dos trabajamos a partir del mismo moodboard, para que ambas partes respondieran a su visión. La paleta estuvo clara desde el principio, pero acotarla no fue tan sencillo: tuvimos que descartar varias combinaciones de color antes de que el sistema funcionara en conjunto.'
       ),
       myRole: C(
         'I worked closely with Nerea and the interior designer to lock the palette, then built the identity on top of it: logo, business cards, a social media icon and a gift card.',
@@ -461,11 +342,11 @@ class Component extends DCLogic {
       deliverables: (es ? ['Logo', 'Tarjetas de visita', 'Icono para redes sociales', 'Tarjeta regalo'] : ['Logo', 'Business cards', 'Social media icon', 'Gift card']).map((label, i) => ({ n: String(i + 1).padStart(2, '0'), label })),
       decision: C(
         'I set the wordmark in a serif with a connecting stroke between the main letters, to suggest the continuity and flow of healthy hair. I used uppercase for the formality and strength that go with it.',
-        'Compuse el logotipo utilizando una tipografía con serifa uniendo con un trazo las letras principales, para evocar la continuidad y el movimiento de un pelo sano. Lo puse en mayúsculas por la fuerza que transmite.'
+        'Compuse el logotipo en una serif con un trazo que une las letras principales, para evocar la continuidad y el movimiento de un pelo sano. Lo puse en mayúsculas por la formalidad y la fuerza que transmiten.'
       ),
       result: C(
         "Estudio 96 opened with this identity applied across the salon and its materials (logo, business cards, social icon, gift card), and it's still the brand in use today.",
-        '<< Estudio 96 abrió con esta identidad aplicada en el salón y en todos sus materiales (logo, tarjetas de visita, icono de redes y tarjeta regalo), y sigue siendo su marca a día de hoy >>'
+        'Estudio 96 abrió con esta identidad aplicada en el salón y en todos sus materiales (logo, tarjetas de visita, icono de redes y tarjeta regalo), y sigue siendo su marca a día de hoy.'
       ),
     };
     const hexRgb = (hex) => { const n = parseInt(hex.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; };
@@ -484,8 +365,43 @@ class Component extends DCLogic {
       return { ...c, n: String(i + 1).padStart(2, '0'), rgb: rgb.join(' '), cmyk: cmyk(rgb), ink: '#FFFFFF',
         tints: [80, 60, 40, 20].map((pct) => { const t = rgb.map((v) => Math.round(v * pct / 100 + 255 * (1 - pct / 100)));
           return { pct: pct + '%', hex: toHex(t), ink: inkFor(t) }; }) }; });
+
+    const cf = this.state.cf || { name: '', email: '', message: '', reason: 0, privacy: false };
+    const ce = this.state.ce || {};
+    const setF = (k) => (e) => { const v = k === 'privacy' ? e.target.checked : e.target.value; this.setState((s) => ({ cf: { ...(s.cf || cf), [k]: v }, ce: { ...(s.ce || {}), [k]: false } })); };
+    const reasons = es ? ['Oferta de empleo', 'Proyecto freelance', 'Otro'] : ['Job opportunity', 'Freelance project', 'Other'];
+    const ct = {
+      t: {
+        label: C('Contact', 'Contacto'), title: C("Let's talk", 'Hablemos'),
+        lead: C("Have a project in mind? Let's work together.", '¿Tienes un proyecto en mente? Trabajemos juntos.'),
+        social: C('Social', 'Redes'), based: C('Based in', 'Ubicación'), basedVal: C('Vigo, Spain — remote (CET)', 'Vigo, España — en remoto (CET)'),
+        name: C('Name', 'Nombre'), namePh: C('Your name', 'Tu nombre'), nameErr: C('Tell me your name', 'Indica tu nombre'),
+        email: 'Email', emailPh: 'hello@studio.com', emailErr: C('Enter a valid email', 'Introduce un email válido'),
+        message: C('Message', 'Mensaje'), messagePh: C('Tell me about the project', 'Cuéntame el proyecto'), messageErr: C('Write a short message', 'Escribe un mensaje breve'),
+        reason: C('Reason', 'Motivo'),
+        privacy: C('I accept the privacy policy and the processing of my data to answer this message.', 'Acepto la política de privacidad y el tratamiento de mis datos para responder a este mensaje.'),
+        privacyErr: C('You need to accept the privacy policy', 'Necesitas aceptar la política de privacidad'),
+        send: C('Send message', 'Enviar mensaje'), thanks: C('Thank you', 'Gracias'),
+        thanksBody: C('Your email app has opened with the message ready to send. I will reply as soon as possible.', 'Se ha abierto tu app de correo con el mensaje listo para enviar. Te responderé lo antes posible.'),
+        again: C('Write another message', 'Escribir otro mensaje'), credit: C('Designed & coded by Oriana Bonato', 'Diseñado y programado por Oriana Bonato'),
+      },
+      v: cf, err: ce, sent: !!this.state.sent, notSent: !this.state.sent,
+      bd: { name: ce.name ? '#756CE5' : '#131E21', email: ce.email ? '#756CE5' : '#131E21', message: ce.message ? '#756CE5' : '#131E21' },
+      on: { name: setF('name'), email: setF('email'), message: setF('message'), privacy: setF('privacy') },
+      boxBg: cf.privacy ? '#756CE5' : 'transparent', tickOp: cf.privacy ? 1 : 0,
+      chips: reasons.map((label, i) => ({ label, pressed: cf.reason === i ? 'true' : 'false', bg: cf.reason === i ? '#131E21' : 'transparent', color: cf.reason === i ? '#E9E9E9' : '#131E21',
+        onClick: () => this.setState((s) => ({ cf: { ...(s.cf || cf), reason: i } })) })),
+      submit: (e) => { e.preventDefault();
+        const err = { name: !cf.name.trim(), email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cf.email.trim()), message: !cf.message.trim(), privacy: !cf.privacy };
+        if (Object.values(err).some(Boolean)) { this.setState({ ce: err }); return; }
+        const sub = encodeURIComponent('[' + reasons[cf.reason] + '] ' + cf.name);
+        const bod = encodeURIComponent(cf.message + '\n\n— ' + cf.name + ' · ' + cf.email);
+        window.location.href = 'mailto:hello@orianabonato.com?subject=' + sub + '&body=' + bod;
+        this.setState({ sent: true }); },
+      reset: () => this.setState({ sent: false, cf: { name: '', email: '', message: '', reason: 0, privacy: false }, ce: {} }),
+    };
     return {
-      t, p,
+      ct, t, p,
       palette: bases,
       palPairs: [bases.slice(0, 2), bases.slice(2, 4)],
       appsRow1: [
@@ -501,7 +417,6 @@ class Component extends DCLogic {
         const labels = es ? ['Proyectos', 'Sobre mí', 'Experiencia', 'Contacto'] : ['Work', 'About', 'Experience', 'Contact'];
         return {
           navCta: es ? '¿Tienes un proyecto en mente? Trabajemos juntos.' : "Have a project in mind? Let's work together.",
-          navMail: es ? 'Contacta' : 'Get in touch',
           navOpenStr: open ? 'true' : 'false', navPlusRot: open ? '135deg' : '0deg', navPlusBg: open ? '#756CE5' : 'transparent',
           navMenuOp: open ? 1 : 0, navMenuVis: open ? 'visible' : 'hidden', navMenuY: open ? '0px' : '-12px',
           navToggle: () => this.setState((s) => ({ nav: !s.nav })),

@@ -136,7 +136,7 @@
         <div style="display:flex;flex-direction:column;gap:22px;padding-bottom:6px;">
           <p style="margin:0;font-family:'Manrope',sans-serif;font-size:clamp(17px,1.4vw,21px);font-weight:500;line-height:1.35;color:#E9E9E9;max-width:24ch;">{{ navCta }}</p>
           <a href="contacto.html" class="ob-mm" style="width:fit-content;display:inline-flex;align-items:center;gap:18px;padding:5px 5px 5px 22px;border:1px solid #E9E9E9;border-radius:999px;color:#E9E9E9;">
-            <span style="font-size:15px;font-weight:500;">hello@orianabonato.com</span>
+            <span style="font-size:15px;font-weight:500;">{{ navMail }}</span>
             <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#756CE5;color:#E9E9E9;"><svg class="ob-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7H17V16"></path></svg></span>
           </a>
         </div>
@@ -564,6 +564,7 @@ class Component extends DCLogic {
         const labels = es ? ['Proyectos', 'Sobre mí', 'Experiencia', 'Contacto'] : ['Work', 'About', 'Experience', 'Contact'];
         return {
           navCta: es ? '¿Tienes un proyecto en mente? Trabajemos juntos.' : "Have a project in mind? Let's work together.",
+          navMail: es ? 'Contacta' : 'Get in touch',
           navOpenStr: open ? 'true' : 'false', navPlusRot: open ? '135deg' : '0deg', navPlusBg: open ? '#756CE5' : 'transparent',
           navMenuOp: open ? 1 : 0, navMenuVis: open ? 'visible' : 'hidden', navMenuY: open ? '0px' : '-12px',
           navToggle: () => this.setState((s) => ({ nav: !s.nav })),
